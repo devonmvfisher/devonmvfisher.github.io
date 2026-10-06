@@ -1,0 +1,681 @@
+{
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "downloaded": "2026-09-04T23:43:06.740Z",
+  "models": [
+    {
+      "id": "sofa_03",
+      "name": "Sofa 03",
+      "source": "https://polyhaven.com/a/sofa_03",
+      "authors": {
+        "Fran Calvente": "All"
+      },
+      "polycount": 8004,
+      "dimensionsMillimetresZUp": [
+        2731.17733001709,
+        925.0842034816742,
+        1118.2640366605483
+      ],
+      "description": "Free 8K model of a vintage Victorian leather sofa with carved wooden frame, scrolled arms, patterned fringe cushions and rich antique brown finish.",
+      "tiers": {
+        "1k": {
+          "path": "models/sofa_03/1k/sofa_03_1k.gltf",
+          "bytes": 668033,
+          "glbPath": "models/sofa_03/sofa_03_1k.glb",
+          "glbBytes": 1916588,
+          "sha256": "c45c5f873228249c125fbabda85f6e105c036660c0e1f0185efb4a7ec6e3858e"
+        },
+        "4k": {
+          "path": "models/sofa_03/4k/sofa_03_4k.gltf",
+          "bytes": 5351406,
+          "glbPath": "models/sofa_03/sofa_03_4k.glb",
+          "glbBytes": 6599972,
+          "sha256": "814d0acace8ebb2c9e8c1c6719553acee1d8cbfb993ad561614b94051d8d296b"
+        }
+      }
+    },
+    {
+      "id": "gothic_coffee_table",
+      "name": "Gothic Coffee Table",
+      "source": "https://polyhaven.com/a/gothic_coffee_table",
+      "authors": {
+        "Ulan Cabanilla": "All"
+      },
+      "polycount": 23836,
+      "dimensionsMillimetresZUp": [
+        1443.0902004241943,
+        1443.0902004241943,
+        558.7729810795281
+      ],
+      "description": "Free 8K model of a Gothic wooden coffee table featuring ornate details, dark antique finish, medieval motifs, rich wood grain and aged patina.",
+      "tiers": {
+        "1k": {
+          "path": "models/gothic_coffee_table/1k/gothic_coffee_table_1k.gltf",
+          "bytes": 3266715,
+          "glbPath": "models/gothic_coffee_table/gothic_coffee_table_1k.glb",
+          "glbBytes": 3265684,
+          "sha256": "bf7172b971c47ded19620ab16a3ce025fbc9e5d3fed5696558c0366c2c6ee2c3"
+        },
+        "2k": {
+          "path": "models/gothic_coffee_table/2k/gothic_coffee_table_2k.gltf",
+          "bytes": 8941185,
+          "glbPath": "models/gothic_coffee_table/gothic_coffee_table_2k.glb",
+          "glbBytes": 8940156,
+          "sha256": "826a8c31dffc7136cbc82fd023c090edc4229f5cd7ae9d5dbbeda07d23e278e8"
+        }
+      }
+    },
+    {
+      "id": "potted_plant_02",
+      "name": "Potted Plant 02",
+      "source": "https://polyhaven.com/a/potted_plant_02",
+      "authors": {
+        "Rico Cilliers": "All"
+      },
+      "polycount": 69806,
+      "dimensionsMillimetresZUp": [
+        701.1570334434509,
+        657.3865860700607,
+        841.1787391305552
+      ],
+      "description": "Free 8K model. Realistic terracotta pot with weathered rim, textured soil, and variegated green, heart-shaped leaves with pronounced veins.",
+      "tiers": {
+        "1k": {
+          "path": "models/potted_plant_02/1k/potted_plant_02_1k.gltf",
+          "bytes": 2634698,
+          "glbPath": "models/potted_plant_02/potted_plant_02_1k.glb",
+          "glbBytes": 4264280,
+          "sha256": "3d5bf0a8d7646ce5f9afce45bc70d566e99ede81f596df4fdc538ebc5f4a3d60"
+        }
+      }
+    },
+    {
+      "id": "vintage_oil_lamp",
+      "name": "Vintage Oil Lamp",
+      "source": "https://polyhaven.com/a/vintage_oil_lamp",
+      "authors": {
+        "Monsta3D": "All"
+      },
+      "polycount": 7208,
+      "dimensionsMillimetresZUp": [
+        219.9999988079071,
+        219.9999913573265,
+        801.6371909276536
+      ],
+      "description": "Free 4K model, ornate Victorian oil lamp with brass base, floral porcelain globe, tall glass chimney and lit wick - detailed antique decorative charm.",
+      "tiers": {
+        "1k": {
+          "path": "models/vintage_oil_lamp/1k/vintage_oil_lamp_1k.gltf",
+          "bytes": 2070002,
+          "glbPath": "models/vintage_oil_lamp/vintage_oil_lamp_1k.glb",
+          "glbBytes": 2454424,
+          "sha256": "068bb930a06a12fbf9f3951b0be9acc2d591712cb7f8caf82333f189c286fa8f"
+        }
+      }
+    }
+  ],
+  "textures": [
+    {
+      "id": "oak_wood_planks",
+      "name": "Oak Wood Planks",
+      "source": "https://polyhaven.com/a/oak_wood_planks",
+      "authors": {
+        "Dimitrios Savva": "All"
+      },
+      "description": "Free 8K texture of varnished oak wood planks with warm grain, subtle gloss and seamless joins - ideal for realistic wooden flooring, furniture, and interior scenes.",
+      "dimensionsMillimetres": [
+        1200.0000476837158,
+        1200.0000476837158
+      ],
+      "tiers": {
+        "1k": {
+          "Diffuse": {
+            "path": "textures/oak_wood_planks/1k/oak_wood_planks_diff_1k.jpg",
+            "bytes": 696814,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/oak_wood_planks/oak_wood_planks_diff_1k.jpg"
+          },
+          "Rough": {
+            "path": "textures/oak_wood_planks/1k/oak_wood_planks_rough_1k.jpg",
+            "bytes": 845590,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/oak_wood_planks/oak_wood_planks_rough_1k.jpg"
+          },
+          "nor_gl": {
+            "path": "textures/oak_wood_planks/1k/oak_wood_planks_nor_gl_1k.jpg",
+            "bytes": 392213,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/oak_wood_planks/oak_wood_planks_nor_gl_1k.jpg"
+          }
+        },
+        "4k": {
+          "Diffuse": {
+            "path": "textures/oak_wood_planks/4k/oak_wood_planks_diff_4k.jpg",
+            "bytes": 10094919,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/oak_wood_planks/oak_wood_planks_diff_4k.jpg"
+          },
+          "Rough": {
+            "path": "textures/oak_wood_planks/4k/oak_wood_planks_rough_4k.jpg",
+            "bytes": 11941408,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/oak_wood_planks/oak_wood_planks_rough_4k.jpg"
+          },
+          "nor_gl": {
+            "path": "textures/oak_wood_planks/4k/oak_wood_planks_nor_gl_4k.jpg",
+            "bytes": 10862907,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/oak_wood_planks/oak_wood_planks_nor_gl_4k.jpg"
+          }
+        },
+        "4k-web": {
+          "Diffuse": {
+            "path": "textures/oak_wood_planks/4k-web/oak_wood_planks_diff_4k.jpg",
+            "bytes": 3299553,
+            "width": 4096,
+            "height": 4096
+          },
+          "Rough": {
+            "path": "textures/oak_wood_planks/4k-web/oak_wood_planks_rough_4k.jpg",
+            "bytes": 3869455,
+            "width": 4096,
+            "height": 4096
+          },
+          "nor_gl": {
+            "path": "textures/oak_wood_planks/4k-web/oak_wood_planks_nor_gl_4k.jpg",
+            "bytes": 4554957,
+            "width": 4096,
+            "height": 4096
+          }
+        }
+      },
+      "optional4k": {
+        "Diffuse": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/oak_wood_planks/oak_wood_planks_diff_4k.jpg",
+          "md5": "afdebae04b31a4f77ca878d9c8292daa",
+          "size": 10094919
+        },
+        "Rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/oak_wood_planks/oak_wood_planks_rough_4k.jpg",
+          "md5": "e9a7285184bc6d77d4715756bdb9c542",
+          "size": 11941408
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/oak_wood_planks/oak_wood_planks_nor_gl_4k.jpg",
+          "md5": "6afff3c8f29ac342026db49f12e1c1fe",
+          "size": 10862907
+        }
+      }
+    },
+    {
+      "id": "white_plaster_02",
+      "name": "White Plaster 02",
+      "source": "https://polyhaven.com/a/white_plaster_02",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "description": "Free 8K plaster texture: smooth, flat white plaster with a soft matte finish, fine micro-roughness and subtle dirt speckling across the surface.",
+      "dimensionsMillimetres": [
+        1000,
+        1000
+      ],
+      "tiers": {
+        "1k": {
+          "Diffuse": {
+            "path": "textures/white_plaster_02/1k/white_plaster_02_diff_1k.jpg",
+            "bytes": 527219,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_plaster_02/white_plaster_02_diff_1k.jpg"
+          },
+          "Rough": {
+            "path": "textures/white_plaster_02/1k/white_plaster_02_rough_1k.jpg",
+            "bytes": 295900,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_plaster_02/white_plaster_02_rough_1k.jpg"
+          },
+          "nor_gl": {
+            "path": "textures/white_plaster_02/1k/white_plaster_02_nor_gl_1k.jpg",
+            "bytes": 652310,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_plaster_02/white_plaster_02_nor_gl_1k.jpg"
+          }
+        }
+      },
+      "optional4k": {
+        "Diffuse": {
+          "size": 10554018,
+          "md5": "29028c8a2e961c5d3527e54bebb0ece4",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/white_plaster_02/white_plaster_02_diff_4k.jpg"
+        },
+        "Rough": {
+          "size": 6643592,
+          "md5": "7d1893d94a63e3270f5638a21f9c8d7a",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/white_plaster_02/white_plaster_02_rough_4k.jpg"
+        },
+        "nor_gl": {
+          "size": 13443163,
+          "md5": "9668d08922d25d7d6bf81e7fb34fac8e",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/white_plaster_02/white_plaster_02_nor_gl_4k.jpg"
+        }
+      }
+    },
+    {
+      "id": "rough_linen",
+      "name": "Rough Linen",
+      "source": "https://polyhaven.com/a/rough_linen",
+      "authors": {
+        "colormass": "Photography",
+        "Rico Cilliers": "Processing"
+      },
+      "description": "Free 8K texture: rough blue linen with fine woven crosshatch and natural matte surface - great for upholstery, garments, drapery, and cloth sims.",
+      "dimensionsMillimetres": [
+        270.7081392676629,
+        271.29998803138733
+      ],
+      "tiers": {
+        "1k": {
+          "Diffuse": {
+            "path": "textures/rough_linen/1k/rough_linen_diff_1k.jpg",
+            "bytes": 835801,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_linen/rough_linen_diff_1k.jpg"
+          },
+          "Rough": {
+            "path": "textures/rough_linen/1k/rough_linen_rough_1k.jpg",
+            "bytes": 1083725,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_linen/rough_linen_rough_1k.jpg"
+          },
+          "nor_gl": {
+            "path": "textures/rough_linen/1k/rough_linen_nor_gl_1k.jpg",
+            "bytes": 916843,
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_linen/rough_linen_nor_gl_1k.jpg"
+          }
+        }
+      },
+      "optional4k": {
+        "Diffuse": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rough_linen/rough_linen_diff_4k.jpg",
+          "md5": "8baff705eca1ecca5eefce25563b4b78",
+          "size": 13064750
+        },
+        "Rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rough_linen/rough_linen_rough_4k.jpg",
+          "md5": "a24abb488923d12f67a34d4e32101efa",
+          "size": 18101601
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rough_linen/rough_linen_nor_gl_4k.jpg",
+          "md5": "b5e671bbe0c658edc84c25f973a3577d",
+          "size": 13435511
+        }
+      }
+    }
+  ],
+  "downloads": [
+    {
+      "path": "models/sofa_03/1k/sofa_03_1k.gltf",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/sofa_03/sofa_03_1k.gltf",
+      "size": 4465,
+      "md5": "27f31e0500c2dd83a21fd3339ade7821"
+    },
+    {
+      "path": "models/sofa_03/1k/textures/sofa_03_rough_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/sofa_03/sofa_03_rough_1k.jpg",
+      "size": 170206,
+      "md5": "c3fe733eb2cef0424d5530e067518d60"
+    },
+    {
+      "path": "models/sofa_03/1k/sofa_03.bin",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/sofa_03/sofa_03.bin",
+      "size": 228984,
+      "md5": "aeebfb9aed3b40300b0fb73f0e27830e"
+    },
+    {
+      "path": "models/sofa_03/1k/textures/sofa_03_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/sofa_03/sofa_03_diff_1k.jpg",
+      "size": 151815,
+      "md5": "1f33a1431d98e1560a04b661e786b45b"
+    },
+    {
+      "path": "models/sofa_03/1k/textures/sofa_03_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/sofa_03/sofa_03_nor_gl_1k.jpg",
+      "size": 112563,
+      "md5": "dec3ec9d5d1ad2abf260e58b67e5cd0e"
+    },
+    {
+      "path": "models/sofa_03/4k/sofa_03_4k.gltf",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/sofa_03/sofa_03_4k.gltf",
+      "size": 4465,
+      "md5": "5bdba0f6f1814441bb21920dd919ea92"
+    },
+    {
+      "path": "models/sofa_03/4k/textures/sofa_03_nor_gl_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/4k/sofa_03/sofa_03_nor_gl_4k.jpg",
+      "size": 897070,
+      "md5": "6df5a3bd0dc9ff1f6542913ef87ef8c1"
+    },
+    {
+      "path": "models/sofa_03/4k/textures/sofa_03_diff_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/4k/sofa_03/sofa_03_diff_4k.jpg",
+      "size": 2032258,
+      "md5": "9ec019892ee95c1818d5926a205e42a1"
+    },
+    {
+      "path": "models/sofa_03/4k/sofa_03.bin",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/sofa_03/sofa_03.bin",
+      "size": 228984,
+      "md5": "aeebfb9aed3b40300b0fb73f0e27830e"
+    },
+    {
+      "path": "models/sofa_03/4k/textures/sofa_03_rough_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/4k/sofa_03/sofa_03_rough_4k.jpg",
+      "size": 2188629,
+      "md5": "4b02bd8bc57b21184724ff8f69406bde"
+    },
+    {
+      "path": "models/gothic_coffee_table/1k/gothic_coffee_table_1k.gltf",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/gothic_coffee_table/gothic_coffee_table_1k.gltf",
+      "size": 2842,
+      "md5": "feca9bfb96010e34e735627fe158b201"
+    },
+    {
+      "path": "models/gothic_coffee_table/1k/textures/gothic_coffee_table_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/gothic_coffee_table/gothic_coffee_table_nor_gl_1k.jpg",
+      "size": 836624,
+      "md5": "9dc3073a3b210554be58db913116ffdb"
+    },
+    {
+      "path": "models/gothic_coffee_table/1k/textures/gothic_coffee_table_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/gothic_coffee_table/gothic_coffee_table_diff_1k.jpg",
+      "size": 618166,
+      "md5": "b21f338ebdfe546f17d2d5dd16150725"
+    },
+    {
+      "path": "models/gothic_coffee_table/1k/textures/gothic_coffee_table_arm_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/gothic_coffee_table/gothic_coffee_table_arm_1k.jpg",
+      "size": 965587,
+      "md5": "c950595ab24ec4ad0aafe24c08aec004"
+    },
+    {
+      "path": "models/gothic_coffee_table/1k/gothic_coffee_table.bin",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/gothic_coffee_table/gothic_coffee_table.bin",
+      "size": 843496,
+      "md5": "d8c45735d6effb7fc383dba30c35012d"
+    },
+    {
+      "path": "models/gothic_coffee_table/2k/gothic_coffee_table_2k.gltf",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/2k/gothic_coffee_table/gothic_coffee_table_2k.gltf",
+      "size": 2842,
+      "md5": "45073f8a5038bad8bdb7f929a3362c3e"
+    },
+    {
+      "path": "models/gothic_coffee_table/2k/textures/gothic_coffee_table_nor_gl_2k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/gothic_coffee_table/gothic_coffee_table_nor_gl_2k.jpg",
+      "size": 2796089,
+      "md5": "af4e37bbda3def19e491044ed823c5ac"
+    },
+    {
+      "path": "models/gothic_coffee_table/2k/textures/gothic_coffee_table_diff_2k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/gothic_coffee_table/gothic_coffee_table_diff_2k.jpg",
+      "size": 2063263,
+      "md5": "a6cb5fbcbaf6cf804ebdd4b08d7ce7d5"
+    },
+    {
+      "path": "models/gothic_coffee_table/2k/textures/gothic_coffee_table_arm_2k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/gothic_coffee_table/gothic_coffee_table_arm_2k.jpg",
+      "size": 3235495,
+      "md5": "d864e528959214b7547d026a128b5a33"
+    },
+    {
+      "path": "models/gothic_coffee_table/2k/gothic_coffee_table.bin",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/gothic_coffee_table/gothic_coffee_table.bin",
+      "size": 843496,
+      "md5": "d8c45735d6effb7fc383dba30c35012d"
+    },
+    {
+      "path": "models/potted_plant_02/1k/potted_plant_02_1k.gltf",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/potted_plant_02/potted_plant_02_1k.gltf",
+      "size": 6653,
+      "md5": "9999d7e6c51018a85551840e1bdae656"
+    },
+    {
+      "path": "models/potted_plant_02/1k/textures/potted_plant_02_leaves_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_leaves_diff_1k.jpg",
+      "size": 167700,
+      "md5": "e8a026bd7bfa6497729d855c59da03ce"
+    },
+    {
+      "path": "models/potted_plant_02/1k/potted_plant_02.bin",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/potted_plant_02/potted_plant_02.bin",
+      "size": 1852244,
+      "md5": "cdbd4619b2596c9c469ad34676085fa8"
+    },
+    {
+      "path": "models/potted_plant_02/1k/textures/potted_plant_02_pot_rough_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_pot_rough_1k.jpg",
+      "size": 114886,
+      "md5": "68ed80fa32791fb0e81df61a75de40b4"
+    },
+    {
+      "path": "models/potted_plant_02/1k/textures/potted_plant_02_leaves_rough_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_leaves_rough_1k.jpg",
+      "size": 102396,
+      "md5": "ba934a78cc6496d934c014eb8a33af37"
+    },
+    {
+      "path": "models/potted_plant_02/1k/textures/potted_plant_02_pot_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_pot_diff_1k.jpg",
+      "size": 155244,
+      "md5": "97e149c93eb0d962e491d4c82d3ce477"
+    },
+    {
+      "path": "models/potted_plant_02/1k/textures/potted_plant_02_leaves_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_leaves_nor_gl_1k.jpg",
+      "size": 127232,
+      "md5": "2420d5c0ab87426f5318a5e91d1ea3bb"
+    },
+    {
+      "path": "models/potted_plant_02/1k/textures/potted_plant_02_pot_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_02/potted_plant_02_pot_nor_gl_1k.jpg",
+      "size": 108343,
+      "md5": "fbb44ccc1c6564b2837b79a11ed45d58"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/vintage_oil_lamp_1k.gltf",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/vintage_oil_lamp/vintage_oil_lamp_1k.gltf",
+      "size": 7786,
+      "md5": "95aefcb2ccfad1f5e10dd69522ec09ed"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/textures/vintage_oil_lamp_glass_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_oil_lamp/vintage_oil_lamp_glass_diff_1k.jpg",
+      "size": 39058,
+      "md5": "3f2ed8af86381524fb7c02a023950309"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/textures/vintage_oil_lamp_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_oil_lamp/vintage_oil_lamp_nor_gl_1k.jpg",
+      "size": 227296,
+      "md5": "09ac342783f48e29152415890215c3b7"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/textures/vintage_oil_lamp_flame_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_oil_lamp/vintage_oil_lamp_flame_diff_1k.jpg",
+      "size": 92425,
+      "md5": "b37858e7969def84f786a54f8e952904"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/textures/vintage_oil_lamp_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_oil_lamp/vintage_oil_lamp_diff_1k.jpg",
+      "size": 536650,
+      "md5": "fd73c81fc05f116ca4f908badb5b8974"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/vintage_oil_lamp.bin",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/vintage_oil_lamp/vintage_oil_lamp.bin",
+      "size": 186096,
+      "md5": "b43f17a0f09d6c14d45eb1099eb1077f"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/textures/vintage_oil_lamp_glass_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_oil_lamp/vintage_oil_lamp_glass_nor_gl_1k.jpg",
+      "size": 42123,
+      "md5": "40b084dae82420f972a3399e04cea91f"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/textures/vintage_oil_lamp_arm_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_oil_lamp/vintage_oil_lamp_arm_1k.jpg",
+      "size": 655961,
+      "md5": "5a385b1f8bea13f7d8ce47a1f6583db1"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/textures/vintage_oil_lamp_glass_arm_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/vintage_oil_lamp/vintage_oil_lamp_glass_arm_1k.jpg",
+      "size": 282607,
+      "md5": "35280190a34ca941710131a51e4c8d2a"
+    },
+    {
+      "path": "textures/oak_wood_planks/1k/oak_wood_planks_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/oak_wood_planks/oak_wood_planks_diff_1k.jpg",
+      "size": 696814,
+      "md5": "e9e25ac7abcc482f73214fda23e2de25"
+    },
+    {
+      "path": "textures/oak_wood_planks/1k/oak_wood_planks_rough_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/oak_wood_planks/oak_wood_planks_rough_1k.jpg",
+      "size": 845590,
+      "md5": "3609ef0a3155ae90b69395431bf8cec1"
+    },
+    {
+      "path": "textures/oak_wood_planks/1k/oak_wood_planks_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/oak_wood_planks/oak_wood_planks_nor_gl_1k.jpg",
+      "size": 392213,
+      "md5": "6a71c23551887b77b29623bb871aefbf"
+    },
+    {
+      "path": "textures/oak_wood_planks/4k/oak_wood_planks_diff_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/oak_wood_planks/oak_wood_planks_diff_4k.jpg",
+      "size": 10094919,
+      "md5": "afdebae04b31a4f77ca878d9c8292daa"
+    },
+    {
+      "path": "textures/oak_wood_planks/4k/oak_wood_planks_rough_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/oak_wood_planks/oak_wood_planks_rough_4k.jpg",
+      "size": 11941408,
+      "md5": "e9a7285184bc6d77d4715756bdb9c542"
+    },
+    {
+      "path": "textures/oak_wood_planks/4k/oak_wood_planks_nor_gl_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/oak_wood_planks/oak_wood_planks_nor_gl_4k.jpg",
+      "size": 10862907,
+      "md5": "6afff3c8f29ac342026db49f12e1c1fe"
+    },
+    {
+      "path": "textures/white_plaster_02/1k/white_plaster_02_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_plaster_02/white_plaster_02_diff_1k.jpg",
+      "size": 527219,
+      "md5": "7b10c2686bcfd76d1f309a20fd06b57e"
+    },
+    {
+      "path": "textures/white_plaster_02/1k/white_plaster_02_rough_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_plaster_02/white_plaster_02_rough_1k.jpg",
+      "size": 295900,
+      "md5": "8b28f263360b8c4ddbdc4f7c650c4eeb"
+    },
+    {
+      "path": "textures/white_plaster_02/1k/white_plaster_02_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_plaster_02/white_plaster_02_nor_gl_1k.jpg",
+      "size": 652310,
+      "md5": "55fc03203ebf1dc703a380fde93ff502"
+    },
+    {
+      "path": "textures/rough_linen/1k/rough_linen_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_linen/rough_linen_diff_1k.jpg",
+      "size": 835801,
+      "md5": "663db789fb075462b685c1f740e58930"
+    },
+    {
+      "path": "textures/rough_linen/1k/rough_linen_rough_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_linen/rough_linen_rough_1k.jpg",
+      "size": 1083725,
+      "md5": "a380b24cc43cff88c39510305ebf0020"
+    },
+    {
+      "path": "textures/rough_linen/1k/rough_linen_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_linen/rough_linen_nor_gl_1k.jpg",
+      "size": 916843,
+      "md5": "3350269a2e9c472aa406bd3cc1eaf2c8"
+    },
+    {
+      "path": "models/sofa_03/1k/textures/sofa_03_opacity_1k.png",
+      "size": 24606,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/sofa_03/sofa_03_opacity_1k.png",
+      "md5": "31caada26019e56c95446313c28ba57d"
+    },
+    {
+      "path": "models/sofa_03/4k/textures/sofa_03_opacity_4k.png",
+      "size": 167418,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/4k/sofa_03/sofa_03_opacity_4k.png",
+      "md5": "86be3cbbaed1ade92dad6753bf19f07d"
+    },
+    {
+      "path": "models/potted_plant_02/1k/textures/potted_plant_02_leaves_alpha_1k.png",
+      "size": 100823,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/potted_plant_02/potted_plant_02_leaves_alpha_1k.png",
+      "md5": "257cbcf74e428dc583a1d66511f2b3c0"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/textures/vintage_oil_lamp_glass_alpha_1k.png",
+      "size": 14020,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/vintage_oil_lamp/vintage_oil_lamp_glass_alpha_1k.png",
+      "md5": "7ea627d44af3277fc3247b9049ef190d"
+    },
+    {
+      "path": "models/vintage_oil_lamp/1k/textures/vintage_oil_lamp_flame_alpha_1k.png",
+      "size": 60878,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/vintage_oil_lamp/vintage_oil_lamp_flame_alpha_1k.png",
+      "md5": "8bdcaa2e6429b2936b7768afa889086e"
+    }
+  ],
+  "preprocessing": [
+    "Bundled original glTF and buffers/textures into standalone GLB.",
+    "Integrated the official opacity/alpha maps into PNG base color textures for sofa fringe, plant leaves, lamp glass and flame.",
+    "Changed sofa fringe transparency from BLEND to MASK at 0.5 cutoff.",
+    "Created 4k-web oak JPEG maps with preserved 4096px dimensions (88 quality, normals 92, 4:4:4 chroma).",
+    "Desktop sofa uses its 4K normal, roughness and main color maps plus 1K fringe alpha/color to avoid a 17 MB PNG for the small fringe strip."
+  ],
+  "verification": [
+    {
+      "path": "models/sofa_03/sofa_03_1k.glb",
+      "bytes": 1916588,
+      "bufferViews": 12,
+      "images": 5,
+      "status": "valid-container-and-references"
+    },
+    {
+      "path": "models/sofa_03/sofa_03_4k.glb",
+      "bytes": 6599972,
+      "bufferViews": 12,
+      "images": 5,
+      "status": "valid-container-and-references"
+    },
+    {
+      "path": "models/gothic_coffee_table/gothic_coffee_table_1k.glb",
+      "bytes": 3265684,
+      "bufferViews": 7,
+      "images": 3,
+      "status": "valid-container-and-references"
+    },
+    {
+      "path": "models/gothic_coffee_table/gothic_coffee_table_2k.glb",
+      "bytes": 8940156,
+      "bufferViews": 7,
+      "images": 3,
+      "status": "valid-container-and-references"
+    },
+    {
+      "path": "models/potted_plant_02/potted_plant_02_1k.glb",
+      "bytes": 4264280,
+      "bufferViews": 19,
+      "images": 7,
+      "status": "valid-container-and-references"
+    },
+    {
+      "path": "models/vintage_oil_lamp/vintage_oil_lamp_1k.glb",
+      "bytes": 2454424,
+      "bufferViews": 21,
+      "images": 10,
+      "status": "valid-container-and-references"
+    }
+  ]
+}

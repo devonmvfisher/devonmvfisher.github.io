@@ -1,0 +1,1067 @@
+{
+  "schema": "alder.reading-bench.v3",
+  "variant": "compact",
+  "root_node": "reading_bench_v3_root",
+  "units": "metres",
+  "axis": "Y up, +Z visitor-facing, +X right",
+  "scale": [
+    1,
+    1,
+    1
+  ],
+  "placement_world_m": [
+    0,
+    0.055,
+    -2.8
+  ],
+  "yaw_radians": 0,
+  "top_local_y_m": 0.77,
+  "top_world_y_m": 0.825,
+  "top_envelope_m": [
+    1.56,
+    0.07,
+    0.72
+  ],
+  "leg_centres_local_xz_m": [
+    [
+      -0.67,
+      -0.27
+    ],
+    [
+      -0.67,
+      0.27
+    ],
+    [
+      0.67,
+      -0.27
+    ],
+    [
+      0.67,
+      0.27
+    ]
+  ],
+  "static_root": "bench_static",
+  "colliders": [
+    {
+      "name": "main_top_without_false_toolwell_lid",
+      "centre": [
+        0,
+        0.735,
+        0.06
+      ],
+      "half": [
+        0.78,
+        0.035,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "toolwell_back_rail",
+      "centre": [
+        0,
+        0.735,
+        -0.342
+      ],
+      "half": [
+        0.78,
+        0.035,
+        0.018
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "toolwell_bottom",
+      "centre": [
+        0,
+        0.7,
+        -0.282
+      ],
+      "half": [
+        0.742,
+        0.007,
+        0.042
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "toolwell_end_cheek_-0.761",
+      "centre": [
+        -0.761,
+        0.735,
+        -0.282
+      ],
+      "half": [
+        0.019,
+        0.035,
+        0.042
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "toolwell_end_cheek_0.761",
+      "centre": [
+        0.761,
+        0.735,
+        -0.282
+      ],
+      "half": [
+        0.019,
+        0.035,
+        0.042
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "leg_left_back",
+      "centre": [
+        -0.67,
+        0.365,
+        -0.27
+      ],
+      "half": [
+        0.045,
+        0.365,
+        0.045
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "leg_left_front",
+      "centre": [
+        -0.67,
+        0.365,
+        0.27
+      ],
+      "half": [
+        0.045,
+        0.365,
+        0.045
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "side_apron_-0.67",
+      "centre": [
+        -0.67,
+        0.635,
+        0
+      ],
+      "half": [
+        0.019,
+        0.065,
+        0.225
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "side_lower_stretcher_-0.67",
+      "centre": [
+        -0.67,
+        0.215,
+        0
+      ],
+      "half": [
+        0.025,
+        0.0375,
+        0.225
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "leg_right_back",
+      "centre": [
+        0.67,
+        0.365,
+        -0.27
+      ],
+      "half": [
+        0.045,
+        0.365,
+        0.045
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "leg_right_front",
+      "centre": [
+        0.67,
+        0.365,
+        0.27
+      ],
+      "half": [
+        0.045,
+        0.365,
+        0.045
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "side_apron_0.67",
+      "centre": [
+        0.67,
+        0.635,
+        0
+      ],
+      "half": [
+        0.019,
+        0.065,
+        0.225
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "side_lower_stretcher_0.67",
+      "centre": [
+        0.67,
+        0.215,
+        0
+      ],
+      "half": [
+        0.025,
+        0.0375,
+        0.225
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "lower_long_stretcher_-0.27",
+      "centre": [
+        0,
+        0.235,
+        -0.27
+      ],
+      "half": [
+        0.625,
+        0.0425,
+        0.025
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "lower_long_stretcher_0.27",
+      "centre": [
+        0,
+        0.235,
+        0.27
+      ],
+      "half": [
+        0.625,
+        0.0425,
+        0.025
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "back_upper_apron",
+      "centre": [
+        0,
+        0.635,
+        -0.27
+      ],
+      "half": [
+        0.625,
+        0.065,
+        0.019
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "front_apron_shoulder_-0.496",
+      "centre": [
+        -0.496,
+        0.635,
+        0.27
+      ],
+      "half": [
+        0.129,
+        0.065,
+        0.019
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "front_apron_shoulder_0.496",
+      "centre": [
+        0.496,
+        0.635,
+        0.27
+      ],
+      "half": [
+        0.129,
+        0.065,
+        0.019
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "drawer_front",
+      "centre": [
+        0,
+        0.058,
+        0
+      ],
+      "half": [
+        0.319,
+        0.056,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "drawer_pull_out",
+      "friction": 0.68
+    },
+    {
+      "name": "drawer_bottom",
+      "centre": [
+        0,
+        0.004,
+        -0.232
+      ],
+      "half": [
+        0.297,
+        0.004,
+        0.216
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "drawer_pull_out",
+      "friction": 0.68
+    },
+    {
+      "name": "drawer_back",
+      "centre": [
+        0,
+        0.048,
+        -0.443
+      ],
+      "half": [
+        0.298,
+        0.04,
+        0.005
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "drawer_pull_out",
+      "friction": 0.68
+    },
+    {
+      "name": "drawer_side_-0.303",
+      "centre": [
+        -0.303,
+        0.05,
+        -0.229
+      ],
+      "half": [
+        0.006,
+        0.043,
+        0.216
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "drawer_pull_out",
+      "friction": 0.68
+    },
+    {
+      "name": "drawer_side_0.303",
+      "centre": [
+        0.303,
+        0.05,
+        -0.229
+      ],
+      "half": [
+        0.006,
+        0.043,
+        0.216
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "drawer_pull_out",
+      "friction": 0.68
+    },
+    {
+      "name": "vise_fixed_jaw",
+      "centre": [
+        0.573,
+        0.7,
+        0.35
+      ],
+      "half": [
+        0.1325,
+        0.07,
+        0.011
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "bench_static",
+      "friction": 0.68
+    },
+    {
+      "name": "vise_moving_jaw",
+      "centre": [
+        0,
+        0,
+        0
+      ],
+      "half": [
+        0.1325,
+        0.07,
+        0.0225
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "binding": "vise_moving_jaw",
+      "friction": 0.68
+    }
+  ],
+  "movable_accessories": [
+    {
+      "node": "binding_cutting_mat",
+      "rest_position_local_m": [
+        -0.54,
+        0.7725,
+        0.055
+      ],
+      "rest_yaw": 0,
+      "half_m": [
+        0.15,
+        0.0025,
+        0.205
+      ],
+      "mass_kg": 0.19,
+      "pivot": "centre of proxy / near centre of mass",
+      "role": "stitched leather cutting pad",
+      "friction": 0.65,
+      "implemented_in_runtime": false
+    },
+    {
+      "node": "bone_folder",
+      "rest_position_local_m": [
+        -0.54,
+        0.7775,
+        0.15
+      ],
+      "rest_yaw": -0.26,
+      "half_m": [
+        0.083,
+        0.0027,
+        0.012
+      ],
+      "mass_kg": 0.029,
+      "pivot": "centre of proxy / near centre of mass",
+      "role": "tapered polished bone creasing tool",
+      "friction": 0.65,
+      "implemented_in_runtime": false
+    },
+    {
+      "node": "binder_steel_rule",
+      "rest_position_local_m": [
+        -0.516,
+        0.7709,
+        -0.215
+      ],
+      "rest_yaw": 0,
+      "half_m": [
+        0.153,
+        0.001,
+        0.0125
+      ],
+      "mass_kg": 0.065,
+      "pivot": "centre of proxy / near centre of mass",
+      "role": "300 mm steel rule",
+      "friction": 0.65,
+      "implemented_in_runtime": false
+    },
+    {
+      "node": "brass_binding_weight",
+      "rest_position_local_m": [
+        -0.613,
+        0.78315,
+        -0.06
+      ],
+      "rest_yaw": 0,
+      "half_m": [
+        0.042,
+        0.0084,
+        0.026
+      ],
+      "mass_kg": 0.27,
+      "pivot": "centre of proxy / near centre of mass",
+      "role": "flat brass binding weight",
+      "friction": 0.65,
+      "implemented_in_runtime": false
+    },
+    {
+      "node": "bookbinding_awl",
+      "rest_position_local_m": [
+        0.616,
+        0.7165,
+        -0.282
+      ],
+      "rest_yaw": 0.09,
+      "half_m": [
+        0.073,
+        0.0095,
+        0.0095
+      ],
+      "mass_kg": 0.021,
+      "pivot": "centre of proxy / near centre of mass",
+      "role": "walnut handled awl in rear toolwell",
+      "friction": 0.65,
+      "implemented_in_runtime": false
+    },
+    {
+      "node": "linen_thread_spool",
+      "rest_position_local_m": [
+        0.458,
+        0.73,
+        -0.282
+      ],
+      "rest_yaw": 0,
+      "half_m": [
+        0.023,
+        0.023,
+        0.023
+      ],
+      "mass_kg": 0.031,
+      "pivot": "centre of proxy / near centre of mass",
+      "role": "small waxed linen sewing thread spool",
+      "friction": 0.65,
+      "implemented_in_runtime": false
+    }
+  ],
+  "articulations": [
+    {
+      "node": "drawer_pull_out",
+      "rest_local_m": [
+        0,
+        0.581,
+        0.319
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "travel_m": [
+        0,
+        0.2
+      ],
+      "speed_m_per_second": 0.16,
+      "type": "translation"
+    },
+    {
+      "node": "vise_moving_jaw",
+      "rest_local_m": [
+        0.573,
+        0.7,
+        0.4235
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "travel_m": [
+        0,
+        0.055
+      ],
+      "speed_m_per_second": 0.02,
+      "type": "translation",
+      "inner_gap_at_rest_m": 0.04
+    },
+    {
+      "node": "vise_screw_rotation",
+      "parent": "vise_moving_jaw",
+      "rest_local_m": [
+        0,
+        -0.022,
+        0.037
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "type": "rotation",
+      "lead_m_per_turn": 0.004,
+      "coupling": "jaw travel d metres => screw local rotation.z = -2*pi*d/.004, relative to imported rest rotation"
+    }
+  ],
+  "reserved_runtime_objects": {
+    "cup_world_position_m": [
+      0.136,
+      0.882,
+      -2.625
+    ],
+    "book_world_pose_m": [
+      -0.245,
+      0.832,
+      -2.92
+    ],
+    "cloth_world_origin_m": [
+      0.295,
+      0.84,
+      -2.828
+    ],
+    "clear_top_local_xz_rect_m": [
+      -0.35,
+      0.435,
+      -0.24,
+      0.32
+    ],
+    "source": "cozy-room/lib/alder/engine.ts and interaction/render-adapter.ts, inspected before authoring"
+  },
+  "integration": {
+    "replace_existing_table": true,
+    "existing_url": "/alder/worktable-hero.glb",
+    "new_asset_does_not_include": [
+      "stoneware_cup",
+      "garden_journal",
+      "linen_work_rag",
+      "static__washed_flax_linen"
+    ],
+    "remove_old_full_tabletop_proxy": true,
+    "replace_both_rapier_and_xpbd_table_contacts": true,
+    "proxy_coordinates": "Static entries use asset-root coordinates. Entries bound to drawer/jaw use that node local coordinates; compose node world transform.",
+    "movables": "Meshes and pivots supplied; host must create physics and input actions before describing tools as movable.",
+    "scene_lighting_included": false,
+    "existing_saved_cup_and_sheet_state": "Do not reset. Keep current saved transforms and existing live implementations."
+  },
+  "texture_method": "original sibling materials-v3 phone maps; roughness packed in Blender",
+  "material_provenance": {
+    "manifest": "../materials-v3/phone-manifest.json",
+    "original_source": "../materials-v3",
+    "side_uv_coverage_m": [
+      1.2,
+      0.18
+    ],
+    "end_uv_coverage_m": [
+      0.48,
+      0.48
+    ],
+    "side_wrap": "Repeat",
+    "end_wrap": "ClampToEdge",
+    "third_party_assets": false
+  },
+  "grain_directions": [
+    {
+      "node": "top_board_01",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "top_board_02",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "top_board_03",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "top_board_04",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "top_board_05",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "rear_toolwell_back_rail",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "toolwell_recessed_floor",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "toolwell_end_cheek_-0.761",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "toolwell_end_cheek_0.761",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "leg_left_back",
+      "axis": "Y",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "visible_lower_through_tenon_left_back",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "leg_left_front",
+      "axis": "Y",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "visible_lower_through_tenon_left_front",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "side_apron_-0.67",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "side_lower_stretcher_-0.67",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "leg_right_back",
+      "axis": "Y",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "visible_lower_through_tenon_right_back",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "leg_right_front",
+      "axis": "Y",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "visible_lower_through_tenon_right_front",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "side_apron_0.67",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "side_lower_stretcher_0.67",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "lower_long_stretcher_-0.27",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "lower_long_stretcher_0.27",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "back_upper_apron",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "front_apron_shoulder_-0.496",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "front_apron_shoulder_0.496",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "drawer_runner_-0.323",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "drawer_guide_-0.323",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "drawer_runner_0.323",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "drawer_guide_0.323",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "drawer_front",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "drawer_bottom",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "drawer_back",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "drawer_side_-0.303",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "drawer_side_0.303",
+      "axis": "Z",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "vise_fixed_oak_liner",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    },
+    {
+      "node": "vise_moving_wood_jaw",
+      "axis": "X",
+      "end_faces": "radial cross-section map"
+    }
+  ],
+  "source_stats": {
+    "triangles": 9716,
+    "mesh_objects": 321,
+    "bounds_local_m": {
+      "min": [
+        -0.7799999713897705,
+        0.0,
+        -0.36000001430511475
+      ],
+      "max": [
+        0.7799999713897705,
+        0.7911500334739685,
+        0.49799999594688416
+      ]
+    }
+  },
+  "runtime_stats": {
+    "triangles": 9716,
+    "mesh_objects": 11,
+    "bounds_local_m": {
+      "min": [
+        -0.7799999713897705,
+        0.0,
+        -0.36000001430511475
+      ],
+      "max": [
+        0.7799999713897705,
+        0.7911500334739685,
+        0.49799999594688416
+      ]
+    }
+  },
+  "triangle_limit": 30000,
+  "drawcall_note": "Measure loaded runtime; material primitives plus shadows affect actual frame cost.",
+  "validation": {
+    "generated_and_exported": true,
+    "triangle_budget_passed": true,
+    "browser_inspected": false,
+    "collision_runtime_tested": false,
+    "physical_device_tested": false,
+    "render_requested": false
+  },
+  "files": [
+    {
+      "path": "reading-bench-v3-compact.glb",
+      "bytes": 1178192,
+      "sha256": "5315fe245779e5ff74417865a05dd3c8ab19c823f6689377641594d3c52d34e1"
+    },
+    {
+      "path": "maps\\compact\\oak_end_basecolor.png",
+      "bytes": 167394,
+      "sha256": "02873d7aea771447f4f67ec44e51ad229f891620f85bb8f9be882937332f8af4"
+    },
+    {
+      "path": "maps\\compact\\oak_end_normal.png",
+      "bytes": 101908,
+      "sha256": "1b4a8e907af7b5f66201230f60706a99f99629be2727159dd5a1745003859b6d"
+    },
+    {
+      "path": "maps\\compact\\oak_end_orm.png",
+      "bytes": 95849,
+      "sha256": "f748bc3a9bc44770355c86325fd09a4773fd550de4a40392d8833d31dc5dc8c3"
+    },
+    {
+      "path": "maps\\compact\\oak_long_basecolor.png",
+      "bytes": 125014,
+      "sha256": "7e0c879fa1dcf5b33caacee9a06e033287003b8efc34cef3e41b32110ecf25da"
+    },
+    {
+      "path": "maps\\compact\\oak_long_normal.png",
+      "bytes": 93834,
+      "sha256": "32aa850dc8227ab44d8136332cbfa192573ce64050b9d31024a98a532b3e615c"
+    },
+    {
+      "path": "maps\\compact\\oak_long_orm.png",
+      "bytes": 83646,
+      "sha256": "3e0a37d1a96c3a73fc391740fbef476a92a7331952cc9b3f46f5ea873b0b715b"
+    }
+  ]
+}

@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Living Room</title>
+  <style>
+    :root {
+      --panel: rgba(255, 255, 255, 0.86);
+      --panel-edge: #d8ccb7;
+      --text: #2a241d;
+      --button: #5f4a2f;
+      --button-hover: #43311d;
+    }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Trebuchet MS", "Gill Sans", "Segoe UI", sans-serif;
+      color: var(--text);
+      background: linear-gradient(120deg, #f6dfbf, #ead5a4 35%, #d6b88b);
+    }
+
+    #hud {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 10;
+      background: var(--panel);
+      border: 1px solid var(--panel-edge);
+      border-radius: 16px;
+      padding: 12px 14px;
+      box-shadow: 0 12px 30px rgba(64, 35, 8, 0.2);
+      width: 280px;
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+    }
+
+    p {
+      margin: 0 0 10px;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    button,
+    select {
+      border: 1px solid #b89262;
+      border-radius: 12px;
+      padding: 8px 10px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    button:hover,
+    select:hover {
+      background: #f7efe2;
+    }
+
+    button.primary {
+      background: var(--button);
+      border-color: var(--button-hover);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    button.primary:hover {
+      background: var(--button-hover);
+    }
+
+    .hint {
+      border-top: 1px solid #e3d0b5;
+      margin: 9px 0;
+      padding-top: 9px;
+      font-size: 11px;
+      color: #5f4d38;
+    }
+
+    #colorRow {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+    }
+
+    .swatch {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 2px solid #d8b994;
+    }
+
+    .swatch.selected {
+      box-shadow: 0 0 0 2px #513c25 inset;
+    }
+
+    #status {
+      font-size: 12px;
+      margin-top: 6px;
+      color: #5f4b32;
+    }
+
+    #legend {
+      font-size: 11px;
+      margin-top: 8px;
+      line-height: 1.35;
+    }
+
+    #selectedName {
+      font-weight: 700;
+    }
+
+    @media (max-width: 620px) {
+      #hud {
+        width: calc(100vw - 28px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="hud">
+    <h1>Warm Living Room Studio</h1>
+    <p>Orbit the room with left drag or trackpad, zoom with wheel, select furniture by clicking, then drag selected furniture across the floor.</p>
+
+    <div class="row">
+      <button id="modeBtn" class="primary">Switch to Evening</button>
+      <button id="resetBtn">Reset Layout</button>
+    </div>
+
+    <div class="row">
+      <label for="selectFurniture">Select furniture:</label>
+      <select id="selectFurniture"></select>
+    </div>
+
+    <div id="colors" class="hint">
+      <div><span id="selectedName">No item selected</span> color:</div>
+      <div id="colorRow"></div>
+    </div>
+
+    <div id="status" class="hint">Drag while holding left mouse and move furniture. Double-click room floor to clear selection.</div>
+    <div id="legend" class="hint">
+      <strong>Controls:</strong><br/>
+      • Left drag: rotate camera<br/>
+      • Wheel: zoom<br/>
+      • Click item: select<br/>
+      • Drag selected item: move on floor<br/>
+      • Double-click floor: clear selection<br/>
+      • Buttons above: scene + reset
+    </div>
+  </div>
+
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js"}}</script>
+<script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js';
+    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/controls/OrbitControls.js';
+    import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/geometries/RoundedBoxGeometry.js';
+
+    const scene = new THREE.Scene();
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    document.body.appendChild(renderer.domElement);
+
+    const camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(10, 7, 12);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.maxPolarAngle = Math.PI / 2 - 0.02;
+    controls.minDistance = 6;
+    controls.maxDistance = 30;
+    controls.target.set(0, 1.2, 0);
+
+    // Room
+    const roomW = 18;
+    const roomD = 14;
+    const wallHeight = 5.2;
+
+    const floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(roomW, roomD),
+      new THREE.MeshStandardMaterial({ color: 0xd9c0a3, roughness: 0.84, metalness: 0.04 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = 0;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    const roomMat = new THREE.MeshStandardMaterial({ color: 0xf3e3ca, roughness: 0.75, metalness: 0.02 });
+    const wallGeom = new THREE.PlaneGeometry(roomW + 4, wallHeight);
+
+    const backWall = new THREE.Mesh(wallGeom, roomMat);
+    backWall.position.set(0, wallHeight / 2 - 0.2, -roomD / 2);
+    scene.add(backWall);
+
+    const leftWall = new THREE.Mesh(wallGeom.clone().rotateY(Math.PI / 2), roomMat);
+    leftWall.rotation.y = Math.PI / 2;
+    leftWall.position.set(-roomW / 2, wallHeight / 2 - 0.2, 0);
+    scene.add(leftWall);
+
+    const rightWall = new THREE.Mesh(wallGeom.clone().rotateY(Math.PI / 2), roomMat);
+    rightWall.rotation.y = -Math.PI / 2;
+    rightWall.position.set(roomW / 2, wallHeight / 2 - 0.2, 0);
+    scene.add(rightWall);
+
+    const rug = new THREE.Mesh(
+      new THREE.CircleGeometry(3.6, 64),
+      new THREE.MeshStandardMaterial({ color: 0x8a5b3a, roughness: 1, metalness: 0 })
+    );
+    rug.rotation.x = -Math.PI / 2;
+    rug.position.set(-2.2, 0.01, 1.5);
+    rug.scale.set(1.3, 1.3, 1);
+    scene.add(rug);
+
+    function makeWindow(x, z, rot = 0) {
+      const frame = new THREE.Mesh(
+        new THREE.BoxGeometry(4.2, 2.6, 0.18),
+        new THREE.MeshStandardMaterial({ color: 0x4b3b2b })
+      );
+      const glass = new THREE.Mesh(
+        new THREE.BoxGeometry(3.7, 2.2, 0.02),
+        new THREE.MeshPhysicalMaterial({ color: 0xa9d1ff, transparent: true, opacity: 0.42, roughness: 0.01, transmission: 0.45 })
+      );
+      glass.position.z = -0.1;
+      frame.add(glass);
+      frame.position.set(x, 2.5, z);
+      frame.rotation.y = rot;
+      scene.add(frame);
+    }
+    makeWindow(0, roomD / 2 - 0.02, 0);
+    makeWindow(roomW / 2 - 0.02, -1.8, -Math.PI / 2);
+
+    function addPlant(x, z, scale = 1) {
+      const pot = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.45, 0.55, 0.55, 20),
+        new THREE.MeshStandardMaterial({ color: 0x9b5b32, roughness: 0.7 })
+      );
+      const soil = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.38, 0.38, 0.08, 20),
+        new THREE.MeshStandardMaterial({ color: 0x5d3a1f, roughness: 0.9 })
+      );
+      soil.position.y = 0.315;
+      pot.add(soil);
+      const leaves = new THREE.Mesh(
+        new THREE.SphereGeometry(0.52 + scale * 0.08, 8, 8),
+        new THREE.MeshStandardMaterial({ color: 0x2d6b3f, roughness: 0.6 })
+      );
+      leaves.position.y = 0.8;
+      pot.add(leaves);
+      pot.position.set(x, 0.275, z);
+      pot.scale.set(scale, scale, scale);
+      pot.castShadow = true;
+      scene.add(pot);
+    }
+    addPlant(-6.2, -2.4, 1.2);
+    addPlant(6.4, 3.2, 1);
+
+    const interactive = [];
+    const furnitureState = new Map();
+    const initialStates = new Map();
+
+    const palette = ['#8c5a44', '#6f8a63', '#b57a2b', '#8f6fcf', '#4f79a3', '#c06f59', '#9b6d4a', '#5a6652', '#6f4f3e', '#7b4f86'];
+
+    function makeShelf(x, z, width = 3.4) {
+      const back = new THREE.Mesh(
+        new THREE.BoxGeometry(width, 0.22, 0.45),
+        new THREE.MeshStandardMaterial({ color: 0x6b5442, roughness: 0.6 })
+      );
+      const plinth = new THREE.Mesh(
+        new THREE.BoxGeometry(width, 0.1, 0.45),
+        new THREE.MeshStandardMaterial({ color: 0x4d3a29, roughness: 0.7 })
+      );
+      plinth.position.y = -0.16;
+      back.add(plinth);
+      const box = new THREE.Mesh(
+        new THREE.BoxGeometry(width - 0.4, 0.12, 0.45),
+        new THREE.MeshStandardMaterial({ color: 0xd2bb95, roughness: 0.58 })
+      );
+      box.position.y = 0.18;
+      back.add(box);
+      back.position.set(x, 1.1, z);
+      back.rotation.y = Math.PI / 2;
+      scene.add(back);
+      return back;
+    }
+    makeShelf(-6.7, 0.6);
+    makeShelf(5.6, -3.8);
+
+    function createSofa() {
+      const group = new THREE.Group();
+      const mat = new THREE.MeshStandardMaterial({ color: 0xc58b60, roughness: 0.45, metalness: 0.08 });
+      const mats = [];
+      const add = (geom, pos, rot = new THREE.Euler()) => {
+        const m = new THREE.Mesh(geom, mat.clone());
+        m.position.copy(pos);
+        m.rotation.copy(rot);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        group.add(m);
+        mats.push(m.material);
+      };
+
+      add(new RoundedBoxGeometry(4.8, 0.75, 1.9, 4, 0.35), new THREE.Vector3(0, 0.37, 0));
+      add(new RoundedBoxGeometry(4.8, 0.45, 1.8, 4, 0.22), new THREE.Vector3(0, 0.86, -0.02));
+      add(new RoundedBoxGeometry(4.8, 0.75, 0.3, 4, 0.15), new THREE.Vector3(0, 1.28, -0.74));
+      add(new RoundedBoxGeometry(1.2, 1.2, 0.28, 4, 0.17), new THREE.Vector3(-1.85, 1.08, 0), new THREE.Euler(0, Math.PI / 2, 0));
+      add(new RoundedBoxGeometry(1.2, 1.2, 0.28, 4, 0.17), new THREE.Vector3(1.85, 1.08, 0), new THREE.Euler(0, Math.PI / 2, 0));
+
+      group.userData = { kind: 'sofa', type: 'furniture', radius: 2.5, height: 0.38, materials: mats };
+      group.position.set(-2.2, 0.38, 1.6);
+      scene.add(group);
+      interactive.push(group);
+      furnitureState.set(group.uuid, { x: -2.2, y: 0.38, z: 1.6, rotation: 0, color: 'c58b60' });
+      initialStates.set(group.uuid, { x: -2.2, y: 0.38, z: 1.6, rotation: 0, color: 'c58b60' });
+      return group;
+    }
+
+    function createArmchair() {
+      const group = new THREE.Group();
+      const mat = new THREE.MeshStandardMaterial({ color: 0x8a6552, roughness: 0.42, metalness: 0.07 });
+      const mats = [];
+      const add = (geom, pos, rot = new THREE.Euler()) => {
+        const m = new THREE.Mesh(geom, mat.clone());
+        m.position.copy(pos);
+        m.rotation.copy(rot);
+        m.castShadow = true;
+        group.add(m);
+        mats.push(m.material);
+      };
+      add(new RoundedBoxGeometry(1.25, 0.5, 1.2, 3, 0.22), new THREE.Vector3(0, 0.25, 0));
+      add(new RoundedBoxGeometry(1.15, 1.0, 0.28, 3, 0.2), new THREE.Vector3(0, 0.8, -0.49), new THREE.Euler(0.12, 0, 0));
+      add(new RoundedBoxGeometry(0.3, 0.45, 0.75, 3, 0.2), new THREE.Vector3(-0.5, 0.58, -0.1));
+      add(new RoundedBoxGeometry(0.3, 0.45, 0.75, 3, 0.2), new THREE.Vector3(0.5, 0.58, -0.1));
+      group.userData = { kind: 'armchair', type: 'furniture', radius: 0.95, height: 0.2, materials: mats };
+      group.position.set(2.8, 0.2, 0.2);
+      group.rotation.y = -Math.PI / 7;
+      scene.add(group);
+      interactive.push(group);
+      furnitureState.set(group.uuid, { x: 2.8, y: 0.2, z: 0.2, rotation: group.rotation.y, color: '8a6552' });
+      initialStates.set(group.uuid, { x: 2.8, y: 0.2, z: 0.2, rotation: group.rotation.y, color: '8a6552' });
+      return group;
+    }
+
+    function createTable(x, z) {
+      const group = new THREE.Group();
+      const topMat = new THREE.MeshStandardMaterial({ color: 0x8a5f3f, roughness: 0.35, metalness: 0.05 });
+      const legMat = new THREE.MeshStandardMaterial({ color: 0x6b5541, roughness: 0.55 });
+      const trayMat = new THREE.MeshStandardMaterial({ color: 0xa17f52, roughness: 0.45 });
+      const bookMat1 = new THREE.MeshStandardMaterial({ color: 0x9f6d56 });
+      const bookMat2 = new THREE.MeshStandardMaterial({ color: 0x51658a });
+
+      const top = new THREE.Mesh(new RoundedBoxGeometry(2.2, 0.1, 1.25, 4, 0.05), topMat);
+      top.position.y = 1.0;
+      top.castShadow = true;
+
+      const legGeom = new THREE.CylinderGeometry(0.05, 0.08, 0.95, 14);
+      const positions = [
+        [0.85, 0.58],
+        [-0.85, 0.58],
+        [0.85, -0.5],
+        [-0.85, -0.5]
+      ];
+      const legMats = [];
+      const legs = positions.map((p) => {
+        const l = new THREE.Mesh(legGeom, legMat);
+        l.position.set(p[0], 0.48, p[1]);
+        l.castShadow = true;
+        legMats.push(l.material);
+        return l;
+      });
+
+      const tray = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 0.12, 18), trayMat);
+      tray.position.set(0, 1.09, 0);
+
+      const book1 = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.03, 0.24), bookMat1);
+      book1.position.set(-0.35, 1.14, -0.14);
+
+      const book2 = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.03, 0.24), bookMat2);
+      book2.position.set(0.1, 1.14, 0.08);
+
+      group.add(top, ...legs, tray, book1, book2);
+      group.userData = {
+        kind: 'coffee table',
+        type: 'furniture',
+        radius: 1.3,
+        height: 0,
+        materials: [topMat, ...legMats, trayMat, bookMat1, bookMat2]
+      };
+
+      group.position.set(x, 0, z);
+      scene.add(group);
+      interactive.push(group);
+      furnitureState.set(group.uuid, { x, y: 0, z, rotation: 0, color: '8a5f3f' });
+      initialStates.set(group.uuid, { x, y: 0, z, rotation: 0, color: '8a5f3f' });
+      return group;
+    }
+
+    const sofa = createSofa();
+    const armchair = createArmchair();
+    const table = createTable(0.8, -0.7);
+
+    const baseLampMat = new THREE.MeshStandardMaterial({ color: 0x6b5843, roughness: 0.4 });
+    const shadeLampMat = new THREE.MeshStandardMaterial({ color: 0xf4e4bf, roughness: 0.6, emissive: 0x5a4a2d, emissiveIntensity: 0.04 });
+    const lamp = new THREE.Group();
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 1.65, 12), baseLampMat);
+    const stand = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.24, 0.06, 24), baseLampMat);
+    const shade = new THREE.Mesh(new THREE.SphereGeometry(0.38, 14, 12), shadeLampMat);
+    pole.position.y = 0.8;
+    stand.position.y = 0.03;
+    shade.position.set(0, 1.85, 0);
+    lamp.add(pole);
+    lamp.add(stand);
+    lamp.add(shade);
+    lamp.position.set(-4, 0.1, -3.5);
+    scene.add(lamp);
+
+    const ambient = new THREE.AmbientLight(0xfff4dc, 0.45);
+    const keyLight = new THREE.DirectionalLight(0xfff4cc, 0.9);
+    keyLight.position.set(6, 8, 6);
+    keyLight.castShadow = true;
+    const fillLight = new THREE.PointLight(0xffd19a, 0.45, 22);
+    fillLight.position.set(-3, 3.2, 1.8);
+    const warmLamp = new THREE.PointLight(0xffc57a, 0.25, 10, 2);
+    warmLamp.position.set(-4, 1.85, -3.5);
+    scene.add(ambient, keyLight, fillLight, warmLamp);
+
+    const daySettings = {
+      ambient: [0xfff4dc, 0.45],
+      key: [0xfff4cc, 0.9, 6, 8],
+      fill: [0xffd19a, 0.45, 22],
+      lamp: [0xffc57a, 0.25, 9],
+      bg: 0xf2e6d0
+    };
+    const eveningSettings = {
+      ambient: [0xffefde, 0.26],
+      key: [0xffd7a3, 0.35, 4, 4],
+      fill: [0xffb06b, 0.24, 17],
+      lamp: [0xffc66e, 0.82, 10],
+      bg: 0xddcaab
+    };
+
+    let isEvening = false;
+    function applyLighting(preset) {
+      ambient.color.setHex(preset.ambient[0]);
+      ambient.intensity = preset.ambient[1];
+      keyLight.color.setHex(preset.key[0]);
+      keyLight.intensity = preset.key[1];
+      keyLight.position.set(preset.key[2], 8, preset.key[3]);
+      fillLight.color.setHex(preset.fill[0]);
+      fillLight.intensity = preset.fill[1];
+      fillLight.distance = preset.fill[2];
+      warmLamp.color.setHex(preset.lamp[0]);
+      warmLamp.intensity = preset.lamp[1];
+      warmLamp.distance = preset.lamp[2];
+      scene.background = new THREE.Color(preset.bg);
+    }
+
+    const selectEl = document.getElementById('selectFurniture');
+    const colorsHost = document.getElementById('colorRow');
+    const status = document.getElementById('status');
+    const selectedName = document.getElementById('selectedName');
+
+    [sofa, armchair, table].forEach((item) => {
+      const opt = document.createElement('option');
+      opt.value = item.uuid;
+      opt.textContent = item.userData.kind;
+      selectEl.appendChild(opt);
+    });
+
+    let selected = null;
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    const floorPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+    const hit = new THREE.Vector3();
+    const dragOffset = new THREE.Vector3();
+    let dragging = false;
+
+    function paintSwatches() {
+      colorsHost.innerHTML = '';
+      palette.forEach((hex) => {
+        const b = document.createElement('button');
+        b.className = 'swatch';
+        b.style.background = hex;
+        b.dataset.color = hex;
+        b.type = 'button';
+        b.addEventListener('click', () => {
+          if (!selected) return;
+          applyMaterialColor(selected, hex);
+          [...colorsHost.children].forEach((x) => x.classList.remove('selected'));
+          b.classList.add('selected');
+        });
+        colorsHost.appendChild(b);
+      });
+    }
+
+    function applyMaterialColor(item, hex) {
+      if (!item?.userData?.materials) return;
+      item.userData.materials.forEach((m) => {
+        if (m && m.color) {
+          m.color.set(hex);
+        }
+      });
+      const state = furnitureState.get(item.uuid);
+      if (state) state.color = hex.replace('#', '');
+      status.textContent = `${item.userData.kind} color changed.`;
+    }
+
+    function setSelected(item) {
+      if (!item) {
+        selected = null;
+        selectedName.textContent = 'No item selected';
+        return;
+      }
+      selected = item;
+      selectedName.textContent = item.userData.kind;
+      const current = (furnitureState.get(item.uuid)?.color || '').replace('#', '').toLowerCase();
+      [...colorsHost.children].forEach((swatch) => {
+        swatch.classList.toggle('selected', swatch.dataset.color.substring(1).toLowerCase() === current);
+      });
+      [...selectEl.options].forEach((opt) => {
+        opt.selected = opt.value === item.uuid;
+      });
+      status.textContent = `${item.userData.kind} selected. Drag to move on floor.`;
+    }
+
+    function selectAtPointer(x, y) {
+      pointer.x = (x / window.innerWidth) * 2 - 1;
+      pointer.y = -(y / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const intersects = raycaster.intersectObjects(interactive, true);
+      if (!intersects.length) return null;
+      let obj = intersects[0].object;
+      while (obj.parent && obj.parent.type !== 'Scene' && obj.parent.userData?.type !== 'furniture') {
+        obj = obj.parent;
+      }
+      return obj.userData?.type === 'furniture' ? obj : null;
+    }
+
+    function clampToRoom(pos, radius) {
+      const pad = 0.35;
+      pos.x = Math.min(Math.max(pos.x, -roomW / 2 + radius + pad), roomW / 2 - radius - pad);
+      pos.z = Math.min(Math.max(pos.z, -roomD / 2 + radius + pad), roomD / 2 - radius - pad);
+      return pos;
+    }
+
+    renderer.domElement.addEventListener('pointerdown', (e) => {
+      const item = selectAtPointer(e.clientX, e.clientY);
+      if (!item) {
+        if (e.detail === 2) {
+          setSelected(null);
+          status.textContent = 'Selection cleared.';
+        }
+        return;
+      }
+      setSelected(item);
+      dragging = true;
+      pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      if (raycaster.ray.intersectPlane(floorPlane, hit)) {
+        dragOffset.copy(hit).sub(item.position);
+      }
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!dragging || !selected) return;
+      pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      if (!raycaster.ray.intersectPlane(floorPlane, hit)) return;
+      const p = hit.clone().sub(dragOffset);
+      p.y = selected.userData.height;
+      clampToRoom(p, selected.userData.radius);
+      selected.position.set(p.x, p.y, p.z);
+      const state = furnitureState.get(selected.uuid);
+      if (state) {
+        state.x = p.x;
+        state.z = p.z;
+      }
+      status.textContent = `${selected.userData.kind}: (${p.x.toFixed(2)}, ${p.z.toFixed(2)})`;
+    });
+
+    const endDrag = () => {
+      dragging = false;
+    };
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointerleave', endDrag);
+
+    renderer.domElement.addEventListener('dblclick', () => {
+      setSelected(null);
+      status.textContent = 'Selection cleared.';
+    });
+
+    selectEl.addEventListener('change', () => {
+      const item = interactive.find((i) => i.uuid === selectEl.value);
+      if (!item) return;
+      setSelected(item);
+      camera.lookAt(item.position.x, item.position.y + 0.7, item.position.z);
+    });
+
+    document.getElementById('modeBtn').addEventListener('click', () => {
+      isEvening = !isEvening;
+      const preset = isEvening ? eveningSettings : daySettings;
+      applyLighting(preset);
+      document.getElementById('modeBtn').textContent = isEvening ? 'Switch to Daylight' : 'Switch to Evening';
+      status.textContent = isEvening ? 'Evening mode on.' : 'Daylight mode on.';
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      interactive.forEach((item) => {
+        const reset = initialStates.get(item.uuid);
+        if (!reset) return;
+        item.position.set(reset.x, reset.y, reset.z);
+        item.rotation.y = reset.rotation;
+        applyMaterialColor(item, `#${reset.color}`);
+      });
+      lamp.position.set(-4, 0.1, -3.5);
+      camera.position.set(10, 7, 12);
+      controls.target.set(0, 1.2, 0);
+      controls.update();
+      isEvening = false;
+      applyLighting(daySettings);
+      document.getElementById('modeBtn').textContent = 'Switch to Evening';
+      status.textContent = 'Reset to default layout, colors, and camera.';
+    });
+
+    paintSwatches();
+    applyLighting(daySettings);
+    setSelected(sofa);
+    selectEl.value = sofa.uuid;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,209 @@
+{
+  "title": "Original bound field journal v2",
+  "units": "metres",
+  "gltfAxes": {
+    "up": "+Y",
+    "spine": "+Z",
+    "closedPages": "+X",
+    "turnAxis": "+Z"
+  },
+  "root": "bound_field_journal_root",
+  "rootContactPlaneY": 0,
+  "gripAnchor": "book_grip_anchor",
+  "frontBoardPivot": "front_board_pivot",
+  "backBoardPivot": "back_board_pivot",
+  "bindingSpine": "binding_spine",
+  "leaves": [
+    {
+      "pivot": "leaf_01_pivot",
+      "sheet": "leaf_01_sheet",
+      "index": 0,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_02_pivot",
+      "sheet": "leaf_02_sheet",
+      "index": 1,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_03_pivot",
+      "sheet": "leaf_03_sheet",
+      "index": 2,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_04_pivot",
+      "sheet": "leaf_04_sheet",
+      "index": 3,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_05_pivot",
+      "sheet": "leaf_05_sheet",
+      "index": 4,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_06_pivot",
+      "sheet": "leaf_06_sheet",
+      "index": 5,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_07_pivot",
+      "sheet": "leaf_07_sheet",
+      "index": 6,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_08_pivot",
+      "sheet": "leaf_08_sheet",
+      "index": 7,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_09_pivot",
+      "sheet": "leaf_09_sheet",
+      "index": 8,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_10_pivot",
+      "sheet": "leaf_10_sheet",
+      "index": 9,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_11_pivot",
+      "sheet": "leaf_11_sheet",
+      "index": 10,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "pivot": "leaf_12_pivot",
+      "sheet": "leaf_12_sheet",
+      "index": 11,
+      "morph": "TurnCurl",
+      "morphRange": [
+        0,
+        1
+      ]
+    }
+  ],
+  "angleRange": [
+    0,
+    3.141592653589793
+  ],
+  "leafCount": 12,
+  "physicalPageFaces": 24,
+  "pageThicknessMetres": 0.00024,
+  "layerSpacingMetres": 0.000315,
+  "paperExtentMetres": [
+    0.15,
+    0.222
+  ],
+  "coverExtentMetres": [
+    0.17,
+    0.24
+  ],
+  "authoredAnimationRecipe": "Apply pivot quaternion about local glTF +Z with angle theta. Optional curl weight sin(theta), zero at settled ends. No target or automatic completion policy is encoded in the model.",
+  "presets": {
+    "closed": {
+      "cover": 0,
+      "turnedLeaves": 0
+    },
+    "halfCover": {
+      "cover": 1.5707963267948966,
+      "turnedLeaves": 0
+    },
+    "openSpread": {
+      "cover": 3.141592653589793,
+      "turnedLeaves": 6
+    },
+    "turnInspection": {
+      "cover": 3.141592653589793,
+      "turnedLeaves": 3,
+      "activeLeaf": 3,
+      "activeAngle": 1.65,
+      "activeCurl": 1
+    }
+  },
+  "tiers": {
+    "hero": {
+      "glb": "bound-field-journal-hero.glb",
+      "bytes": 9886196,
+      "sha256": "1e80b9fc2e10a8028af6327e94aef2525cb0090e91afcf6df87b34b5cea770c5",
+      "sourceMeshTrianglesBeforeExporterSplits": 41528,
+      "meshObjects": 29,
+      "leafMeshGrid": [
+        32,
+        24
+      ]
+    },
+    "compact": {
+      "glb": "bound-field-journal-compact.glb",
+      "bytes": 3284704,
+      "sha256": "20440b8df153a1a0b27146830ae308932524fda2675eb8a1eaa7fc9de329703b",
+      "sourceMeshTrianglesBeforeExporterSplits": 12536,
+      "meshObjects": 29,
+      "leafMeshGrid": [
+        16,
+        12
+      ]
+    }
+  },
+  "limitations": [
+    "Authored hinge/curl rig, no paper dynamics or page-to-page collision solver.",
+    "Twelve heavy paper leaves form the actual page block; no claim of hundreds of independently simulated pages.",
+    "Binding thread meshes remain attached to the spine, not simulated thread.",
+    "Original cover lettering and sparse field notes use independently authored simple line glyphs, not an imported font.",
+    "No embedded animation clips: runtime directly drives named pivots and morphs."
+  ],
+  "bindingAllowanceMetres": 0.00035,
+  "morphApplication": "Traverse every mesh descendant of the selected leaf pivot; material splitting may make the sheet a group."
+}

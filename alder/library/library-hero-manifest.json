@@ -1,0 +1,5053 @@
+{
+  "variant": "hero",
+  "root_node": "library_tower_root",
+  "root_placement_world_m": [
+    -7.6,
+    1.05,
+    7.8
+  ],
+  "root_yaw": 0,
+  "coordinate_frame": "GLB local metres Y-up; ground finished floor at local Y=0; add root placement once",
+  "exterior_size_m": [
+    5.4,
+    7.12,
+    6.4
+  ],
+  "upper_floor_y_local_m": 2.85,
+  "clear_floor_height_m": [
+    2.69,
+    2.67
+  ],
+  "entrance": {
+    "hinge_node": "library_door_hinge",
+    "hinge_local_m": [
+      2.69,
+      0,
+      -2.5
+    ],
+    "default_yaw": -1.6580627893946132,
+    "closed_yaw": 0,
+    "clear_width_m": 1.1,
+    "clear_height_m": 2.18,
+    "threshold_world_m": [
+      -4.91,
+      1.05,
+      5.85
+    ],
+    "step_count": 9,
+    "step_rise_m": 0.15222222222222223,
+    "step_run_m": 0.28,
+    "lower_ground_y_world_m": -0.32
+  },
+  "stairs": {
+    "flights": 2,
+    "risers_total": 16,
+    "riser_m": 0.178125,
+    "tread_run_m": 0.28,
+    "clear_width_m": 1,
+    "mid_landing_centre_local_m": [
+      -1.21,
+      1.425,
+      -1.19
+    ],
+    "mid_landing_size_m": [
+      2.2,
+      1
+    ],
+    "upper_opening_xz_m": [
+      -2.45,
+      0.1,
+      -1.79,
+      1.6
+    ],
+    "route_local_m": [
+      [
+        -1.8,
+        0,
+        1.8
+      ],
+      [
+        -1.8,
+        1.425,
+        -1.19
+      ],
+      [
+        -0.62,
+        1.425,
+        -1.19
+      ],
+      [
+        -0.62,
+        2.85,
+        1.8
+      ],
+      [
+        0.5,
+        2.85,
+        2.1
+      ]
+    ]
+  },
+  "cuboid_colliders": [
+    {
+      "name": "Stone plinth mass",
+      "centre": [
+        0,
+        -0.79,
+        0
+      ],
+      "half": [
+        2.71,
+        0.74,
+        3.21
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Ground finished floor collision",
+      "centre": [
+        0,
+        -0.08,
+        0
+      ],
+      "half": [
+        2.61,
+        0.08,
+        3.11
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Upper east floor",
+      "centre": [
+        1.31,
+        2.77,
+        0
+      ],
+      "half": [
+        1.21,
+        0.08,
+        3.02
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Upper north landing",
+      "centre": [
+        -1.21,
+        2.77,
+        -2.405
+      ],
+      "half": [
+        1.31,
+        0.08,
+        0.615
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Upper south landing",
+      "centre": [
+        -1.21,
+        2.77,
+        2.31
+      ],
+      "half": [
+        1.31,
+        0.08,
+        0.71
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 1 tread 01",
+      "centre": [
+        -1.8,
+        0.0890625,
+        1.4100000000000001
+      ],
+      "half": [
+        0.5,
+        0.0890625,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 1 tread 02",
+      "centre": [
+        -1.8,
+        0.178125,
+        1.13
+      ],
+      "half": [
+        0.5,
+        0.178125,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 1 tread 03",
+      "centre": [
+        -1.8,
+        0.2671875,
+        0.85
+      ],
+      "half": [
+        0.5,
+        0.2671875,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 1 tread 04",
+      "centre": [
+        -1.8,
+        0.35625,
+        0.57
+      ],
+      "half": [
+        0.5,
+        0.35625,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 1 tread 05",
+      "centre": [
+        -1.8,
+        0.4453125,
+        0.2899999999999998
+      ],
+      "half": [
+        0.5,
+        0.4453125,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 1 tread 06",
+      "centre": [
+        -1.8,
+        0.534375,
+        0.010000000000000009
+      ],
+      "half": [
+        0.5,
+        0.534375,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 1 tread 07",
+      "centre": [
+        -1.8,
+        0.6234375,
+        -0.27000000000000024
+      ],
+      "half": [
+        0.5,
+        0.6234375,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 1 tread 08",
+      "centre": [
+        -1.8,
+        0.7125,
+        -0.55
+      ],
+      "half": [
+        0.5,
+        0.7125,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Continuous stair handrail",
+      "centre": [
+        -2.3350000381469727,
+        1.6924999952316284,
+        0.429999977350235
+      ],
+      "half": [
+        0.027,
+        0.027,
+        1.3274246613268559
+      ],
+      "rotation": [
+        -0.9601403474807739,
+        0,
+        0,
+        0.2795183062553406
+      ]
+    },
+    {
+      "name": "Continuous stair handrail",
+      "centre": [
+        -1.2649999856948853,
+        1.6924999952316284,
+        0.429999977350235
+      ],
+      "half": [
+        0.027,
+        0.027,
+        1.3274246613268559
+      ],
+      "rotation": [
+        -0.9601403474807739,
+        0,
+        0,
+        0.2795183062553406
+      ]
+    },
+    {
+      "name": "Stair flight 2 tread 01",
+      "centre": [
+        -0.62,
+        0.8015625000000001,
+        -0.5499999999999999
+      ],
+      "half": [
+        0.5,
+        0.8015625000000001,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 2 tread 02",
+      "centre": [
+        -0.62,
+        0.890625,
+        -0.2699999999999999
+      ],
+      "half": [
+        0.5,
+        0.890625,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 2 tread 03",
+      "centre": [
+        -0.62,
+        0.9796875,
+        0.01000000000000012
+      ],
+      "half": [
+        0.5,
+        0.9796875,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 2 tread 04",
+      "centre": [
+        -0.62,
+        1.06875,
+        0.29000000000000015
+      ],
+      "half": [
+        0.5,
+        1.06875,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 2 tread 05",
+      "centre": [
+        -0.62,
+        1.1578125000000001,
+        0.5700000000000003
+      ],
+      "half": [
+        0.5,
+        1.1578125000000001,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 2 tread 06",
+      "centre": [
+        -0.62,
+        1.246875,
+        0.8500000000000001
+      ],
+      "half": [
+        0.5,
+        1.246875,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 2 tread 07",
+      "centre": [
+        -0.62,
+        1.3359375,
+        1.1300000000000003
+      ],
+      "half": [
+        0.5,
+        1.3359375,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Stair flight 2 tread 08",
+      "centre": [
+        -0.62,
+        1.425,
+        1.4100000000000001
+      ],
+      "half": [
+        0.5,
+        1.425,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Continuous stair handrail",
+      "centre": [
+        -1.1549999713897705,
+        3.117499828338623,
+        0.429999977350235
+      ],
+      "half": [
+        0.027,
+        0.027,
+        1.3274246613268559
+      ],
+      "rotation": [
+        -0.2795183062553406,
+        0,
+        0,
+        0.9601403474807739
+      ]
+    },
+    {
+      "name": "Continuous stair handrail",
+      "centre": [
+        -0.08500000089406967,
+        3.117499828338623,
+        0.429999977350235
+      ],
+      "half": [
+        0.027,
+        0.027,
+        1.3274246613268559
+      ],
+      "rotation": [
+        -0.2795183062553406,
+        0,
+        0,
+        0.9601403474807739
+      ]
+    },
+    {
+      "name": "U-stair turning landing",
+      "centre": [
+        -1.21,
+        1.355,
+        -1.19
+      ],
+      "half": [
+        1.1,
+        0.07,
+        0.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Upper stairwell handrail",
+      "centre": [
+        0.10000000149011612,
+        3.8299999237060547,
+        -0.09499996900558472
+      ],
+      "half": [
+        0.03,
+        0.03,
+        1.6949999121156742
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Upper guard collision envelope",
+      "centre": [
+        0.1,
+        3.31,
+        -0.09499999999999997
+      ],
+      "half": [
+        0.0275,
+        0.46,
+        1.695
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Upper stairwell handrail",
+      "centre": [
+        -1.1750000715255737,
+        3.8299999237060547,
+        -1.7899999618530273
+      ],
+      "half": [
+        0.03,
+        0.03,
+        1.2749999588611072
+      ],
+      "rotation": [
+        0,
+        0.7071067690849304,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "Upper guard collision envelope",
+      "centre": [
+        -1.175,
+        3.31,
+        -1.79
+      ],
+      "half": [
+        1.2750000000000001,
+        0.46,
+        0.0275
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East door north pier",
+      "centre": [
+        2.61,
+        2.76,
+        -2.805
+      ],
+      "half": [
+        0.09,
+        2.76,
+        0.305
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East door south pier",
+      "centre": [
+        2.61,
+        2.76,
+        -1.14
+      ],
+      "half": [
+        0.09,
+        2.76,
+        0.26
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East entrance lintel",
+      "centre": [
+        2.61,
+        3.8499999999999996,
+        -1.95
+      ],
+      "half": [
+        0.09,
+        1.6699999999999997,
+        0.55
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East south end pier",
+      "centre": [
+        2.61,
+        2.76,
+        2.835
+      ],
+      "half": [
+        0.09,
+        2.76,
+        0.275
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East central window pier",
+      "centre": [
+        2.61,
+        2.76,
+        0.8
+      ],
+      "half": [
+        0.09,
+        2.76,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East low wall below window",
+      "centre": [
+        2.61,
+        0.54,
+        -0.10999999999999999
+      ],
+      "half": [
+        0.09,
+        0.54,
+        0.77
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East wall between storeys",
+      "centre": [
+        2.61,
+        2.585,
+        -0.10999999999999999
+      ],
+      "half": [
+        0.09,
+        0.625,
+        0.77
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East high wall above window",
+      "centre": [
+        2.61,
+        5.33,
+        -0.10999999999999999
+      ],
+      "half": [
+        0.09,
+        0.19,
+        0.77
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "east window glass boundary",
+      "centre": [
+        2.6,
+        1.53,
+        -0.10999999999999999
+      ],
+      "half": [
+        0.72,
+        0.45,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0.7071067690849304,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "east window glass boundary",
+      "centre": [
+        2.6,
+        4.16,
+        -0.10999999999999999
+      ],
+      "half": [
+        0.72,
+        0.925,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0.7071067690849304,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "East low wall below window",
+      "centre": [
+        2.61,
+        0.54,
+        1.75
+      ],
+      "half": [
+        0.09,
+        0.54,
+        0.81
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East wall between storeys",
+      "centre": [
+        2.61,
+        2.585,
+        1.75
+      ],
+      "half": [
+        0.09,
+        0.625,
+        0.81
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "East high wall above window",
+      "centre": [
+        2.61,
+        5.33,
+        1.75
+      ],
+      "half": [
+        0.09,
+        0.19,
+        0.81
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "east window glass boundary",
+      "centre": [
+        2.6,
+        1.53,
+        1.75
+      ],
+      "half": [
+        0.76,
+        0.45,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0.7071067690849304,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "east window glass boundary",
+      "centre": [
+        2.6,
+        4.16,
+        1.75
+      ],
+      "half": [
+        0.76,
+        0.925,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0.7071067690849304,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "West continuous wall",
+      "centre": [
+        -2.61,
+        1.815,
+        0
+      ],
+      "half": [
+        0.09,
+        1.815,
+        3.2
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "West clerestory pier",
+      "centre": [
+        -2.61,
+        4.575,
+        -2.67
+      ],
+      "half": [
+        0.09,
+        0.945,
+        0.28
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "West clerestory pier",
+      "centre": [
+        -2.61,
+        4.575,
+        -0.89
+      ],
+      "half": [
+        0.09,
+        0.945,
+        0.28
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "West clerestory pier",
+      "centre": [
+        -2.61,
+        4.575,
+        0.89
+      ],
+      "half": [
+        0.09,
+        0.945,
+        0.28
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "West clerestory pier",
+      "centre": [
+        -2.61,
+        4.575,
+        2.67
+      ],
+      "half": [
+        0.09,
+        0.945,
+        0.28
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "West clerestory sill",
+      "centre": [
+        -2.61,
+        3.805,
+        -1.78
+      ],
+      "half": [
+        0.09,
+        0.175,
+        0.61
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "West clerestory lintel",
+      "centre": [
+        -2.61,
+        5.295,
+        -1.78
+      ],
+      "half": [
+        0.09,
+        0.225,
+        0.61
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "west window glass boundary",
+      "centre": [
+        -2.6,
+        4.535,
+        -1.78
+      ],
+      "half": [
+        0.55,
+        0.55,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0.7071067690849304,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "West clerestory sill",
+      "centre": [
+        -2.61,
+        3.805,
+        0
+      ],
+      "half": [
+        0.09,
+        0.175,
+        0.61
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "West clerestory lintel",
+      "centre": [
+        -2.61,
+        5.295,
+        0
+      ],
+      "half": [
+        0.09,
+        0.225,
+        0.61
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "west window glass boundary",
+      "centre": [
+        -2.6,
+        4.535,
+        0
+      ],
+      "half": [
+        0.55,
+        0.55,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0.7071067690849304,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "West clerestory sill",
+      "centre": [
+        -2.61,
+        3.805,
+        1.78
+      ],
+      "half": [
+        0.09,
+        0.175,
+        0.61
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "West clerestory lintel",
+      "centre": [
+        -2.61,
+        5.295,
+        1.78
+      ],
+      "half": [
+        0.09,
+        0.225,
+        0.61
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "west window glass boundary",
+      "centre": [
+        -2.6,
+        4.535,
+        1.78
+      ],
+      "half": [
+        0.55,
+        0.55,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0.7071067690849304,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "north facade pier",
+      "centre": [
+        -1.97,
+        2.76,
+        -3.11
+      ],
+      "half": [
+        0.73,
+        2.76,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "north facade pier",
+      "centre": [
+        1.97,
+        2.76,
+        -3.11
+      ],
+      "half": [
+        0.73,
+        2.76,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "north low spandrel",
+      "centre": [
+        0,
+        0.525,
+        -3.11
+      ],
+      "half": [
+        1.24,
+        0.525,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "north between-storey band",
+      "centre": [
+        0,
+        2.75,
+        -3.11
+      ],
+      "half": [
+        1.24,
+        0.5,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "north upper lintel",
+      "centre": [
+        0,
+        5.32,
+        -3.11
+      ],
+      "half": [
+        1.24,
+        0.2,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "north window glass boundary",
+      "centre": [
+        0,
+        1.65,
+        -3.1
+      ],
+      "half": [
+        1.17,
+        0.57,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "north window glass boundary",
+      "centre": [
+        0,
+        4.18,
+        -3.1
+      ],
+      "half": [
+        1.17,
+        0.92,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "south facade pier",
+      "centre": [
+        -1.97,
+        2.76,
+        3.11
+      ],
+      "half": [
+        0.73,
+        2.76,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "south facade pier",
+      "centre": [
+        1.97,
+        2.76,
+        3.11
+      ],
+      "half": [
+        0.73,
+        2.76,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "south low spandrel",
+      "centre": [
+        0,
+        0.525,
+        3.11
+      ],
+      "half": [
+        1.24,
+        0.525,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "south between-storey band",
+      "centre": [
+        0,
+        2.75,
+        3.11
+      ],
+      "half": [
+        1.24,
+        0.5,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "south upper lintel",
+      "centre": [
+        0,
+        5.32,
+        3.11
+      ],
+      "half": [
+        1.24,
+        0.2,
+        0.09
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "south window glass boundary",
+      "centre": [
+        0,
+        1.65,
+        3.1
+      ],
+      "half": [
+        1.17,
+        0.57,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "south window glass boundary",
+      "centre": [
+        0,
+        4.18,
+        3.1
+      ],
+      "half": [
+        1.17,
+        0.92,
+        0.012
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Continuous weathered pitched roof",
+      "centre": [
+        -1.495,
+        6.25,
+        0
+      ],
+      "half": [
+        1.6637082075892997,
+        0.07,
+        3.56
+      ],
+      "rotation": [
+        0,
+        0,
+        0.22517211735248566,
+        0.9743189811706543
+      ]
+    },
+    {
+      "name": "Continuous weathered pitched roof",
+      "centre": [
+        1.495,
+        6.25,
+        0
+      ],
+      "half": [
+        1.6637082075892997,
+        0.07,
+        3.56
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.22517211735248566,
+        0.9743189811706543
+      ]
+    },
+    {
+      "name": "Default open entrance door",
+      "centre": [
+        2.162016810011375,
+        1.05,
+        -2.5461925436562587
+      ],
+      "half": [
+        0.047,
+        1.065,
+        0.53
+      ],
+      "rotation": [
+        0,
+        -0.7372773289680481,
+        0,
+        0.6755902171134949
+      ],
+      "binding": "library_door_hinge; update when opening/closing"
+    },
+    {
+      "name": "Entrance landing",
+      "centre": [
+        2.92,
+        -0.075,
+        -1.95
+      ],
+      "half": [
+        0.23,
+        0.075,
+        0.64
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance step 09",
+      "centre": [
+        3.29,
+        -0.22222222222222224,
+        -1.95
+      ],
+      "half": [
+        0.14,
+        0.07,
+        0.63
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance step 08",
+      "centre": [
+        3.57,
+        -0.37444444444444447,
+        -1.95
+      ],
+      "half": [
+        0.14,
+        0.07,
+        0.63
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance step 07",
+      "centre": [
+        3.85,
+        -0.5266666666666666,
+        -1.95
+      ],
+      "half": [
+        0.14,
+        0.07,
+        0.63
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance step 06",
+      "centre": [
+        4.13,
+        -0.6788888888888889,
+        -1.95
+      ],
+      "half": [
+        0.14,
+        0.07,
+        0.63
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance step 05",
+      "centre": [
+        4.41,
+        -0.8311111111111111,
+        -1.95
+      ],
+      "half": [
+        0.14,
+        0.07,
+        0.63
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance step 04",
+      "centre": [
+        4.6899999999999995,
+        -0.9833333333333334,
+        -1.95
+      ],
+      "half": [
+        0.14,
+        0.07,
+        0.63
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance step 03",
+      "centre": [
+        4.970000000000001,
+        -1.1355555555555557,
+        -1.95
+      ],
+      "half": [
+        0.14,
+        0.07,
+        0.63
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance step 02",
+      "centre": [
+        5.25,
+        -1.287777777777778,
+        -1.95
+      ],
+      "half": [
+        0.14,
+        0.07,
+        0.63
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance step 01",
+      "centre": [
+        5.53,
+        -1.4400000000000002,
+        -1.95
+      ],
+      "half": [
+        0.14,
+        0.07,
+        0.63
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Entrance stair rail",
+      "centre": [
+        4.409999847412109,
+        0.19499999284744263,
+        -2.640000104904175
+      ],
+      "half": [
+        0.0325,
+        0.0325,
+        1.4341635130508272
+      ],
+      "rotation": [
+        0.33773568272590637,
+        0.6212363839149475,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "Entrance stair rail",
+      "centre": [
+        4.409999847412109,
+        0.19499999284744263,
+        -1.2599999904632568
+      ],
+      "half": [
+        0.0325,
+        0.0325,
+        1.4341635130508272
+      ],
+      "rotation": [
+        0.33773568272590637,
+        0.6212363839149475,
+        0,
+        0.7071068286895752
+      ]
+    },
+    {
+      "name": "ground_daylight_desk tabletop",
+      "centre": [
+        1.25,
+        0.7475,
+        2.62
+      ],
+      "half": [
+        0.775,
+        0.028,
+        0.33
+      ],
+      "rotation": [
+        0,
+        -1,
+        0,
+        -4.371138828673793e-8
+      ]
+    },
+    {
+      "name": "ground_daylight_desk leg",
+      "centre": [
+        1.9,
+        0.36,
+        2.87
+      ],
+      "half": [
+        0.029,
+        0.36,
+        0.029
+      ],
+      "rotation": [
+        0,
+        -1,
+        0,
+        -4.371138828673793e-8
+      ]
+    },
+    {
+      "name": "ground_daylight_desk leg",
+      "centre": [
+        1.9,
+        0.36,
+        2.37
+      ],
+      "half": [
+        0.029,
+        0.36,
+        0.029
+      ],
+      "rotation": [
+        0,
+        -1,
+        0,
+        -4.371138828673793e-8
+      ]
+    },
+    {
+      "name": "ground_daylight_desk leg",
+      "centre": [
+        0.6,
+        0.36,
+        2.87
+      ],
+      "half": [
+        0.029,
+        0.36,
+        0.029
+      ],
+      "rotation": [
+        0,
+        -1,
+        0,
+        -4.371138828673793e-8
+      ]
+    },
+    {
+      "name": "ground_daylight_desk leg",
+      "centre": [
+        0.6,
+        0.36,
+        2.37
+      ],
+      "half": [
+        0.029,
+        0.36,
+        0.029
+      ],
+      "rotation": [
+        0,
+        -1,
+        0,
+        -4.371138828673793e-8
+      ]
+    },
+    {
+      "name": "ground_reading_chair seat proxy",
+      "centre": [
+        1.25,
+        0.255,
+        1.7
+      ],
+      "half": [
+        0.29,
+        0.255,
+        0.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "upper_daylight_desk tabletop",
+      "centre": [
+        1.18,
+        3.5975,
+        -2.55
+      ],
+      "half": [
+        0.775,
+        0.028,
+        0.33
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "upper_daylight_desk leg",
+      "centre": [
+        0.5299999999999999,
+        3.21,
+        -2.8
+      ],
+      "half": [
+        0.029,
+        0.36,
+        0.029
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "upper_daylight_desk leg",
+      "centre": [
+        0.5299999999999999,
+        3.21,
+        -2.3
+      ],
+      "half": [
+        0.029,
+        0.36,
+        0.029
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "upper_daylight_desk leg",
+      "centre": [
+        1.83,
+        3.21,
+        -2.8
+      ],
+      "half": [
+        0.029,
+        0.36,
+        0.029
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "upper_daylight_desk leg",
+      "centre": [
+        1.83,
+        3.21,
+        -2.3
+      ],
+      "half": [
+        0.029,
+        0.36,
+        0.029
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "upper_desk_chair seat proxy",
+      "centre": [
+        1.18,
+        3.105,
+        -1.62
+      ],
+      "half": [
+        0.29,
+        0.255,
+        0.3
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_window_chair seat proxy",
+      "centre": [
+        1.69,
+        3.105,
+        2.34
+      ],
+      "half": [
+        0.29,
+        0.255,
+        0.3
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "Upper chair side table",
+      "centre": [
+        0.96,
+        3.42,
+        2.37
+      ],
+      "half": [
+        0.215,
+        0.0225,
+        0.215
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural side -1",
+      "centre": [
+        0.5200000000000001,
+        0.94,
+        -2.89
+      ],
+      "half": [
+        0.02,
+        0.94,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural side 1",
+      "centre": [
+        2.18,
+        0.94,
+        -2.89
+      ],
+      "half": [
+        0.02,
+        0.94,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural back",
+      "centre": [
+        1.35,
+        0.94,
+        -3.0220000000000002
+      ],
+      "half": [
+        0.83,
+        0.94,
+        0.009
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural shelf 0.1",
+      "centre": [
+        1.35,
+        0.1,
+        -2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural shelf 0.51",
+      "centre": [
+        1.35,
+        0.51,
+        -2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural shelf 0.94",
+      "centre": [
+        1.35,
+        0.94,
+        -2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural shelf 1.37",
+      "centre": [
+        1.35,
+        1.37,
+        -2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural shelf 1.84",
+      "centre": [
+        1.35,
+        1.84,
+        -2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural plinth",
+      "centre": [
+        1.35,
+        0.045,
+        -2.89
+      ],
+      "half": [
+        0.87,
+        0.045,
+        0.16
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_north structural crown",
+      "centre": [
+        1.35,
+        1.875,
+        -2.89
+      ],
+      "half": [
+        0.88,
+        0.0275,
+        0.165
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ground_east structural side -1",
+      "centre": [
+        2.39,
+        0.94,
+        -0.6300000000000001
+      ],
+      "half": [
+        0.02,
+        0.94,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "ground_east structural side 1",
+      "centre": [
+        2.39,
+        0.94,
+        1.03
+      ],
+      "half": [
+        0.02,
+        0.94,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "ground_east structural back",
+      "centre": [
+        2.5220000000000002,
+        0.94,
+        0.19999999999999998
+      ],
+      "half": [
+        0.83,
+        0.94,
+        0.009
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "ground_east structural shelf 0.1",
+      "centre": [
+        2.39,
+        0.1,
+        0.2
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "ground_east structural shelf 0.51",
+      "centre": [
+        2.39,
+        0.51,
+        0.2
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "ground_east structural shelf 0.94",
+      "centre": [
+        2.39,
+        0.94,
+        0.2
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "ground_east structural shelf 1.37",
+      "centre": [
+        2.39,
+        1.37,
+        0.2
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "ground_east structural shelf 1.84",
+      "centre": [
+        2.39,
+        1.84,
+        0.2
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "ground_east structural plinth",
+      "centre": [
+        2.39,
+        0.045,
+        0.2
+      ],
+      "half": [
+        0.87,
+        0.045,
+        0.16
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "ground_east structural crown",
+      "centre": [
+        2.39,
+        1.875,
+        0.2
+      ],
+      "half": [
+        0.88,
+        0.0275,
+        0.165
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural side -1",
+      "centre": [
+        2.39,
+        3.79,
+        -0.28
+      ],
+      "half": [
+        0.02,
+        0.94,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural side 1",
+      "centre": [
+        2.39,
+        3.79,
+        1.3800000000000001
+      ],
+      "half": [
+        0.02,
+        0.94,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural back",
+      "centre": [
+        2.5220000000000002,
+        3.79,
+        0.55
+      ],
+      "half": [
+        0.83,
+        0.94,
+        0.009
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural shelf 0.1",
+      "centre": [
+        2.39,
+        2.95,
+        0.55
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural shelf 0.51",
+      "centre": [
+        2.39,
+        3.3600000000000003,
+        0.55
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural shelf 0.94",
+      "centre": [
+        2.39,
+        3.79,
+        0.55
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural shelf 1.37",
+      "centre": [
+        2.39,
+        4.220000000000001,
+        0.55
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural shelf 1.84",
+      "centre": [
+        2.39,
+        4.69,
+        0.55
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural plinth",
+      "centre": [
+        2.39,
+        2.895,
+        0.55
+      ],
+      "half": [
+        0.87,
+        0.045,
+        0.16
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_east structural crown",
+      "centre": [
+        2.39,
+        4.725,
+        0.55
+      ],
+      "half": [
+        0.88,
+        0.0275,
+        0.165
+      ],
+      "rotation": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "name": "upper_south structural side -1",
+      "centre": [
+        -0.4800000000000001,
+        3.79,
+        2.89
+      ],
+      "half": [
+        0.02,
+        0.94,
+        0.14
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_south structural side 1",
+      "centre": [
+        -2.14,
+        3.79,
+        2.89
+      ],
+      "half": [
+        0.02,
+        0.94,
+        0.14
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_south structural back",
+      "centre": [
+        -1.31,
+        3.79,
+        3.0220000000000002
+      ],
+      "half": [
+        0.83,
+        0.94,
+        0.009
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_south structural shelf 0.1",
+      "centre": [
+        -1.31,
+        2.95,
+        2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_south structural shelf 0.51",
+      "centre": [
+        -1.31,
+        3.3600000000000003,
+        2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_south structural shelf 0.94",
+      "centre": [
+        -1.31,
+        3.79,
+        2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_south structural shelf 1.37",
+      "centre": [
+        -1.31,
+        4.220000000000001,
+        2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_south structural shelf 1.84",
+      "centre": [
+        -1.31,
+        4.69,
+        2.89
+      ],
+      "half": [
+        0.83,
+        0.016,
+        0.14
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_south structural plinth",
+      "centre": [
+        -1.31,
+        2.895,
+        2.89
+      ],
+      "half": [
+        0.87,
+        0.045,
+        0.16
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "name": "upper_south structural crown",
+      "centre": [
+        -1.31,
+        4.725,
+        2.89
+      ],
+      "half": [
+        0.88,
+        0.0275,
+        0.165
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    }
+  ],
+  "convex_colliders": [
+    {
+      "name": "north gable",
+      "vertices": [
+        -2.7,
+        5.52,
+        -3.1999999999999997,
+        2.7,
+        5.52,
+        -3.1999999999999997,
+        0,
+        6.98,
+        -3.1999999999999997,
+        -2.7,
+        5.52,
+        -3.02,
+        2.7,
+        5.52,
+        -3.02,
+        0,
+        6.98,
+        -3.02
+      ]
+    },
+    {
+      "name": "south gable",
+      "vertices": [
+        -2.7,
+        5.52,
+        3.02,
+        2.7,
+        5.52,
+        3.02,
+        0,
+        6.98,
+        3.02,
+        -2.7,
+        5.52,
+        3.1999999999999997,
+        2.7,
+        5.52,
+        3.1999999999999997,
+        0,
+        6.98,
+        3.1999999999999997
+      ]
+    }
+  ],
+  "book_slots": [
+    {
+      "id": "ground_north_01",
+      "node": "book_slot_ground_north_01",
+      "centre_local_m": [
+        0.8200000000000001,
+        0.6535,
+        -2.875
+      ],
+      "half_m": [
+        0.0375,
+        0.1275,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        0.8200000000000001,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.51,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04100002394989133,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04100002348423004,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "ground_north_02",
+      "node": "book_slot_ground_north_02",
+      "centre_local_m": [
+        1.1600000000000001,
+        0.6615,
+        -2.875
+      ],
+      "half_m": [
+        0.044,
+        0.1355,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        1.1600000000000001,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.51,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750002967193723,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04750002920627594,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08100005887821317,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "ground_north_03",
+      "node": "book_slot_ground_north_03",
+      "centre_local_m": [
+        1.5,
+        0.6695,
+        -2.875
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        1.5,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.51,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.054000035393983126,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05400003492832184,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400007032230497,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "ground_north_04",
+      "node": "book_slot_ground_north_04",
+      "centre_local_m": [
+        1.84,
+        0.6775,
+        -2.875
+      ],
+      "half_m": [
+        0.0375,
+        0.1515,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        0.8400000000000001,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.51,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04100002394989133,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04100002348423004,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.27799999356269833,
+      "approach_reason": "One metre left along the aisle gives a clear oblique ray around the open door."
+    },
+    {
+      "id": "ground_north_05",
+      "node": "book_slot_ground_north_05",
+      "centre_local_m": [
+        0.8200000000000001,
+        1.0835,
+        -2.875
+      ],
+      "half_m": [
+        0.044,
+        0.1275,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        0.8200000000000001,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.94,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04749997006729245,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.047499969601631165,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08099993966892362,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "ground_north_06",
+      "node": "book_slot_ground_north_06",
+      "centre_local_m": [
+        1.1600000000000001,
+        1.0915,
+        -2.875
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1355,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        1.1600000000000001,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.94,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.054000035393983126,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05400003492832184,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400007032230497,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "ground_north_07",
+      "node": "book_slot_ground_north_07",
+      "centre_local_m": [
+        1.5,
+        1.0995,
+        -2.875
+      ],
+      "half_m": [
+        0.0375,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        1.5,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.94,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04100002394989133,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04100002348423004,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "ground_north_08",
+      "node": "book_slot_ground_north_08",
+      "centre_local_m": [
+        1.84,
+        1.1075,
+        -2.875
+      ],
+      "half_m": [
+        0.044,
+        0.1515,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        0.8400000000000001,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.94,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750002967193723,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04750002920627594,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08100005887821317,
+      "label_safe_height_m": 0.27799999356269833,
+      "approach_reason": "One metre left along the aisle gives a clear oblique ray around the open door."
+    },
+    {
+      "id": "ground_north_09",
+      "node": "book_slot_ground_north_09",
+      "centre_local_m": [
+        0.8200000000000001,
+        1.5135,
+        -2.875
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1275,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        0.8200000000000001,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 1.37,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05399997578933835,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05399997532367706,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09399995111301541,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "ground_north_10",
+      "node": "book_slot_ground_north_10",
+      "centre_local_m": [
+        1.1600000000000001,
+        1.5215,
+        -2.875
+      ],
+      "half_m": [
+        0.0375,
+        0.1355,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        1.1600000000000001,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 1.37,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04100002394989133,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04100002348423004,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "ground_north_11",
+      "node": "book_slot_ground_north_11",
+      "centre_local_m": [
+        1.5,
+        1.5295,
+        -2.875
+      ],
+      "half_m": [
+        0.044,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        1.5,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 1.37,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750002967193723,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04750002920627594,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08100005887821317,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "ground_north_12",
+      "node": "book_slot_ground_north_12",
+      "centre_local_m": [
+        1.84,
+        1.5375,
+        -2.875
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1515,
+        0.102
+      ],
+      "yaw": 0,
+      "spine_normal_local": [
+        0,
+        0,
+        1
+      ],
+      "approach_local_m": [
+        0.8400000000000001,
+        0,
+        -1.9900000000000002
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 1.37,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.054000035393983126,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05400003492832184,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400007032230497,
+      "label_safe_height_m": 0.27799999356269833,
+      "approach_reason": "One metre left along the aisle gives a clear oblique ray around the open door."
+    },
+    {
+      "id": "ground_east_01",
+      "node": "book_slot_ground_east_01",
+      "centre_local_m": [
+        2.375,
+        0.6535,
+        -0.33
+      ],
+      "half_m": [
+        0.0375,
+        0.1275,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        -0.32999999999999996
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.51,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000009048730135,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04099997878074646,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0679999878294766,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "ground_east_02",
+      "node": "book_slot_ground_east_02",
+      "centre_local_m": [
+        2.375,
+        0.6615,
+        0.01000000000000001
+      ],
+      "half_m": [
+        0.044,
+        0.1355,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        0.010000000000000064
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.51,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04749999986961484,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04749999940395355,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0809999992735684,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "ground_east_03",
+      "node": "book_slot_ground_east_03",
+      "centre_local_m": [
+        2.375,
+        0.6695,
+        0.35000000000000003
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        0.3500000000000001
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.51,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05400002049282193,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05399999022483826,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400001071766019,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "ground_east_04",
+      "node": "book_slot_ground_east_04",
+      "centre_local_m": [
+        2.375,
+        0.6775,
+        0.69
+      ],
+      "half_m": [
+        0.0375,
+        0.1515,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        0.69
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.51,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000009048730135,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.041000038385391235,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.27799999356269833
+    },
+    {
+      "id": "ground_east_05",
+      "node": "book_slot_ground_east_05",
+      "centre_local_m": [
+        2.375,
+        1.0835,
+        -0.33
+      ],
+      "half_m": [
+        0.044,
+        0.1275,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        -0.32999999999999996
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.94,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750001477077603,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04749998450279236,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0809999992735684,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "ground_east_06",
+      "node": "book_slot_ground_east_06",
+      "centre_local_m": [
+        2.375,
+        1.0915,
+        0.01000000000000001
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1355,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        0.010000000000000064
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.94,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05400000559166074,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.053999997675418854,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0940000032670796,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "ground_east_07",
+      "node": "book_slot_ground_east_07",
+      "centre_local_m": [
+        2.375,
+        1.0995,
+        0.35000000000000003
+      ],
+      "half_m": [
+        0.0375,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        0.3500000000000001
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.94,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000009048730135,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04099997878074646,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0679999878294766,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "ground_east_08",
+      "node": "book_slot_ground_east_08",
+      "centre_local_m": [
+        2.375,
+        1.1075,
+        0.69
+      ],
+      "half_m": [
+        0.044,
+        0.1515,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        0.69
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 0.94,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04749995516613126,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04749998450279236,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08099993966892362,
+      "label_safe_height_m": 0.27799999356269833
+    },
+    {
+      "id": "ground_east_09",
+      "node": "book_slot_ground_east_09",
+      "centre_local_m": [
+        2.375,
+        1.5135,
+        -0.33
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1275,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        -0.32999999999999996
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 1.37,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05400002049282193,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05399999022483826,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400001071766019,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "ground_east_10",
+      "node": "book_slot_ground_east_10",
+      "centre_local_m": [
+        2.375,
+        1.5215,
+        0.01000000000000001
+      ],
+      "half_m": [
+        0.0375,
+        0.1355,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        0.010000000000000064
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 1.37,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04100000159814954,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04100000113248825,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800000273063779,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "ground_east_11",
+      "node": "book_slot_ground_east_11",
+      "centre_local_m": [
+        2.375,
+        1.5295,
+        0.35000000000000003
+      ],
+      "half_m": [
+        0.044,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        0.3500000000000001
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 1.37,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750001477077603,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04749998450279236,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0809999992735684,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "ground_east_12",
+      "node": "book_slot_ground_east_12",
+      "centre_local_m": [
+        2.375,
+        1.5375,
+        0.69
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1515,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        0,
+        0.69
+      ],
+      "shelf_floor_y": 0,
+      "shelf_y": 1.37,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.053999960888177156,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05399999022483826,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09399995111301541,
+      "label_safe_height_m": 0.27799999356269833
+    },
+    {
+      "id": "upper_east_01",
+      "node": "book_slot_upper_east_01",
+      "centre_local_m": [
+        2.375,
+        3.5035,
+        0.020000000000000018
+      ],
+      "half_m": [
+        0.0375,
+        0.1275,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        0.020000000000000073
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.3600000000000003,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04100000159814954,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04100000113248825,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800000273063779,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "upper_east_02",
+      "node": "book_slot_upper_east_02",
+      "centre_local_m": [
+        2.375,
+        3.5115,
+        0.36000000000000004
+      ],
+      "half_m": [
+        0.044,
+        0.1355,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        0.3600000000000001
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.3600000000000003,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750001477077603,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04749998450279236,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0809999992735684,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "upper_east_03",
+      "node": "book_slot_upper_east_03",
+      "centre_local_m": [
+        2.375,
+        3.5195,
+        0.7000000000000001
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        0.7000000000000001
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.3600000000000003,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.053999960888177156,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05399999022483826,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09399995111301541,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "upper_east_04",
+      "node": "book_slot_upper_east_04",
+      "centre_local_m": [
+        2.375,
+        3.5275,
+        1.04
+      ],
+      "half_m": [
+        0.0375,
+        0.1515,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        1.04
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.3600000000000003,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000009048730135,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.041000038385391235,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.27799999356269833
+    },
+    {
+      "id": "upper_east_05",
+      "node": "book_slot_upper_east_05",
+      "centre_local_m": [
+        2.375,
+        3.9335,
+        0.020000000000000018
+      ],
+      "half_m": [
+        0.044,
+        0.1275,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        0.020000000000000073
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.79,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04749999614432454,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04750000312924385,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0809999992735684,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "upper_east_06",
+      "node": "book_slot_upper_east_06",
+      "centre_local_m": [
+        2.375,
+        3.9415,
+        0.36000000000000004
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1355,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        0.3600000000000001
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.79,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05400002049282193,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05399999022483826,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400001071766019,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "upper_east_07",
+      "node": "book_slot_upper_east_07",
+      "centre_local_m": [
+        2.375,
+        3.9495,
+        0.7000000000000001
+      ],
+      "half_m": [
+        0.0375,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        0.7000000000000001
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.79,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000009048730135,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.041000038385391235,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "upper_east_08",
+      "node": "book_slot_upper_east_08",
+      "centre_local_m": [
+        2.375,
+        3.9575,
+        1.04
+      ],
+      "half_m": [
+        0.044,
+        0.1515,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        1.04
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.79,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750001477077603,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.047500044107437134,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08100005887821317,
+      "label_safe_height_m": 0.27799999356269833
+    },
+    {
+      "id": "upper_east_09",
+      "node": "book_slot_upper_east_09",
+      "centre_local_m": [
+        2.375,
+        4.3635,
+        0.020000000000000018
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1275,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        0.020000000000000073
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 4.220000000000001,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05400000186637044,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05400000140070915,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0940000032670796,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "upper_east_10",
+      "node": "book_slot_upper_east_10",
+      "centre_local_m": [
+        2.375,
+        4.3715,
+        0.36000000000000004
+      ],
+      "half_m": [
+        0.0375,
+        0.1355,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        0.3600000000000001
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 4.220000000000001,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000009048730135,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04099997878074646,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.0679999878294766,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "upper_east_11",
+      "node": "book_slot_upper_east_11",
+      "centre_local_m": [
+        2.375,
+        4.3795,
+        0.7000000000000001
+      ],
+      "half_m": [
+        0.044,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        0.7000000000000001
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 4.220000000000001,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04749995516613126,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.04749998450279236,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08099993966892362,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "upper_east_12",
+      "node": "book_slot_upper_east_12",
+      "centre_local_m": [
+        2.375,
+        4.3875,
+        1.04
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1515,
+        0.102
+      ],
+      "yaw": -1.5707963267948966,
+      "spine_normal_local": [
+        -1,
+        0,
+        6.123233995736766e-17
+      ],
+      "approach_local_m": [
+        1.4900000000000002,
+        2.85,
+        1.04
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 4.220000000000001,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05400002049282193,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05399999022483826,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400001071766019,
+      "label_safe_height_m": 0.27799999356269833
+    },
+    {
+      "id": "upper_south_01",
+      "node": "book_slot_upper_south_01",
+      "centre_local_m": [
+        -0.78,
+        3.5035,
+        2.875
+      ],
+      "half_m": [
+        0.0375,
+        0.1275,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -0.7799999999999999,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.3600000000000003,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000035125762224,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.041000012308359146,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "upper_south_02",
+      "node": "book_slot_upper_south_02",
+      "centre_local_m": [
+        -1.12,
+        3.5115,
+        2.875
+      ],
+      "half_m": [
+        0.044,
+        0.1355,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -1.12,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.3600000000000003,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750004084780812,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.047500018030405045,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08100005887821317,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "upper_south_03",
+      "node": "book_slot_upper_south_03",
+      "centre_local_m": [
+        -1.46,
+        3.5195,
+        2.875
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -1.46,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.3600000000000003,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05400004656985402,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05400002375245094,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400007032230497,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "upper_south_04",
+      "node": "book_slot_upper_south_04",
+      "centre_local_m": [
+        -1.8,
+        3.5275,
+        2.875
+      ],
+      "half_m": [
+        0.0375,
+        0.1515,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -1.8,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.3600000000000003,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000035125762224,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.041000012308359146,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.27799999356269833
+    },
+    {
+      "id": "upper_south_05",
+      "node": "book_slot_upper_south_05",
+      "centre_local_m": [
+        -0.78,
+        3.9335,
+        2.875
+      ],
+      "half_m": [
+        0.044,
+        0.1275,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -0.7799999999999999,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.79,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750004084780812,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.047500018030405045,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08100005887821317,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "upper_south_06",
+      "node": "book_slot_upper_south_06",
+      "centre_local_m": [
+        -1.12,
+        3.9415,
+        2.875
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1355,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -1.12,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.79,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05400004656985402,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05400002375245094,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400007032230497,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "upper_south_07",
+      "node": "book_slot_upper_south_07",
+      "centre_local_m": [
+        -1.46,
+        3.9495,
+        2.875
+      ],
+      "half_m": [
+        0.0375,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -1.46,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.79,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000035125762224,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.041000012308359146,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "upper_south_08",
+      "node": "book_slot_upper_south_08",
+      "centre_local_m": [
+        -1.8,
+        3.9575,
+        2.875
+      ],
+      "half_m": [
+        0.044,
+        0.1515,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -1.8,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 3.79,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750004084780812,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.047500018030405045,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08100005887821317,
+      "label_safe_height_m": 0.27799999356269833
+    },
+    {
+      "id": "upper_south_09",
+      "node": "book_slot_upper_south_09",
+      "centre_local_m": [
+        -0.78,
+        4.3635,
+        2.875
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1275,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -0.7799999999999999,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 4.220000000000001,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.053999986965209246,
+          -0.13249999284744263,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05399996414780617,
+          0.13249999284744263,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09399995111301541,
+      "label_safe_height_m": 0.22999998569488525
+    },
+    {
+      "id": "upper_south_10",
+      "node": "book_slot_upper_south_10",
+      "centre_local_m": [
+        -1.12,
+        4.3715,
+        2.875
+      ],
+      "half_m": [
+        0.0375,
+        0.1355,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -1.12,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 4.220000000000001,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.041000035125762224,
+          -0.1404999941587448,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.041000012308359146,
+          0.1404999941587448,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.06800004743412137,
+      "label_safe_height_m": 0.24599998831748962
+    },
+    {
+      "id": "upper_south_11",
+      "node": "book_slot_upper_south_11",
+      "centre_local_m": [
+        -1.46,
+        4.3795,
+        2.875
+      ],
+      "half_m": [
+        0.044,
+        0.14350000000000002,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -1.46,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 4.220000000000001,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.04750004084780812,
+          -0.148499995470047,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.047500018030405045,
+          0.148499995470047,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.08100005887821317,
+      "label_safe_height_m": 0.26199999094009396
+    },
+    {
+      "id": "upper_south_12",
+      "node": "book_slot_upper_south_12",
+      "centre_local_m": [
+        -1.8,
+        4.3875,
+        2.875
+      ],
+      "half_m": [
+        0.050499999999999996,
+        0.1515,
+        0.102
+      ],
+      "yaw": 3.141592653589793,
+      "spine_normal_local": [
+        1.2246467991473532e-16,
+        0,
+        -1
+      ],
+      "approach_local_m": [
+        -1.8,
+        2.85,
+        1.9900000000000002
+      ],
+      "shelf_floor_y": 2.85,
+      "shelf_y": 4.220000000000001,
+      "catalogue_assignment": null,
+      "bounds_slot_local_m": {
+        "min": [
+          -0.05400004656985402,
+          -0.15649999678134918,
+          -0.10450000315904617
+        ],
+        "max": [
+          0.05400002375245094,
+          0.15649999678134918,
+          0.11049997806549072
+        ]
+      },
+      "label_plane_z_slot_local_m": 0.11199997806549072,
+      "label_safe_width_m": 0.09400007032230497,
+      "label_safe_height_m": 0.27799999356269833
+    }
+  ],
+  "reading_desks": [
+    {
+      "node": "ground_daylight_desk",
+      "reading_anchor_node": "ground_daylight_desk_reading_anchor",
+      "reading_anchor_local_m": [
+        1.25,
+        0.8,
+        2.5900000000000003
+      ],
+      "yaw": 3.141592653589793,
+      "top_y": 0.775
+    },
+    {
+      "node": "upper_daylight_desk",
+      "reading_anchor_node": "upper_daylight_desk_reading_anchor",
+      "reading_anchor_local_m": [
+        1.18,
+        3.6500000000000004,
+        -2.52
+      ],
+      "yaw": 0,
+      "top_y": 3.625
+    }
+  ],
+  "seats": [
+    {
+      "node": "ground_reading_chair",
+      "seat_local_m": [
+        1.25,
+        0.53,
+        1.7349999999999999
+      ],
+      "yaw": 0,
+      "eye_height_above_seat_m": 0.76,
+      "approach_local_m": [
+        2.0300000000000002,
+        0,
+        1.7
+      ],
+      "floor_y": 0
+    },
+    {
+      "node": "upper_desk_chair",
+      "seat_local_m": [
+        1.18,
+        3.38,
+        -1.655
+      ],
+      "yaw": 3.141592653589793,
+      "eye_height_above_seat_m": 0.76,
+      "approach_local_m": [
+        0.3999999999999999,
+        2.8499999999999996,
+        -1.62
+      ],
+      "floor_y": 2.85
+    },
+    {
+      "node": "upper_window_chair",
+      "seat_local_m": [
+        1.69,
+        3.38,
+        2.3049999999999997
+      ],
+      "yaw": 3.141592653589793,
+      "eye_height_above_seat_m": 0.76,
+      "approach_local_m": [
+        1.69,
+        2.8499999999999996,
+        1.5599999999999998
+      ],
+      "floor_y": 2.85
+    }
+  ],
+  "mesh_nodes": 63,
+  "triangles": 92464,
+  "landscape_exclusions": {
+    "remove_tree_roots": [
+      "birch_02.001",
+      "aspen_03.001",
+      "birch_04.001"
+    ],
+    "tree_centres_world_xz": [
+      [
+        -8.5,
+        3.7
+      ],
+      [
+        -7.6,
+        10.5
+      ],
+      [
+        -6,
+        14.4
+      ]
+    ],
+    "architectural_footprint_world_xz": [
+      -10.3,
+      -4.9,
+      4.6,
+      11
+    ],
+    "terrain_policy": "Existing terrain remains unchanged below the raised stone plinth; exclude foliage/rooted understory inside footprint, steps and path.",
+    "notes": "Three trees are excluded: two intersect the structure, and the southern birch canopy reaches the roof. Match exact per-variant names or the recorded root X/Z coordinates; remove both visible instances and trunk proxies before batching.",
+    "ground_cover_clear_rects_world_xz": [
+      [
+        -10.6,
+        -4.55,
+        4.24,
+        11.36
+      ],
+      [
+        -4.65,
+        -1.8,
+        5.1,
+        6.55
+      ],
+      [
+        -2.4,
+        0.15,
+        5.1,
+        6.4
+      ]
+    ]
+  },
+  "limits": [
+    "Original first architectural pass; not an engineering design or building-code compliance certification.",
+    "Book slots are unassigned physical books. Actual catalogue, reading UI and saving remain application work.",
+    "Door is delivered open. Its collider must follow hinge rotation if animated.",
+    "Primitive collision proxies intentionally enclose under-stair storage and bookshelf volumes."
+  ],
+  "character_movement": {
+    "ramps_file": "library-character-ramps.json",
+    "representation": "Three convex sensor ramps, queried only by the character controller; ordinary props retain real solid tread colliders.",
+    "query_filter_flags": 0,
+    "predicate": "!stepHandles.has(collider.handle) && !ignoredSensorHandles.has(collider.handle)",
+    "sensor_snapshot": "Collect unrelated sensor handles before queries; never call isSensor() from the query callback.",
+    "exclude_step_name_prefixes": [
+      "Entrance step",
+      "Stair flight"
+    ],
+    "route_evidence": "library-walk-validation.json"
+  },
+  "picking_correction_version": 2
+}

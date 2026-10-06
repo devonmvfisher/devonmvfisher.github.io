@@ -1,0 +1,62 @@
+{
+  "coordinate_frame": "World Y-up metres; identity root",
+  "cuboids": [
+    {
+      "name": "Library garden path paver",
+      "centre": [
+        -0.75,
+        -0.305,
+        5.57
+      ],
+      "half": [
+        0.39,
+        0.035,
+        0.21
+      ],
+      "rotation": [
+        0,
+        0.06994284733753277,
+        0,
+        0.9975510002532796
+      ]
+    },
+    {
+      "name": "Library garden path paver.001",
+      "centre": [
+        -1.22,
+        -0.305,
+        5.67
+      ],
+      "half": [
+        0.39,
+        0.035,
+        0.21
+      ],
+      "rotation": [
+        0,
+        0.029995500202495667,
+        0,
+        0.9995500337489875
+      ]
+    },
+    {
+      "name": "Library garden path paver.002",
+      "centre": [
+        -1.7,
+        -0.305,
+        5.77
+      ],
+      "half": [
+        0.39,
+        0.035,
+        0.21
+      ],
+      "rotation": [
+        0,
+        -0.00999983333416666,
+        0,
+        0.9999500004166653
+      ]
+    }
+  ]
+}

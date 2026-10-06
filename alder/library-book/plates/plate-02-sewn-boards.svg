@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">A sewn book block connected to its cover boards by continuous supports</title>
+  <desc id="desc">Simplified spine view, with the book on its side and the covering removed. Four horizontal gathering folds lie between an upper and lower wooden board. Two thick vertical supports cross all the gathering folds and extend into channels in both boards. Fine crimson sewing connects each fold to the supports. The diagram maps structural connections rather than a complete stitch route.</desc>
+  <defs><style>text{font-family:Georgia,'Times New Roman',serif;fill:#302923}.label{font-family:Arial,sans-serif;font-size:25px}.small{font-family:Arial,sans-serif;font-size:22px}.lead{stroke:#746655;stroke-width:2;fill:none}</style></defs>
+  <rect width="960" height="600" fill="#f4eddd"/>
+  <path d="M38 67H922M38 559H922" stroke="#b9a68c" stroke-width="2"/>
+  <text x="38" y="45" font-size="27">II · THE CONNECTION TO THE BOARDS</text>
+  <text x="50" y="114" class="label">Wooden board</text>
+  <path d="M234 109L260 146" class="lead"/>
+  <rect x="250" y="143" width="480" height="43" rx="3" fill="#c9a779" stroke="#6a5946" stroke-width="3"/>
+  <rect x="250" y="419" width="480" height="43" rx="3" fill="#c9a779" stroke="#6a5946" stroke-width="3"/>
+  <path d="M276 156H706M270 172H698M275 434H706M290 449H710" stroke="#ac885d" stroke-width="2"/>
+  <g fill="#fffaf0" stroke="#8e7d66" stroke-width="2">
+    <rect x="270" y="213" width="440" height="32" rx="16"/>
+    <rect x="270" y="256" width="440" height="32" rx="16"/>
+    <rect x="270" y="299" width="440" height="32" rx="16"/>
+    <rect x="270" y="342" width="440" height="32" rx="16"/>
+  </g>
+  <g stroke="#b5823f" stroke-width="13" fill="none" stroke-linejoin="round">
+    <path d="M402 145L380 166V439L401 461"/>
+    <path d="M602 145L580 166V439L601 461"/>
+  </g>
+  <g stroke="#6b4547" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M296 229H364Q380 205 396 229H564Q580 205 596 229H684"/>
+    <path d="M296 272H364Q380 248 396 272H564Q580 248 596 272H684"/>
+    <path d="M296 315H364Q380 291 396 315H564Q580 291 596 315H684"/>
+    <path d="M296 358H364Q380 334 396 358H564Q580 334 596 358H684"/>
+  </g>
+  <text x="50" y="260" class="label">Gathering folds</text>
+  <path d="M222 253H247L270 270" class="lead"/>
+  <text x="50" y="349" class="label">Sewing thread</text>
+  <path d="M222 342H247L305 358" class="lead"/>
+  <text x="743" y="272" class="label">Support</text>
+  <text x="743" y="303" class="small">Cord or thong</text>
+  <path d="M732 282H620L582 290" class="lead"/>
+  <text x="670" y="102" class="small">Laced through</text>
+  <text x="670" y="132" class="small">a board channel</text>
+  <path d="M659 118H635L593 153" class="lead"/>
+  <text x="50" y="509" class="small">Spine view · covering removed · book turned on its side</text>
+  <text x="50" y="542" class="small">Structural map only: stitch routes and board channels are simplified.</text>
+</svg>
