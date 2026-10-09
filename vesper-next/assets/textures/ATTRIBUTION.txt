@@ -1,0 +1,11 @@
+Solar System Scope textures (CC BY 4.0)
+https://www.solarsystemscope.com/textures/
+https://creativecommons.org/licenses/by/4.0/
+
+Mirrored via Wikimedia Commons category "Solar System Scope".
+Based on NASA elevation and imagery data; colors enhanced; gaps may use fictional fill.
+
+Files in this folder: 2k_sun, mercury, venus_atmosphere, earth_daymap, earth_clouds,
+moon, mars, jupiter, saturn, saturn_ring_alpha, uranus, neptune, stars_milky_way.
+
+Credit: Solar System Scope. Do not imply NASA endorsement.

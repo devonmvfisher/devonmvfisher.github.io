@@ -1,0 +1,19 @@
+/* A composed first frame, painted by HTML/CSS before the engine can block. */
+#loader { background: #071724; overflow:hidden; isolation:isolate; }
+.opening-art { position:absolute; right:-5vw; top:5vh; width:min(78vw,1000px); height:90vh; z-index:-1; opacity:.9; animation:opening-arrive 1.8s cubic-bezier(.16,1,.3,1) both; }
+.loader-card { width:min(620px,90vw); text-align:left; margin-right:auto; padding:clamp(24px,6vw,90px); background:linear-gradient(90deg,#071724 65%,#07172400); }
+.loader-title { font-family:Georgia,'Times New Roman',serif; text-transform:none; letter-spacing:-.045em; font-size:clamp(68px,10vw,132px); font-weight:400; line-height:.94; margin:0 0 24px; color:#f1f8fc; }
+.opening-kicker { font:600 12px/1.5 'Segoe UI',sans-serif; letter-spacing:.18em; text-transform:uppercase; color:#ff9274; }
+.opening-line { max-width:24ch; font:400 clamp(20px,3vw,32px)/1.25 Georgia,serif; color:#d6edf7; }
+.loader-sub { max-width:34ch; color:#a7c7d9; line-height:1.55; font-size:14px; }
+.loader-credit { max-width:48ch; margin-top:28px; color:#a7c7d9; font:11px/1.5 'Segoe UI',sans-serif; }
+.loader-bar { width:min(260px,70vw); margin:24px 0 0; background:#21485c; height:2px; }
+.loader-bar>span { background:#ff9274; }
+.opening-orbit { transform-origin:520px 430px; animation:opening-orbit 2s cubic-bezier(.16,1,.3,1) both; }
+#loader.hide { transition:opacity .45s ease,visibility .45s ease; }
+.graphics-failed .opening-art { opacity:.3; animation:none; }
+.graphics-failed .opening-line { display:none; }
+@keyframes opening-arrive { from {opacity:.25;transform:translate3d(2%,1%,0) scale(.97);} to {opacity:.9;transform:none;} }
+@keyframes opening-orbit { from {transform:rotate(-12deg);opacity:0;} to {transform:rotate(0);opacity:1;} }
+@media(max-width:600px){.opening-art{width:145vw;right:-60vw;top:-10vh;opacity:.6}.loader-card{padding:28px;align-self:flex-end;margin-bottom:8vh;background:linear-gradient(0deg,#071724 75%,#07172400)}.loader-title{font-size:76px}.loader-credit{font-size:10px}.opening-line{font-size:25px}}
+@media(prefers-reduced-motion:reduce){.opening-art,.opening-orbit{animation:none!important}#loader.hide{transition:none}}

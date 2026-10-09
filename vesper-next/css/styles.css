@@ -1,0 +1,2151 @@
+/* Vesper — Evening Planetarium */
+:root {
+  --bg: #05040a;
+  --panel: rgba(10, 8, 20, 0.55);
+  --panel-border: rgba(180, 170, 255, 0.16);
+  --text: #e8e4f5;
+  --muted: #9a93b3;
+  --accent: #c9b6ff;
+  --accent-2: #ffb38a;
+  --shadow: 0 10px 32px rgba(0, 0, 0, 0.4);
+  --radius: 14px;
+  --font: "Segoe UI", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; height: 100%; overflow: hidden;
+  background: var(--bg); color: var(--text); font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Opt copyable / chat text back in (body-level select off; keep link long-press usable) */
+#agent-log,
+#agent-input,
+.help-list,
+.help-lead,
+.help-card,
+.selectable-text {
+  -webkit-user-select: text;
+  user-select: text;
+}
+#canvas-wrap {
+  position: fixed; inset: 0;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+
+#loader {
+  position: fixed; inset: 0; z-index: 40; display: grid; place-items: center;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(90, 60, 140, 0.35), transparent 55%),
+    linear-gradient(180deg, #1a1228 0%, #05040a 100%);
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+#loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-card { text-align: center; padding: 2rem; }
+.loader-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: 0.18em;
+  text-transform: uppercase; font-weight: 300; margin: 0 0 0.4rem;
+}
+.loader-sub { color: var(--muted); margin: 0 0 1.6rem; font-size: 0.95rem; }
+.loader-bar {
+  width: min(260px, 70vw); height: 3px; margin: 0 auto;
+  background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden;
+}
+.loader-bar > span {
+  display: block; height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  transition: width 0.25s ease;
+}
+
+#hud {
+  position: fixed; inset: 0; z-index: 10; pointer-events: none;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right))
+    max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+}
+.topbar, .bottombar, .panel { pointer-events: auto; }
+.topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.brand {
+  background: var(--panel); border: 1px solid var(--panel-border);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius); padding: 8px 12px; box-shadow: var(--shadow);
+}
+.brand h1 { margin: 0; font-size: 0.95rem; font-weight: 550; letter-spacing: 0.08em; }
+.brand-hint { margin: 3px 0 0; color: var(--muted); font-size: 0.72rem; line-height: 1.3; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.chip {
+  background: var(--panel); border: 1px solid var(--panel-border);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-radius: 999px; padding: 6px 10px; font-size: 0.72rem; color: var(--muted);
+  box-shadow: var(--shadow); max-width: 42vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.bottombar { display: flex; gap: 10px; align-items: flex-end; justify-content: flex-start; }
+.panel {
+  background: var(--panel); border: 1px solid var(--panel-border);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-radius: var(--radius); padding: 10px 12px; box-shadow: var(--shadow);
+  min-width: min(300px, 100%); max-width: min(380px, 100%);
+}
+.panel.compact { padding: 8px 10px; }
+.controls { display: grid; gap: 8px; }
+.row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.row label { flex: 1 1 90px; font-size: 0.8rem; color: var(--text); }
+.row.actions { gap: 8px; }
+.row.mode-row { gap: 6px; }
+input[type="range"] { flex: 2 1 120px; accent-color: var(--accent); width: 100%; min-height: 36px; }
+.btn {
+  appearance: none; border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,0.06); color: var(--text); border-radius: 999px;
+  padding: 8px 12px; font: inherit; font-size: 0.8rem; cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  min-height: 40px; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+.btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(201,182,255,0.4); }
+.btn:active { transform: scale(0.98); }
+.btn.active { background: rgba(201,182,255,0.22); border-color: var(--accent); color: #fff; }
+.btn.primary {
+  background: linear-gradient(135deg, rgba(255,179,138,0.28), rgba(201,182,255,0.28));
+  border-color: rgba(255,179,138,0.45);
+}
+.btn.mode { flex: 1; letter-spacing: 0.08em; font-weight: 650; font-size: 0.78rem; }
+.btn.mode.active {
+  background: linear-gradient(135deg, rgba(255,179,138,0.35), rgba(150,120,255,0.4));
+  border-color: rgba(255,200,160,0.55);
+}
+.clock { font-variant-numeric: tabular-nums; color: var(--accent); }
+.desktop-only { display: block; }
+
+/* Touch stick */
+#touch-flight {
+  display: none; position: fixed; z-index: 12; pointer-events: none;
+  left: 0; right: 0; bottom: 0; top: 0;
+}
+#touch-flight.show { display: block; }
+.stick-base {
+  pointer-events: auto;
+  position: absolute;
+  left: max(14px, env(safe-area-inset-left));
+  bottom: max(110px, calc(env(safe-area-inset-bottom) + 96px));
+  width: 124px; height: 124px; border-radius: 50%;
+  background: rgba(12, 16, 24, 0.48);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  touch-action: none;
+}
+.stick-knob {
+  position: absolute; left: 50%; top: 50%; width: 50px; height: 50px;
+  margin: -25px 0 0 -25px; border-radius: 50%;
+  background: linear-gradient(145deg, rgba(200,210,225,0.75), rgba(90,110,140,0.85));
+  border: 2px solid rgba(220,230,240,0.45);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+  will-change: transform;
+}
+.boost-btn {
+  pointer-events: auto;
+  position: absolute;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(110px, calc(env(safe-area-inset-bottom) + 96px));
+  width: 70px; height: 70px; border-radius: 50%;
+  border: 2px solid rgba(255,220,180,0.5);
+  background: rgba(12,16,24,0.55); color: #d8e4f0; font-size: 1.45rem;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  touch-action: manipulation;
+}
+.boost-btn.active {
+  background: linear-gradient(145deg, rgba(255,140,80,0.9), rgba(200,80,255,0.85));
+  color: #120e1c;
+}
+
+#guide-toast {
+  position: fixed; z-index: 18; left: 50%; bottom: max(160px, env(safe-area-inset-bottom) + 140px);
+  transform: translateX(-50%);
+  max-width: min(420px, 90vw); padding: 10px 14px; border-radius: 12px;
+  background: rgba(8,6,16,0.72); border: 1px solid rgba(201,182,255,0.35);
+  color: #f0ecff; font-size: 0.88rem; line-height: 1.35; text-align: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.35s ease;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+#guide-toast.show { opacity: 1; }
+
+@media (max-width: 640px) {
+  .desktop-only { display: none !important; }
+  .brand { padding: 6px 10px; }
+  .brand h1 { font-size: 0.88rem; }
+  .panel { min-width: auto; max-width: calc(100vw - 96px); }
+  .bottombar { padding-right: 72px; } /* clear FAB */
+  .btn { min-height: 42px; padding: 8px 12px; }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .chip-row { display: none; }
+  .panel { padding: 6px 8px; min-width: min(240px, 40vw); }
+  .stick-base { bottom: max(16px, env(safe-area-inset-bottom)); width: 96px; height: 96px; }
+  .boost-btn { bottom: max(16px, env(safe-area-inset-bottom)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #loader { transition: none; }
+  #guide-toast { transition: none; }
+}
+
+/* ===== Agent call / chat overlay ===== */
+#agent-fab {
+  position: fixed;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 30;
+  width: 48px; height: 48px; border-radius: 14px;
+  border: 1px solid rgba(180, 210, 230, 0.35);
+  background: rgba(12, 16, 28, 0.72);
+  color: #c8d8e8; font-size: 0; font-weight: 600; cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  pointer-events: auto; display: grid; place-items: center;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  opacity: 0.82; transition: opacity 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+#agent-fab:hover, #agent-fab:focus-visible {
+  opacity: 1; background: rgba(18, 24, 40, 0.88);
+  border-color: rgba(160, 210, 255, 0.55);
+  outline: none;
+}
+#agent-fab:focus-visible { box-shadow: 0 0 0 2px rgba(160, 210, 255, 0.45); }
+#agent-fab .fab-glyph { width: 22px; height: 22px; display: block; }
+#agent-fab .fab-glyph path, #agent-fab .fab-glyph circle {
+  fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+}
+#agent-fab .fab-glyph .fab-core { fill: rgba(160, 210, 255, 0.35); stroke: none; }
+body.sky-call-open #agent-fab { opacity: 0; pointer-events: none; }
+body.hide-controls #agent-fab { opacity: 0.55; }
+body.hide-controls.sky-call-open #agent-fab { opacity: 0; }
+
+#agent-overlay {
+  position: fixed; z-index: 28;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: max(80px, calc(env(safe-area-inset-bottom) + 68px));
+  width: min(400px, calc(100vw - 24px));
+  max-height: min(62vh, 560px);
+  display: none; flex-direction: column;
+  background: rgba(8, 6, 14, 0.96);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  pointer-events: auto; overflow: hidden; color: #f5f2ff;
+}
+#agent-overlay.open { display: flex; }
+#agent-overlay .agent-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+  padding: 10px 12px 8px; border-bottom: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04); flex-shrink: 0;
+}
+.agent-title-block { min-width: 0; flex: 1; }
+#agent-overlay .agent-head h2 { margin: 0; font-size: 0.98rem; letter-spacing: 0.04em; font-weight: 650; }
+#agent-overlay .agent-head .sub {
+  display: inline; font-size: 0.68rem; color: #b8b0d0; font-weight: 400; margin-left: 6px;
+}
+.agent-context {
+  margin-top: 4px; font-size: 0.7rem; color: #c9b6ff; letter-spacing: 0.02em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+}
+.agent-head-actions { display: flex; gap: 6px; flex-wrap: nowrap; flex-shrink: 0; }
+.agent-head-actions .btn { min-height: 34px; padding: 4px 10px; font-size: 0.72rem; }
+#agent-log {
+  flex: 1 1 auto; overflow-y: auto; padding: 12px; display: flex; flex-direction: column;
+  gap: 8px; min-height: 100px; -webkit-overflow-scrolling: touch;
+}
+.msg {
+  max-width: 96%; padding: 10px 12px; border-radius: 14px;
+  font-size: 0.95rem; line-height: 1.38; font-weight: 500; word-wrap: break-word;
+}
+.msg.user { align-self: flex-end; background: #fff; color: #120e1c; border: 2px solid #fff; }
+.msg.bot { align-self: flex-start; background: #1a1430; color: #f8f4ff; border: 2px solid #c9b6ff; }
+.msg.sys {
+  align-self: center; background: transparent; border: 1px dashed rgba(255,255,255,0.3);
+  color: #c8c0e0; font-size: 0.78rem; font-weight: 400;
+}
+.agent-chips {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 0 10px 8px; flex-shrink: 0;
+}
+.agent-chips .chip-btn {
+  border-radius: 999px; border: 1px solid rgba(201,182,255,0.45);
+  background: rgba(255,255,255,0.06); color: #e8e0ff;
+  font-size: 0.72rem; font-weight: 600; padding: 6px 10px; cursor: pointer;
+  touch-action: manipulation; min-height: 32px;
+}
+.agent-chips .chip-btn:active { background: rgba(201,182,255,0.25); }
+#agent-compose {
+  display: flex; flex-direction: column; gap: 6px; padding: 8px 10px 10px;
+  border-top: 1px solid rgba(255,255,255,0.14); background: rgba(0,0,0,0.28);
+  flex-shrink: 0; max-height: 46%; overflow-y: auto;
+}
+.compose-row { display: flex; gap: 6px; align-items: stretch; }
+#agent-input {
+  flex: 1; min-height: 44px; max-height: 88px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.55);
+  background: #fff; color: #120e1c; font-size: 0.98rem; font-weight: 550;
+  padding: 8px 10px; font-family: inherit; resize: none;
+}
+#agent-input::placeholder { color: #666; font-weight: 400; }
+#agent-input:focus { outline: 3px solid #ffb38a; outline-offset: 1px; }
+.btn-mic {
+  width: 48px; min-height: 44px; border-radius: 12px; border: 1px solid rgba(180, 210, 230, 0.45);
+  background: rgba(30, 40, 58, 0.95); color: #d8e6f2; font-size: 1.05rem; cursor: pointer; flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3); touch-action: manipulation;
+}
+.btn-mic.listening { background: rgba(60, 90, 120, 0.95); animation: mic-pulse 1s ease-in-out infinite; border-color: #9ec8ff; }
+.btn-mic:disabled { opacity: 0.45; cursor: not-allowed; animation: none; }
+@keyframes mic-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.btn-send {
+  min-height: 44px; padding: 0 14px; border-radius: 12px; border: 2px solid #ffb38a;
+  background: linear-gradient(135deg, #ffb38a, #c9b6ff); color: #120e1c;
+  font-size: 0.92rem; font-weight: 700; cursor: pointer; touch-action: manipulation; flex-shrink: 0;
+}
+.agent-tools {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+}
+.agent-tools label {
+  font-size: 0.74rem; color: #d8d0f0; display: flex; align-items: center; gap: 5px;
+}
+.agent-tools input[type="checkbox"] { width: 16px; height: 16px; accent-color: #ffb38a; }
+.btn-adv {
+  min-height: 30px !important; padding: 2px 10px !important; font-size: 0.7rem !important;
+  border-radius: 999px !important;
+}
+.btn-adv.active {
+  background: rgba(255,179,138,0.22); border-color: rgba(255,179,138,0.6);
+}
+#ai-config {
+  display: none; flex-direction: column; gap: 5px; width: 100%;
+  padding: 8px; border-radius: 12px; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15); margin-top: 4px;
+}
+#ai-config.show { display: flex; }
+#ai-config[hidden] { display: none !important; }
+#ai-config label.fld {
+  font-size: 0.7rem; color: #c8c0e0; margin: 2px 0 0; display: flex; align-items: center; gap: 6px;
+}
+#ai-config input, #ai-config select {
+  width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.08); color: #fff; font-size: 0.8rem;
+  padding: 7px 9px; font-family: ui-monospace, monospace;
+}
+#ai-config .help, #ai-config .privacy-line {
+  font-size: 0.68rem; color: #a89ec4; line-height: 1.35; margin: 0;
+}
+#ai-config .privacy-line { color: #c9b6ff; }
+.key-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.key-actions .btn { min-height: 32px; font-size: 0.7rem; padding: 4px 10px; }
+.agent-status { font-size: 0.68rem; color: #b8b0d0; min-height: 1em; margin-left: auto; }
+
+/* When sky-call open on small screens, soften HUD so call isn't fighting controls */
+@media (max-width: 640px) {
+  body.sky-call-open:not(.cinema-mode) .bottombar { opacity: 0.35; pointer-events: none; }
+  body.sky-call-open:not(.cinema-mode) #touch-flight { opacity: 0.55; }
+}
+
+/* Cinema / phone VR cutout — sky visible above, chat as bottom sheet */
+body.cinema-mode #hud,
+body.cinema-mode #touch-flight { opacity: 0; pointer-events: none; }
+body.cinema-mode #agent-fab { display: none; }
+body.cinema-mode #agent-overlay {
+  display: flex !important;
+  left: 50%; right: auto; top: auto;
+  bottom: max(8px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(960px, calc(100vw - 12px));
+  max-height: min(42vh, 380px);
+  height: min(42vh, 380px);
+  border-width: 3px; border-radius: 22px;
+  background: rgba(6, 4, 12, 0.92);
+}
+body.cinema-mode #agent-overlay .agent-head .sub,
+body.cinema-mode #ai-config,
+body.cinema-mode .agent-tools .hide-in-cinema,
+body.cinema-mode .hide-in-cinema,
+body.cinema-mode .agent-chips { display: none !important; }
+body.cinema-mode .agent-context { color: #a8c4e0; font-size: 0.78rem; }
+body.cinema-mode .msg { font-size: 1.12rem; padding: 12px 14px; }
+body.cinema-mode #agent-log { min-height: 80px; }
+body.cinema-mode #agent-input { font-size: 1.1rem; min-height: 52px; }
+body.cinema-mode .btn-mic { width: 64px; min-height: 52px; font-size: 1.5rem; }
+body.cinema-mode .btn-send { min-height: 52px; font-size: 1.05rem; }
+body.cinema-mode #agent-compose { max-height: none; }
+
+#cinema-exit {
+  display: none; position: fixed; top: max(10px, env(safe-area-inset-top));
+  left: 50%; transform: translateX(-50%); z-index: 32; pointer-events: auto;
+  border: 2px solid #fff; background: rgba(0,0,0,0.75); color: #fff;
+  font-size: 0.95rem; font-weight: 650; padding: 10px 18px; border-radius: 999px; cursor: pointer;
+}
+body.cinema-mode #cinema-exit { display: block; }
+#cinema-hint {
+  display: none; position: fixed; top: max(52px, calc(env(safe-area-inset-top) + 44px));
+  left: 50%; transform: translateX(-50%); z-index: 31; pointer-events: none;
+  color: rgba(255,255,255,0.75); font-size: 0.72rem; letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px #000;
+}
+body.cinema-mode #cinema-hint { display: block; }
+
+@media (max-width: 640px) {
+  #agent-overlay {
+    left: 8px; right: 8px; width: auto; max-height: min(54vh, 480px); border-radius: 16px;
+    bottom: max(88px, calc(env(safe-area-inset-bottom) + 76px));
+  }
+  body.cinema-mode #agent-overlay {
+    width: calc(100vw - 8px);
+    max-height: 44vh; height: 44vh;
+    bottom: max(4px, env(safe-area-inset-bottom));
+    border-radius: 18px 18px 12px 12px;
+  }
+  .compose-row { flex-wrap: nowrap; }
+  #agent-fab { width: 54px; height: 54px; }
+}
+
+@media (max-width: 640px) and (orientation: landscape) {
+  body.cinema-mode #agent-overlay {
+    max-height: 56vh; height: 56vh; width: min(720px, calc(100vw - 16px));
+  }
+}
+
+/* Clock mode chips */
+.clock-row { gap: 4px; }
+.btn.clock-btn {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 6px;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  min-height: 36px;
+}
+.btn.clock-btn.active {
+  background: rgba(120, 180, 255, 0.28);
+  border-color: rgba(160, 210, 255, 0.55);
+  color: #fff;
+}
+
+/* Help panel */
+.help-panel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  place-items: center;
+  background: rgba(4, 3, 10, 0.55);
+  pointer-events: auto;
+  padding: 16px;
+}
+.help-panel.show { display: grid; }
+.help-card {
+  width: min(420px, 94vw);
+  background: rgba(12, 10, 24, 0.92);
+  border: 1px solid rgba(201, 182, 255, 0.35);
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+.help-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.help-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+.help-list b { color: var(--text); }
+.help-list li { margin: 0.35rem 0; }
+
+/* Mobile vertical thrusters */
+.vert-thrust {
+  pointer-events: auto;
+  position: absolute;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(200px, calc(env(safe-area-inset-bottom) + 188px));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vert-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(20,16,36,0.45);
+  color: #f0e8ff;
+  font-size: 1.1rem;
+  backdrop-filter: blur(8px);
+  touch-action: manipulation;
+}
+.vert-btn.active {
+  background: linear-gradient(145deg, rgba(160,140,255,0.85), rgba(255,179,138,0.75));
+  color: #120e1c;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .vert-thrust { bottom: max(90px, env(safe-area-inset-bottom) + 80px); }
+  .btn.clock-btn { font-size: 0.62rem; min-height: 32px; padding: 4px; }
+}
+
+/* Travel select */
+.travel-row { gap: 8px; align-items: center; }
+.travel-row label { flex: 0 0 auto; font-size: 0.8rem; color: var(--text); }
+.travel-select {
+  flex: 1 1 auto;
+  min-height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--accent) 50%),
+    linear-gradient(135deg, var(--accent) 50%, transparent 50%);
+  background-position: calc(100% - 16px) calc(50% - 3px), calc(100% - 11px) calc(50% - 3px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 28px;
+  touch-action: manipulation;
+}
+.travel-select:focus {
+  outline: 2px solid rgba(201,182,255,0.55);
+  outline-offset: 1px;
+}
+.travel-select option { background: #12101c; color: #f0ecff; }
+
+.help-lead {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+.help-list em { color: var(--accent); font-style: normal; }
+
+@media (max-width: 640px) {
+  .mobile-hide { display: none !important; }
+  .chip-row .chip:nth-child(1) { display: none !important; } /* sim clock */
+  .chip-row #speed-chip { max-width: 28vw; font-size: 0.68rem; }
+  .wind-row { display: none !important; }
+  .brand { padding: 5px 9px; }
+  .panel.compact { padding: 6px 8px; max-width: calc(100vw - 88px); }
+  .controls { gap: 6px; }
+  .btn.clock-btn { font-size: 0.62rem; min-height: 34px; padding: 4px 3px; }
+  .btn.mode { min-height: 38px; font-size: 0.74rem; }
+  .travel-select { min-height: 38px; font-size: 0.76rem; }
+  .row.actions .btn { flex: 1; min-width: 0; padding: 8px 8px; font-size: 0.74rem; }
+  .help-card { width: min(400px, 96vw); padding: 12px 14px; max-height: 85vh; overflow-y: auto; }
+  .help-list { font-size: 0.78rem; }
+  /* Lift stick/boost slightly less cluttered vs panel */
+  .stick-base { bottom: max(100px, calc(env(safe-area-inset-bottom) + 88px)); }
+  .boost-btn { bottom: max(100px, calc(env(safe-area-inset-bottom) + 88px)); }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Keep Travel reachable — was fully hidden and blocked Quick Travel on phones */
+  .travel-row { gap: 4px; position: relative; }
+  .travel-row label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+  .travel-select { min-height: 30px; font-size: 0.68rem; padding: 3px 24px 3px 8px; }
+  .clock-row { gap: 2px; }
+}
+
+
+/* ===== V16+ touch anti-jank + portrait ===== */
+.no-select,
+.vert-btn,
+.boost-btn,
+.stick-base,
+.stick-knob,
+.btn.mode,
+.btn.clock-btn,
+#agent-fab,
+#cinema-exit,
+#btn-boost,
+#btn-thrust-up,
+#btn-thrust-down {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vert-btn,
+.boost-btn,
+.stick-base,
+#btn-thrust-up,
+#btn-thrust-down,
+#btn-boost {
+  touch-action: none;
+}
+.btn.mode,
+.btn.clock-btn,
+#agent-fab {
+  touch-action: manipulation;
+}
+
+.vert-btn {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  /* avoid iOS text-callout on glyph buttons */
+  -webkit-user-select: none;
+  user-select: none;
+}
+.vert-btn .vert-ico {
+  width: 22px;
+  height: 22px;
+  display: block;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.vert-btn.active {
+  /* sticky CSS active only while pointer held — JS toggles class */
+  outline: none;
+}
+.vert-btn:focus,
+.boost-btn:focus,
+.stick-base:focus {
+  outline: none;
+}
+.vert-btn:focus-visible,
+.boost-btn:focus-visible {
+  outline: 2px solid rgba(201,182,255,0.7);
+  outline-offset: 2px;
+}
+
+#river-chip {
+  border-color: rgba(160, 220, 180, 0.35);
+  color: #c8f0d8;
+  max-width: 36vw;
+}
+#river-chip[hidden] { display: none !important; }
+#river-chip.river-live {
+  background: rgba(80, 160, 120, 0.22);
+  border-color: rgba(140, 230, 180, 0.55);
+  color: #e8fff2;
+}
+
+/* Portrait un-smoosh: stick/boost/vert clear FLOAT/PILOT/clock panel */
+@media (max-width: 640px) and (orientation: portrait) {
+  .bottombar {
+    width: 100%;
+    justify-content: center;
+    padding-right: 0;
+    /* leave air above home-indicator; panel sits under raised sticks */
+    z-index: 13;
+  }
+  .panel.compact {
+    max-width: calc(100vw - 16px);
+    width: 100%;
+    padding: 6px 8px;
+  }
+  .controls { gap: 5px; }
+  .btn.mode { min-height: 36px; font-size: 0.72rem; padding: 6px 10px; }
+  .btn.clock-btn { min-height: 30px; font-size: 0.58rem; padding: 3px 2px; }
+  .travel-select { min-height: 34px; font-size: 0.72rem; }
+  .row.actions .btn { min-height: 36px; font-size: 0.7rem; padding: 6px 6px; }
+
+  /* Raise flight pads above ~panel height so they no longer cover mode/clock */
+  .stick-base {
+    bottom: max(248px, calc(env(safe-area-inset-bottom) + 232px));
+    left: max(12px, env(safe-area-inset-left));
+    width: 100px;
+    height: 100px;
+    z-index: 14;
+  }
+  .boost-btn {
+    bottom: max(248px, calc(env(safe-area-inset-bottom) + 232px));
+    right: max(12px, env(safe-area-inset-right));
+    width: 58px;
+    height: 58px;
+    z-index: 14;
+  }
+  .vert-thrust {
+    bottom: max(340px, calc(env(safe-area-inset-bottom) + 324px));
+    right: max(14px, env(safe-area-inset-right));
+    z-index: 14;
+  }
+  .vert-btn { width: 48px; height: 48px; }
+  #guide-toast {
+    bottom: max(400px, calc(env(safe-area-inset-bottom) + 380px));
+  }
+  #touch-flight { z-index: 24; }
+  /* Keep HUD interactive above canvas; pads sit above panel without covering it */
+  .chip-row #river-chip { max-width: 42vw; font-size: 0.66rem; }
+}
+
+@media (max-width: 640px) and (orientation: portrait) and (max-height: 700px) {
+  /* Shorter phones: slightly tighter lift + denser panel */
+  .stick-base,
+  .boost-btn {
+    bottom: max(220px, calc(env(safe-area-inset-bottom) + 204px));
+  }
+  .vert-thrust {
+    bottom: max(300px, calc(env(safe-area-inset-bottom) + 284px));
+  }
+  .btn.clock-btn { min-height: 28px; font-size: 0.54rem; }
+}
+
+
+/* Surface walk mode */
+body[data-walk="1"] #speed-chip {
+  background: rgba(120, 180, 120, 0.28);
+  border-color: rgba(160, 230, 160, 0.55);
+  color: #e8ffe8;
+  max-width: 48vw;
+}
+
+/* ===== v32–v50: gears, Straight Man, build, portrait ===== */
+.gear-row { gap: 4px; }
+.btn.gear-btn {
+  font-size: 0.62rem;
+  min-height: 32px;
+  padding: 4px 6px;
+  letter-spacing: 0.04em;
+}
+.btn.gear-btn.active {
+  background: rgba(255, 179, 138, 0.22);
+  border-color: rgba(255, 179, 138, 0.45);
+  color: #ffe0c8;
+}
+#btn-straight.active {
+  background: rgba(110, 200, 255, 0.2);
+  border-color: rgba(110, 200, 255, 0.5);
+  color: #c8e8ff;
+}
+#btn-build.active {
+  background: rgba(180, 255, 160, 0.18);
+  border-color: rgba(160, 255, 140, 0.45);
+  color: #d8ffc8;
+}
+#gear-chip {
+  border-color: rgba(255, 179, 138, 0.35);
+}
+body[data-straight-man="1"] #btn-straight { font-weight: 600; }
+body[data-build="1"] { cursor: crosshair; }
+body[data-build="1"] canvas { cursor: crosshair; }
+
+@media (max-width: 640px) {
+  .gear-row .btn.gear-btn { font-size: 0.58rem; min-height: 30px; padding: 3px 4px; flex: 1; }
+  .row.actions .btn { font-size: 0.68rem; padding: 7px 6px; }
+  .chip-row #gear-chip { font-size: 0.66rem; }
+  .chip-row #speed-chip { max-width: 36vw; }
+}
+
+@media (orientation: portrait) and (max-width: 480px) {
+  /* Keep dual Pause + Sol/Build from smooshing stick */
+  .bottombar .panel.compact { max-width: calc(100vw - 96px); }
+  .gear-row { flex-wrap: wrap; }
+}
+
+/* Society bot labels (HTML overlays optional — mostly 3D) */
+.vesper-bot-label {
+  position: absolute;
+  pointer-events: none;
+  font-size: 0.65rem;
+  color: rgba(200, 220, 255, 0.85);
+  text-shadow: 0 1px 4px #000;
+  transform: translate(-50%, -120%);
+  white-space: nowrap;
+}
+
+/* ===== v51 Observation Station · Skytape · Radio HUD ===== */
+#interact-prompt {
+  display: none;
+  position: fixed;
+  left: 50%;
+  bottom: max(118px, calc(env(safe-area-inset-bottom) + 100px));
+  transform: translateX(-50%);
+  z-index: 26;
+  pointer-events: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 200, 140, 0.65);
+  background: rgba(8, 6, 14, 0.88);
+  color: #ffe8d0;
+  font-size: 0.88rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+  max-width: min(92vw, 420px);
+  text-align: center;
+}
+#interact-prompt.show { display: block; }
+body.cinema-mode #interact-prompt,
+body.sky-call-open #interact-prompt { opacity: 0.35; }
+
+#btn-radio {
+  display: none;
+}
+body[data-radio="1"] #btn-radio { display: inline-flex; }
+#btn-radio.active {
+  background: rgba(80, 220, 180, 0.28);
+  border-color: rgba(100, 240, 200, 0.6);
+}
+#btn-radio.radio-unlock-flash {
+  animation: radio-unlock 1.6s ease;
+}
+@keyframes radio-unlock {
+  0%, 100% { box-shadow: none; transform: scale(1); }
+  30% { box-shadow: 0 0 0 4px rgba(255, 180, 100, 0.55); transform: scale(1.08); }
+  60% { box-shadow: 0 0 0 8px rgba(80, 220, 180, 0.35); }
+}
+
+#radio-panel {
+  display: none;
+  position: fixed;
+  z-index: 27;
+  left: 50%;
+  bottom: max(96px, calc(env(safe-area-inset-bottom) + 84px));
+  transform: translateX(-50%);
+  width: min(360px, calc(100vw - 24px));
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 2px solid rgba(120, 230, 200, 0.45);
+  background: rgba(8, 10, 16, 0.94);
+  color: #e8fff6;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  backdrop-filter: blur(14px);
+}
+#radio-panel.open { display: block; }
+.radio-panel-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  margin-bottom: 6px;
+}
+.radio-panel-head .btn { min-height: 32px; padding: 4px 10px; font-size: 0.75rem; }
+.radio-call {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: #ffc8a0;
+  letter-spacing: 0.03em;
+}
+.radio-row { display: flex; gap: 8px; }
+.radio-row .btn { flex: 1; min-height: 42px; }
+.radio-note {
+  margin: 10px 0 0;
+  font-size: 0.7rem;
+  color: #9ab0a8;
+  line-height: 1.35;
+}
+@media (max-width: 640px) {
+  #interact-prompt {
+    bottom: max(160px, calc(env(safe-area-inset-bottom) + 140px));
+    font-size: 0.8rem;
+  }
+  #radio-panel {
+    bottom: max(150px, calc(env(safe-area-inset-bottom) + 130px));
+  }
+}
+
+
+/* ===== v52+ Hide controls / Cinema HUD ===== */
+body.hide-controls #hud .bottombar,
+body.hide-controls #hud .chip-row,
+body.hide-controls #touch-flight,
+body.hide-controls #build-tray,
+body.hide-controls #radio-panel,
+body.hide-controls #help-panel {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+body.hide-controls #hud .topbar .brand-hint { display: none; }
+body.hide-controls #hud .topbar {
+  opacity: 0.28;
+  pointer-events: none;
+}
+body.hide-controls #hud .topbar .chip-row { display: none; }
+/* Keep a whisper of look/speed available via restore only */
+.hud-restore {
+  position: fixed;
+  z-index: 32;
+  left: 50%;
+  transform: translateX(-50%);
+  top: max(8px, env(safe-area-inset-top));
+  border-radius: 999px;
+  border: 1px solid rgba(180, 210, 230, 0.4);
+  background: rgba(8, 12, 22, 0.72);
+  color: #d0dce8;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.hud-restore[hidden] { display: none !important; }
+body.hide-controls .hud-restore { display: block; }
+body.hide-controls:not(.cinema-mode) #agent-overlay:not(.open) { display: none; }
+
+/* Portrait stick / thruster polish */
+@media (max-width: 640px) and (orientation: portrait) {
+  #touch-flight .stick-base {
+    left: max(12px, env(safe-area-inset-left));
+    bottom: max(110px, calc(env(safe-area-inset-bottom) + 96px));
+  }
+  #touch-flight .vert-thrust {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(118px, calc(env(safe-area-inset-bottom) + 104px));
+  }
+  #touch-flight .boost-btn {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(56px, calc(env(safe-area-inset-bottom) + 44px));
+  }
+}
+.vert-btn, .boost-btn, .stick-base, .stick-knob, .no-select {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  touch-action: none;
+}
+
+/* Tour row */
+.tour-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.tour-row label {
+  font-size: 0.72rem; color: #b8b0d0; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.tour-row .btn { min-height: 34px; padding: 4px 10px; font-size: 0.72rem; }
+
+/* Build craft tray — muted materials */
+.build-tray {
+  position: fixed;
+  z-index: 26;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: max(92px, calc(env(safe-area-inset-bottom) + 78px));
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center;
+  padding: 8px 10px;
+  border-radius: 14px;
+  background: rgba(8, 10, 18, 0.88);
+  border: 1px solid rgba(160, 170, 190, 0.28);
+  backdrop-filter: blur(12px);
+  max-width: min(96vw, 520px);
+  pointer-events: auto;
+}
+.build-tray[hidden] { display: none !important; }
+body[data-build="1"] .build-tray { display: flex; }
+body.hide-controls .build-tray { display: none !important; }
+.build-tray-label {
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: #9aa3b5; margin-right: 4px;
+}
+.mat-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(140, 150, 165, 0.4);
+  background: rgba(255,255,255,0.05);
+  color: #d4d8e0;
+  font-size: 0.7rem; font-weight: 600;
+  padding: 6px 10px; min-height: 32px; cursor: pointer;
+  touch-action: manipulation;
+}
+.mat-btn.active {
+  border-color: rgba(180, 200, 220, 0.7);
+  background: rgba(120, 140, 160, 0.28);
+  color: #f0f4f8;
+}
+.mat-btn[data-mat="metal"] { border-color: rgba(160, 168, 176, 0.55); }
+.mat-btn[data-mat="ice"] { border-color: rgba(160, 200, 220, 0.55); }
+.mat-btn[data-mat="rock"] { border-color: rgba(140, 120, 100, 0.55); }
+.mat-btn[data-mat="glass"] { border-color: rgba(140, 180, 200, 0.45); }
+.mat-btn[data-mat="antenna"] { border-color: rgba(180, 160, 120, 0.5); }
+.mat-btn[data-mat="habitat"] { border-color: rgba(120, 140, 150, 0.5); }
+.mat-btn[data-mat="solar"] { border-color: rgba(80, 140, 220, 0.65); background: rgba(20, 40, 80, 0.45); }
+.mat-btn[data-mat="beacon"] { border-color: rgba(100, 200, 255, 0.7); background: rgba(20, 50, 70, 0.5); box-shadow: 0 0 8px rgba(64, 180, 255, 0.25); }
+
+/* Clock pause quieter — less alarm chrome */
+#clock-chip[data-clock="paused"],
+body[data-clock="paused"] #clock-chip {
+  opacity: 0.7;
+  border-color: rgba(160, 170, 190, 0.35);
+  color: #a8b0c0;
+}
+.clock-btn[data-clock="paused"].active {
+  background: rgba(80, 88, 104, 0.55);
+  border-color: rgba(160, 170, 190, 0.4);
+  color: #c8d0dc;
+}
+
+/* Agent overlay — subtler AAA sheet */
+#agent-overlay {
+  border: 1px solid rgba(160, 180, 200, 0.28) !important;
+  background: rgba(6, 10, 18, 0.94) !important;
+}
+#agent-overlay .agent-head h2 { letter-spacing: 0.06em; font-weight: 600; }
+.msg.bot {
+  background: #121820 !important;
+  border: 1px solid rgba(160, 180, 200, 0.32) !important;
+  color: #e8eef4 !important;
+}
+
+
+/* ===== Body-note almanac card (v60+) ===== */
+#body-note {
+  position: fixed;
+  z-index: 24;
+  left: max(12px, env(safe-area-inset-left));
+  top: max(56px, calc(env(safe-area-inset-top) + 48px));
+  width: min(320px, calc(100vw - 28px));
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+#body-note.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+#body-note[hidden] { display: none !important; }
+.body-note-inner {
+  position: relative;
+  padding: 12px 14px 14px;
+  border-radius: 14px;
+  background: rgba(8, 12, 20, 0.82);
+  border: 1px solid rgba(100, 180, 220, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.4), 0 0 24px rgba(40,120,180,0.12);
+  color: #e6eef6;
+}
+.body-note-kicker {
+  margin: 0 0 4px;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7eb8d8;
+  font-weight: 650;
+}
+#body-note-title {
+  display: block;
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+  color: #f2f6fa;
+}
+#body-note-text {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.42;
+  color: #c8d2de;
+  font-weight: 450;
+  font-variant-numeric: tabular-nums;
+}
+.body-note-close {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  border: 1px solid rgba(160,180,200,0.3);
+  background: transparent;
+  color: #a8b4c4;
+  cursor: pointer;
+  font-size: 0.75rem;
+  pointer-events: auto;
+}
+body.hide-controls #body-note,
+body.cinema-mode #body-note,
+body.sky-call-open #body-note { opacity: 0 !important; pointer-events: none !important; }
+
+/* Portrait thruster / stick anti-select + placement */
+@media (max-width: 900px) and (orientation: portrait) {
+  #stick-base {
+    width: 118px; height: 118px;
+    left: max(10px, env(safe-area-inset-left));
+    bottom: max(128px, calc(env(safe-area-inset-bottom) + 112px));
+  }
+  #stick-knob { width: 52px; height: 52px; }
+  .vert-thrust {
+    right: max(10px, env(safe-area-inset-right));
+    bottom: max(136px, calc(env(safe-area-inset-bottom) + 120px));
+    gap: 10px;
+  }
+  .vert-btn {
+    width: 56px; height: 56px;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  #btn-boost {
+    width: 58px; height: 58px;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(64px, calc(env(safe-area-inset-bottom) + 52px));
+  }
+}
+.vert-btn, .boost-btn, #stick-base, #stick-knob {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ===== v67 Compact HUD (default immersive) ===== */
+body.hud-compact .bottombar .panel {
+  padding: 8px 10px;
+  max-width: min(96vw, 420px);
+}
+body.hud-compact .brand-hint { display: none !important; }
+body.hud-compact .chip-quiet { display: none !important; }
+body.hud-compact #hud .topbar { opacity: 0.78; }
+body.hud-compact .primary-row { gap: 6px; }
+body.hud-compact .go-row {
+  display: flex; align-items: center; gap: 6px; flex-wrap: nowrap;
+  margin-top: 6px;
+}
+body.hud-compact .go-row .travel-select {
+  flex: 1 1 40%;
+  min-width: 0;
+  font-size: 0.72rem;
+  min-height: 34px;
+  padding: 4px 6px;
+}
+body.hud-compact .go-row .btn {
+  min-height: 34px; min-width: 34px; padding: 4px 8px; font-size: 0.75rem;
+}
+#hud-secondary {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-top: 8px; padding-top: 8px;
+  border-top: 1px solid rgba(160,180,200,0.18);
+}
+#hud-secondary[hidden] { display: none !important; }
+body:not(.hud-compact) .chip-quiet { display: inline-flex; }
+
+/* Stronger hide — almost nothing but restore */
+body.hide-controls #hud,
+body.hide-controls #touch-flight,
+body.hide-controls #build-tray,
+body.hide-controls #radio-panel,
+body.hide-controls #help-panel,
+body.hide-controls #agent-fab,
+body.hide-controls .go-row {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+body.hide-controls .hud-restore {
+  display: block !important;
+  opacity: 0.55;
+}
+body.hide-controls .hud-restore:hover,
+body.hide-controls .hud-restore:focus {
+  opacity: 1;
+}
+
+/* Walking presence — low FOV chrome */
+body[data-walk="1"] #hud .bottombar { opacity: 0.42; }
+body[data-walk="1"] .chip-row { opacity: 0.55; }
+body[data-walk="1"] #touch-flight { opacity: 0.85; }
+#walk-hint {
+  position: fixed; z-index: 22;
+  left: 50%; transform: translateX(-50%);
+  bottom: max(24px, calc(env(safe-area-inset-bottom) + 18px));
+  padding: 8px 14px; border-radius: 999px;
+  background: rgba(6,10,16,0.72);
+  border: 1px solid rgba(160,180,200,0.28);
+  color: #d0dae6; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  opacity: 0; transition: opacity 0.3s ease;
+}
+body[data-walk="1"] #walk-hint { opacity: 1; }
+body:not([data-walk="1"]) #walk-hint { opacity: 0; pointer-events: none; visibility: hidden; }
+body.hide-controls #walk-hint { opacity: 0.35; }
+
+/* Hide old tour-row if any leftover from tours.js */
+.tour-row { display: none !important; }
+.travel-row { display: none !important; }
+
+
+
+/* ===== Flight suit chrome (v79+) — vignette + collar ONLY, no arm blobs ===== */
+#suit-chrome {
+  position: fixed; inset: 0; z-index: 11; /* BELOW #touch-flight (24) and HUD (22) */
+  pointer-events: none !important;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+#suit-chrome.show { opacity: 1; }
+.suit-vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 72% 68% at 50% 46%, transparent 55%, rgba(4,8,14,0.28) 82%, rgba(2,4,8,0.55) 100%);
+}
+#suit-chrome.intense .suit-vignette {
+  background: radial-gradient(ellipse 70% 66% at 50% 45%, transparent 50%, rgba(4,8,14,0.34) 80%, rgba(2,4,8,0.62) 100%);
+}
+#suit-chrome.walk .suit-vignette {
+  background: radial-gradient(ellipse 68% 64% at 50% 44%, transparent 48%, rgba(6,10,16,0.38) 78%, rgba(2,4,8,0.7) 100%);
+}
+.suit-helmet-rim {
+  position: absolute; inset: 0;
+  box-shadow: inset 0 0 48px 10px rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+.suit-collar {
+  position: absolute;
+  left: 50%; bottom: 0;
+  transform: translateX(-50%);
+  width: min(70vw, 420px);
+  height: 7vh;
+  max-height: 56px;
+  background: linear-gradient(to top, rgba(12,16,24,0.55), rgba(12,16,24,0.12), transparent);
+  border-top: 1px solid rgba(140,170,200,0.1);
+  clip-path: polygon(18% 100%, 82% 100%, 70% 0%, 30% 0%);
+  opacity: 0.65;
+}
+#suit-chrome.intense .suit-collar { opacity: 0.85; }
+/* gloves removed — were ghost blobs over stick */
+.suit-glove { display: none !important; }
+.suit-hud-pip {
+  position: absolute;
+  top: max(8px, env(safe-area-inset-top));
+  left: 50%; transform: translateX(-50%);
+  font-size: 0.58rem; letter-spacing: 0.14em; font-weight: 650;
+  color: rgba(160,190,220,0.4);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+body.hide-controls #suit-chrome,
+body.cinema-mode #suit-chrome { opacity: 0 !important; }
+
+/* Compact HUD polish v79 */
+#hud { z-index: 22; }
+#touch-flight { z-index: 24; } /* stick/thrusters above suit always */
+#hud .bottombar .panel.compact {
+  padding: 7px 9px 8px;
+  background: rgba(6, 10, 18, 0.78);
+  border: 1px solid rgba(160, 180, 200, 0.22);
+  border-radius: 14px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+body.hud-compact .primary-row .btn {
+  min-height: 36px;
+  font-size: 0.72rem;
+  padding: 4px 10px;
+}
+body.hud-compact .go-row {
+  margin-top: 5px;
+  gap: 5px;
+}
+body.hud-compact .chip-row {
+  gap: 5px;
+  opacity: 0.88;
+}
+body.hud-compact .chip {
+  font-size: 0.68rem;
+  padding: 4px 8px;
+  background: rgba(8,12,20,0.65);
+  border-color: rgba(160,180,200,0.25);
+}
+#agent-fab { z-index: 30; }
+.hud-restore { z-index: 32; }
+
+/* Almanac open — hide duplicate look-chip name */
+body.almanac-open #look-chip {
+  opacity: 0.25;
+  max-width: 4.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body.almanac-open #look-chip::after { content: ""; }
+
+
+/* look-chip polish v108 */
+#look-chip {
+  opacity: 0.72;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  background: rgba(6, 10, 18, 0.55);
+  border: 1px solid rgba(160, 180, 200, 0.18);
+  border-radius: 999px;
+  padding: 4px 10px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+body.almanac-open #look-chip { opacity: 0.15; }
+body.hide-controls #look-chip { opacity: 0.35; }
+
+
+/* v136 hud polish */
+body.hud-compact .primary-row .chip {
+  min-height: 32px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  border-radius: 10px;
+  background: rgba(8, 12, 20, 0.72);
+  border-color: rgba(160, 180, 200, 0.2);
+}
+body.hud-compact #go-row {
+  gap: 6px;
+  opacity: 0.92;
+}
+#touch-flight .stick-base {
+  border-color: rgba(200, 210, 220, 0.28);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+}
+#touch-flight .boost-btn {
+  border-color: rgba(200, 210, 220, 0.35);
+}
+body[data-walk="1"] #suit-chrome .suit-hud-pip {
+  letter-spacing: 0.16em;
+}
+@media (max-width: 720px) {
+  body.hud-compact .bottombar .panel.compact {
+    padding: 6px 8px;
+    max-width: min(100vw - 16px, 420px);
+  }
+  #touch-flight .stick-base {
+    width: 96px; height: 96px;
+  }
+  #touch-flight .stick-knob {
+    width: 40px; height: 40px; margin: -20px 0 0 -20px;
+  }
+}
+
+
+/* v175+ More collapsed — keep compact strip clean */
+body.hud-compact:not(.hud-more) .more-panel,
+body.hud-compact:not(.hud-more) #more-panel {
+  display: none !important;
+}
+body.hud-compact.hud-more .more-panel,
+body.hud-compact.hud-more #more-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(160,180,200,0.15);
+}
+body.hud-compact .bottombar .panel.compact {
+  background: rgba(5, 8, 14, 0.72);
+  border-color: rgba(160, 180, 200, 0.18);
+}
+
+/* v188 hud-secondary compact */
+body.hud-compact:not(.hud-more) #hud-secondary { display: none !important; }
+body.hud-compact.hud-more #hud-secondary {
+  display: block !important;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(160,180,200,0.14);
+}
+
+#radio-panel .radio-vol-label {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; color: rgba(180,200,220,0.75); margin: 6px 0;
+}
+#radio-panel #radio-vol { flex: 1; accent-color: #8ab4d4; }
+
+/* agent-fab compact polish v323 */
+#agent-fab {
+  opacity: 0.82;
+  border: 1px solid rgba(160,180,200,0.28);
+  background: rgba(10,14,22,0.72);
+}
+#agent-fab:hover, #agent-fab:focus-visible { opacity: 1; }
+body.hide-controls #agent-fab { opacity: 0.45; }
+
+/* Walking: mode buttons are leave-preference, chip is source of truth */
+body[data-walk="1"] #btn-float,
+body[data-walk="1"] #btn-pilot {
+  opacity: 0.55;
+}
+body[data-walk="1"] #speed-chip {
+  outline: 1px solid rgba(120, 200, 255, 0.45);
+}
+
+
+/* Life systems touch bar — above chrome, below cinematic kill */
+#vesper-life-bar {
+  z-index: 41;
+  max-width: 96vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+}
+#vesper-life-bar button {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+body[data-walk="1"] #vesper-life-bar { bottom: calc(78px + env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 520px) {
+  #vesper-life-bar { bottom: 64px; padding: 4px; gap: 4px; }
+  #vesper-life-bar button { min-width: 40px; min-height: 40px; padding: 6px 8px; font-size: 11px; }
+  #vesper-inv, #vesper-journal, #vesper-guild {
+    max-width: 92vw !important;
+    font-size: 11px !important;
+  }
+  #vesper-talk { bottom: 130px !important; }
+}
+body.hide-controls #vesper-life-bar,
+body.cinema-mode #vesper-life-bar { display: none !important; }
+
+
+/* Life systems mobile densify (v50000 polish) */
+#vesper-talk, #vesper-inv, #vesper-journal, #vesper-guild, #vesper-codex {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+@media (pointer: coarse) {
+  #vesper-life-bar button {
+    min-width: 48px !important;
+    min-height: 48px !important;
+  }
+  #vesper-talk {
+    bottom: calc(160px + env(safe-area-inset-bottom, 0px)) !important;
+    max-height: 48vh !important;
+  }
+}
+
+
+/* journal write touch (v50000 polish) */
+#vesper-journal button, #vesper-inv button, #vesper-guild button, #vesper-codex button {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+
+/* flare affordance when gear owned */
+#vl-flare[style*="opacity: 1"], #vl-flare {
+  transition: box-shadow 0.2s, border-color 0.2s, opacity 0.2s;
+}
+
+
+/* vesper-journal mobile width */
+@media (pointer: coarse) {
+  #vesper-journal, #vesper-inv, #vesper-guild, #vesper-codex {
+    width: min(96vw, 360px) !important;
+    max-height: 50vh !important;
+    overflow: auto;
+  }
+}
+
+
+/* codex/guild touch scroll */
+#vesper-codex, #vesper-guild { -webkit-overflow-scrolling: touch; }
+
+
+/* Soft-land affordance (touch) */
+.land-btn {
+  pointer-events: auto;
+  position: absolute;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(200px, calc(env(safe-area-inset-bottom) + 188px));
+  min-width: 72px; min-height: 48px; padding: 10px 14px;
+  border-radius: 14px;
+  border: 2px solid rgba(120, 220, 180, 0.55);
+  background: rgba(12, 40, 32, 0.72); color: #c8ffe0; font: 700 13px/1 system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  touch-action: manipulation;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.land-btn:not([hidden]) { display: block; }
+.land-btn[hidden] { display: none !important; }
+.land-btn:active, .land-btn.active {
+  background: linear-gradient(145deg, rgba(80,220,160,0.9), rgba(40,140,200,0.85));
+  color: #0a1814;
+}
+body[data-walk="1"] .land-btn { display: none !important; }
+body.hide-controls .land-btn,
+body.cinema-mode .land-btn { display: none !important; }
+
+#vesper-life-more { display: none; }
+#vesper-life-bar { z-index: 41; }
+.vesper-panel-close { touch-action: manipulation; }
+#vesper-inv, #vesper-journal, #vesper-guild, #vesper-codex, #vesper-talk {
+  max-width: min(320px, 94vw);
+}
+@media (pointer: coarse) {
+  #vesper-inv, #vesper-journal, #vesper-guild, #vesper-codex {
+    max-height: 48vh;
+  }
+  #vesper-life-bar { bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+  #vesper-life-more { bottom: calc(148px + env(safe-area-inset-bottom, 0px)); }
+}
+
+body.hide-controls #vesper-life-more,
+body.cinema-mode #vesper-life-more { display: none !important; }
+body[data-walk="1"] #vesper-life-more { bottom: calc(158px + env(safe-area-inset-bottom, 0px)); }
+#vesper-mission-hud { max-height: 42vh; overflow: auto; }
+
+
+/* Context HUD: life slim bar ONLY on EVA/walk — never during PILOT fly */
+body:not([data-walk="1"]) #vesper-life-bar,
+body:not([data-walk="1"]) #vesper-life-more {
+  display: none !important;
+}
+body:not([data-walk="1"]) #vesper-inv,
+body:not([data-walk="1"]) #vesper-journal,
+body:not([data-walk="1"]) #vesper-guild,
+body:not([data-walk="1"]) #vesper-codex {
+  display: none !important;
+}
+
+
+/* === Dual product: LEARN (planetarium) vs LIVE (crew RPG) — same Sol === */
+.product-row { gap: 6px; margin-bottom: 4px; }
+.btn.product {
+  flex: 1 1 0;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(140, 200, 255, 0.35);
+  background: rgba(16, 28, 44, 0.85);
+}
+.btn.product.active {
+  border-color: rgba(160, 230, 255, 0.85);
+  background: rgba(40, 90, 130, 0.92);
+  box-shadow: 0 0 14px rgba(80, 180, 255, 0.35);
+}
+#product-chip {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-color: rgba(120, 200, 255, 0.45);
+}
+body[data-product="learn"] #product-chip {
+  color: #b8e8ff;
+  background: rgba(20, 50, 80, 0.75);
+}
+body[data-product="live"] #product-chip {
+  color: #ffe0b8;
+  background: rgba(60, 40, 20, 0.75);
+  border-color: rgba(255, 180, 100, 0.45);
+}
+body[data-product="live"] .btn.product.active {
+  border-color: rgba(255, 200, 120, 0.9);
+  background: rgba(90, 55, 25, 0.92);
+  box-shadow: 0 0 14px rgba(255, 160, 60, 0.3);
+}
+
+/* LEARN: emphasize tours / science; de-emphasize crew RPG chrome */
+body[data-product="learn"] .tour-select,
+body[data-product="learn"] #btn-tour-go {
+  outline: 1px solid rgba(120, 200, 255, 0.45);
+}
+body[data-product="learn"] #vesper-life-bar,
+body[data-product="learn"] #vesper-life-more,
+body[data-product="learn"] #vesper-inv,
+body[data-product="learn"] #vesper-journal,
+body[data-product="learn"] #vesper-guild,
+body[data-product="learn"] #vesper-codex {
+  display: none !important;
+}
+body[data-product="learn"] .land-btn:not([hidden])::after {
+  /* keep LAND — science soft-visit — but chip already says LEARN */
+}
+body[data-product="learn"] #btn-pilot { opacity: 0.72; }
+body[data-product="learn"] #btn-float { opacity: 1; }
+
+/* LIVE: emphasize land + crew; tours quieter */
+body[data-product="live"] #btn-pilot { opacity: 1; }
+body[data-product="live"] .tour-select { opacity: 0.78; }
+body[data-product="live"] .land-btn:not([hidden]) {
+  box-shadow: 0 0 16px rgba(120, 255, 180, 0.45);
+  border-color: rgba(140, 255, 200, 0.7);
+}
+@media (pointer: coarse) {
+  .product-row .btn.product {
+    min-height: 44px;
+    font-size: 13px;
+  }
+}
+
+
+/* Rubric: HUD closable — hide life/talk/product clutter in cinema */
+body.hide-controls #vesper-talk,
+body.hide-controls #vesper-inv,
+body.hide-controls #vesper-journal,
+body.hide-controls #vesper-guild,
+body.hide-controls #vesper-codex,
+body.cinema-mode #vesper-talk,
+body.cinema-mode #vesper-inv,
+body.cinema-mode #vesper-journal,
+body.cinema-mode #vesper-guild,
+body.cinema-mode #vesper-codex {
+  display: none !important;
+}
+body.hide-controls .product-row,
+body.cinema-mode .product-row {
+  display: none !important;
+}
+/* Float·Learn vs Pilot·Live — readable on iPhone */
+.product-row .btn.product { font-size: 12px; letter-spacing: 0.02em; }
+@media (pointer: coarse) {
+  .product-row .btn.product { font-size: 12px; padding: 8px 6px; }
+}
+
+
+/* Jobs primary: Float·Learn / Pilot·Live is the mode */
+.product-row {
+  order: -1;
+  width: 100%;
+  margin-bottom: 6px;
+}
+.product-row .btn.product {
+  flex: 1 1 50%;
+  min-height: 44px;
+  font-size: 13px;
+  font-weight: 700;
+}
+body[data-product="learn"] .go-row { outline: 1px solid rgba(120, 200, 255, 0.25); border-radius: 10px; }
+body[data-product="live"] .land-btn:not([hidden]) {
+  transform: scale(1.04);
+}
+#physics-hud { z-index: 22; }
+body.hide-controls #physics-hud,
+body.cinema-mode #physics-hud { display: none !important; }
+
+/* ===== phone HUD pass (player feedback): stick clears DOCK, toasts off the panel, no Safari rubber-band ===== */
+html, body {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+#canvas-wrap, #canvas-wrap canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+#suit-radio {
+  position: fixed;
+  z-index: 23;
+  left: max(8px, env(safe-area-inset-left));
+  right: max(8px, env(safe-area-inset-right));
+  top: max(96px, calc(env(safe-area-inset-top) + 84px));
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(6, 12, 18, 0.78);
+  border: 1px solid rgba(140, 190, 220, 0.28);
+  color: #d5e6f2;
+  font: 11px/1.35 ui-monospace, Menlo, monospace;
+  pointer-events: none;
+  opacity: 0;
+}
+#suit-radio.show { opacity: 0.95; }
+#ship-computer {
+  position: fixed;
+  z-index: 28;
+  right: max(8px, env(safe-area-inset-right));
+  top: max(132px, calc(env(safe-area-inset-top) + 120px));
+  width: min(340px, calc(100vw - 16px));
+  max-height: min(42vh, 360px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(8, 12, 18, 0.9);
+  border: 1px solid rgba(160, 200, 220, 0.35);
+  color: #e4eef6;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+#ship-computer[hidden] { display: none !important; }
+#ship-computer header { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; letter-spacing: 0.06em; }
+#ship-log {
+  overflow: auto;
+  max-height: 28vh;
+  font: 11px/1.4 ui-monospace, Menlo, monospace;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+#ship-log p { margin: 0 0 6px; }
+#ship-ask { display: flex; gap: 6px; }
+#ship-ask input {
+  flex: 1;
+  min-height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  padding: 6px 8px;
+  font: inherit;
+  touch-action: manipulation;
+}
+@media (max-width: 900px) and (orientation: portrait) {
+  .topbar { flex-wrap: wrap; gap: 6px; }
+  .chip-row { max-width: 100%; justify-content: flex-start; }
+  .chip { max-width: 70vw; }
+  .panel.compact {
+    max-height: 38vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+  .bottombar { z-index: 18; width: 100%; }
+  #touch-flight { z-index: 14; }
+  .stick-base {
+    width: 74px !important;
+    height: 74px !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+    bottom: calc(38vh + env(safe-area-inset-bottom) + 16px) !important;
+  }
+  .stick-knob { width: 32px; height: 32px; margin: -16px 0 0 -16px; }
+  .boost-btn {
+    width: 52px !important;
+    height: 52px !important;
+    right: max(10px, env(safe-area-inset-right)) !important;
+    bottom: calc(38vh + env(safe-area-inset-bottom) + 16px) !important;
+  }
+  .vert-thrust {
+    right: max(12px, env(safe-area-inset-right)) !important;
+    bottom: calc(38vh + env(safe-area-inset-bottom) + 78px) !important;
+  }
+  .vert-btn { width: 44px; height: 44px; }
+  #guide-toast, #walk-hint, #interact-prompt, #ship-board-hint {
+    top: max(128px, calc(env(safe-area-inset-top) + 116px)) !important;
+    bottom: auto !important;
+    max-width: min(92vw, 440px);
+  }
+  #physics-hud {
+    top: max(58px, calc(env(safe-area-inset-top) + 48px)) !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+    right: max(8px, env(safe-area-inset-right)) !important;
+    max-width: none !important;
+  }
+  .gear-row { position: relative; z-index: 2; }
+}
+
+/* ===== Instrument HUD: menus TOP, stick BOTTOM, one accent ===== */
+:root {
+  --inst: #9ec9e8;
+  --inst-dim: rgba(158, 201, 232, 0.22);
+  --inst-ink: #d5e4ef;
+}
+#hud {
+  justify-content: flex-start !important;
+  gap: 6px;
+}
+.topbar { order: 1; }
+.bottombar {
+  order: 2;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-right: 0 !important;
+}
+#hud .bottombar .panel.compact,
+.panel.compact {
+  max-width: min(560px, calc(100vw - 16px));
+  width: 100%;
+  max-height: 30vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  padding: 6px 8px !important;
+  border-radius: 2px !important;
+  background: rgba(4, 8, 12, 0.62) !important;
+  border: 1px solid var(--inst-dim) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(8px);
+}
+.brand, .chip, .btn, .btn.mode, .btn.product, .btn.gear-btn, .btn.clock-btn {
+  border-radius: 2px !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  font-weight: 450;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.brand {
+  background: rgba(4, 8, 12, 0.55) !important;
+  border: 1px solid var(--inst-dim) !important;
+  padding: 4px 8px !important;
+}
+.brand h1 {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--inst);
+}
+.chip {
+  background: rgba(4, 8, 12, 0.45) !important;
+  border: 1px solid var(--inst-dim) !important;
+  color: var(--inst-ink) !important;
+  font-size: 0.62rem !important;
+  font-weight: 450 !important;
+  padding: 3px 7px !important;
+  max-width: 46vw;
+}
+.btn, .btn.mode, .btn.product {
+  min-height: 28px !important;
+  padding: 3px 8px !important;
+  font-size: 0.62rem !important;
+  font-weight: 500 !important;
+  color: var(--inst-ink);
+  background: transparent !important;
+  border: 1px solid var(--inst-dim) !important;
+}
+.btn.active, .btn.mode.active, .btn.product.active, .btn.gear-btn.active, .btn.clock-btn.active {
+  background: transparent !important;
+  border-color: var(--inst) !important;
+  color: var(--inst) !important;
+}
+.controls { gap: 4px !important; }
+.row { gap: 4px !important; }
+
+/* Stick and thrusters stay in the thumb zone. Do not lift them. */
+.stick-base {
+  top: auto !important;
+  left: max(12px, env(safe-area-inset-left)) !important;
+  bottom: max(72px, calc(env(safe-area-inset-bottom) + 64px)) !important;
+  width: 112px !important;
+  height: 112px !important;
+}
+.stick-knob { width: 46px; height: 46px; margin: -23px 0 0 -23px; }
+.boost-btn {
+  top: auto !important;
+  right: max(14px, env(safe-area-inset-right)) !important;
+  bottom: max(78px, calc(env(safe-area-inset-bottom) + 70px)) !important;
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 50% !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+.vert-thrust {
+  top: auto !important;
+  right: max(16px, env(safe-area-inset-right)) !important;
+  bottom: max(150px, calc(env(safe-area-inset-bottom) + 142px)) !important;
+}
+.land-btn {
+  top: auto !important;
+  right: max(84px, calc(env(safe-area-inset-right) + 72px)) !important;
+  bottom: max(156px, calc(env(safe-area-inset-bottom) + 148px)) !important;
+  border-radius: 2px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em;
+  background: rgba(4, 8, 12, 0.72) !important;
+  border: 1px solid var(--inst) !important;
+  color: var(--inst) !important;
+  box-shadow: none !important;
+}
+
+/* Life pad is a menu: up with the instruments, not on the stick. */
+#vesper-life-bar {
+  top: calc(30vh + env(safe-area-inset-top) + 10px) !important;
+  bottom: auto !important;
+  left: max(8px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  transform: none !important;
+  border-radius: 2px !important;
+  background: rgba(4, 8, 12, 0.62) !important;
+  border: 1px solid var(--inst-dim) !important;
+  box-shadow: none !important;
+}
+#vesper-life-bar button {
+  min-width: 36px !important;
+  min-height: 28px !important;
+  border-radius: 2px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#vesper-life-more {
+  top: calc(30vh + env(safe-area-inset-top) + 52px) !important;
+  bottom: auto !important;
+  left: max(8px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  transform: none !important;
+  border-radius: 2px !important;
+}
+
+/* Hide = menus only. Stick, up/down, boost stay. */
+body.hide-controls:not(.cinema-mode) #touch-flight {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  pointer-events: none !important;
+}
+body.hide-controls:not(.cinema-mode) #touch-flight .stick-base,
+body.hide-controls:not(.cinema-mode) #touch-flight .vert-thrust,
+body.hide-controls:not(.cinema-mode) #touch-flight .boost-btn,
+body.hide-controls:not(.cinema-mode):not([data-walk="1"]) #touch-flight .land-btn:not([hidden]) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  display: flex !important;
+}
+body.hide-controls:not(.cinema-mode):not([data-walk="1"]) .land-btn:not([hidden]) {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+body.hide-controls #vesper-life-bar,
+body.hide-controls #vesper-life-more {
+  display: none !important;
+}
+
+/* Cinema hides every control, including movement. Exit stays. */
+body.cinema-mode #hud,
+body.cinema-mode #touch-flight,
+body.cinema-mode #vesper-life-bar,
+body.cinema-mode #vesper-life-more,
+body.cinema-mode #agent-overlay,
+body.cinema-mode #agent-fab,
+body.cinema-mode #ship-computer,
+body.cinema-mode #guide-toast,
+body.cinema-mode #walk-hint,
+body.cinema-mode #physics-hud,
+body.cinema-mode #transfer-hud,
+body.cinema-mode #hope-pip,
+body.cinema-mode #build-tray,
+body.cinema-mode #btn-cam-mode {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+/* Cam at y232 covered the right clock buttons once More was open
+   (CINE y219–247). y360 then covered the tour Go/Stop row (y343–371)
+   and the overlap hit Cam. Drop it under that row, still on the right. */
+@media (max-width: 640px) {
+  #btn-cam-mode {
+    top: 384px !important;
+    left: auto !important;
+    right: max(8px, env(safe-area-inset-right)) !important;
+  }
+}
+@media (max-width: 640px) {
+  #transfer-hud {
+    top: 426px !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    max-width: calc(100vw - 16px) !important;
+  }
+}
+@media (max-width: 640px) {
+  #hope-pip {
+    top: 460px !important;
+    bottom: auto !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    max-width: calc(100vw - 16px) !important;
+    max-height: 52px !important;
+    overflow: hidden !important;
+  }
+}
+@media (max-width: 640px) {
+  .land-btn:not([hidden]) {
+    top: 372px !important;
+    bottom: auto !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+  }
+}
+body.cinema-mode #cinema-exit {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Walk: life keys sit under the top strip, not on FLOAT/PILOT. */
+body[data-walk="1"] #hud .bottombar .panel.compact {
+  max-height: 112px !important;
+}
+body[data-walk="1"] #vesper-life-bar {
+  top: calc(env(safe-area-inset-top) + 168px) !important;
+  bottom: auto !important;
+  left: max(8px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  transform: none !important;
+  max-width: calc(100vw - 16px);
+  z-index: 23 !important;
+}
+body[data-walk="1"] #hope-pip {
+  top: 308px !important;
+  bottom: auto !important;
+  left: max(8px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  max-width: calc(100vw - 16px) !important;
+}
+
+/* More-open go row sits at y312 on a 390px phone. Hope at 308 covered it.
+   430 clears that row (ends ~346) and LAND (starts 372). */
+@media (max-width: 640px) {
+  #hope-pip,
+  body[data-walk="1"] #hope-pip {
+    top: 460px !important;
+  }
+}
+/* 30vh clipped the go row once More was open (scroll 310, client 251).
+   Let the strip grow. The stick stays at the bottom. */
+@media (max-width: 520px) {
+  /* Walking used to force 112px so life keys could sit at y168.
+     Those keys now sit at y400, and the 112px cap (important) hid
+     FLOAT, the gears, and Go under the canvas. */
+  #hud .bottombar .panel.compact,
+  .panel.compact,
+  body[data-walk="1"] #hud .bottombar .panel.compact {
+    max-height: none !important;
+  }
+}
+
+/* Walking life keys sat at y168. With More open that covers FLOAT
+   feel and the gear row. Coarse buttons are 48px, so the cover is real. */
+@media (max-width: 640px) {
+  body[data-walk="1"] #vesper-life-bar {
+    top: 400px !important;
+    max-width: 250px;
+  }
+}
+
+/* Build tray is centered and wraps. At 390×844 it covers the
+   right of the stick (z-index above the stick), so that edge cannot drag. */
+@media (max-width: 520px) {
+  .build-tray {
+    left: 132px !important;
+    right: 84px !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    bottom: max(72px, calc(env(safe-area-inset-bottom) + 64px)) !important;
+  }
+}
+
+/* Phone aspect: physics, radio, and the walk line were fixed over the
+   product buttons (390x844). Park them above the stick, under the panel.
+   The stick itself stays at the bottom. */
+@media (max-width: 520px) {
+  #physics-hud {
+    top: auto !important;
+    bottom: calc(env(safe-area-inset-bottom) + 246px) !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    max-width: calc(100vw - 88px) !important;
+    max-height: 46px !important;
+    overflow: hidden !important;
+  }
+  #suit-radio {
+    top: auto !important;
+    bottom: calc(env(safe-area-inset-bottom) + 196px) !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    max-width: calc(100vw - 88px) !important;
+    max-height: 36px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  #walk-hint,
+  #ship-board-hint {
+    /* Hope ends at y512 (top 460, max 52). A wrapped hint grew up into it.
+       One line under the pip, still above the physics chip (y554 at 844). */
+    top: 516px !important;
+    bottom: auto !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    transform: none !important;
+    max-width: calc(100vw - 88px) !important;
+    max-height: 36px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
+
+/* Suit pip was centered on the top row. At 390×844 it sat on
+   FLOAT·LEARN (79×11). Parking it on the right without reserving
+   space still hit the flight speed chip (83×13). Keep the right
+   of the top bar for the pip. */
+@media (max-width: 520px) {
+  .topbar { padding-right: 124px !important; }
+  #suit-chrome .suit-hud-pip {
+    top: 12px !important;
+    left: auto !important;
+    right: max(8px, env(safe-area-inset-right)) !important;
+    transform: none !important;
+    max-width: 112px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Life ··· tray was still at 30vh+52 (y305). With flight More open
+   that covers Pause, Sol, Go, and the tour row, and the tray wins
+   the tap. Sit it under the life bar (y400). Hope, the walk line,
+   physics, and the radio step down so they do not inherit that cover. */
+@media (max-width: 640px) {
+  body[data-walk="1"] #vesper-life-more {
+    top: 448px !important;
+    bottom: auto !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: calc(100vw - 16px);
+  }
+  body[data-walk="1"] #vesper-life-more button {
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 4px 6px !important;
+  }
+  body[data-walk="1"] #hope-pip {
+    top: 504px !important;
+    max-height: 36px !important;
+  }
+  body[data-walk="1"] #walk-hint,
+  body[data-walk="1"] #ship-board-hint {
+    top: 544px !important;
+  }
+  body[data-walk="1"] #physics-hud {
+    bottom: auto !important;
+    top: 580px !important;
+    max-height: 40px !important;
+  }
+  body[data-walk="1"] #suit-radio {
+    bottom: auto !important;
+    top: 624px !important;
+  }
+}
+
+/* Shared messages remain in one fixed place and hide if a HUD control occupies it. */
+#guide-toast {
+  left: auto !important; top: auto !important; right: 20px !important; bottom: 20px !important;
+  transform: none !important; width: min(360px, calc(100vw - 40px)); max-height: 18vh;
+  overflow: hidden; pointer-events: none !important; z-index: 21 !important;
+}
+#guide-toast[hidden] { display: none !important; }
+.help-card { max-height: calc(100dvh - 32px); overflow-y: auto; box-sizing: border-box; }
+.help-head { position: sticky; top: -14px; z-index: 2; padding: 8px 0; background: rgb(12, 10, 24); }
+.loader-credit { font-size: 0.65rem; line-height: 1.4; opacity: 0.8; }
+.graphics-failed .loader-bar { display: none; }
+
+.key-bindings { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:6px; }
+.key-binding { text-align:left; color:inherit; background:#172337; border:1px solid #526477; border-radius:6px; padding:8px; cursor:pointer; }
+#binding-status { min-height:2.5em; }

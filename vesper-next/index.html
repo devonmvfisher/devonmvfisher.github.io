@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071724" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Vesper" />
+  <meta name="description" content="Vesper — one Sol, two modes: LEARN (planetarium · tours · science) and LIVE (PILOT · docks · crew RPG). Soft-land, FLOAT/PILOT, no install." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png" />
+  <title>Vesper Next — Evening Planetarium</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/opening.css" />
+  <link rel="stylesheet" href="css/controls.css" />
+  <link rel="stylesheet" href="css/polish.css" />
+<script>
+(function () {
+  "use strict";
+  const errors = window.__vesperErrors = { count: 0, messages: [] };
+  function count(message) {
+    errors.count++;
+    if (errors.messages.length < 5) errors.messages.push(String(message || "Unknown error"));
+  }
+  window.addEventListener("error", function (event) { count(event.message); });
+  window.addEventListener("unhandledrejection", function (event) {
+    count(event.reason && event.reason.message || event.reason);
+  });
+})();
+</script>
+<script src="js/version.js"></script>
+<script>
+document.addEventListener("touchmove", function (e) {
+  var t = e.target;
+  if (t && t.closest && t.closest("input, textarea, select, #ship-log, #agent-log, .help-card, .panel")) return;
+  e.preventDefault();
+}, { passive: false });
+</script>
+</head>
+<body class="hud-compact">
+  <div id="loader" role="status" aria-live="polite">
+
+    <svg class="opening-art" viewBox="0 0 1000 860" role="img" aria-label="Illustrated Earth, your starting point in Vesper">
+      <defs><radialGradient id="sea"><stop stop-color="#24677c"/><stop offset=".65" stop-color="#123f5a"/><stop offset="1" stop-color="#071a32"/></radialGradient><linearGradient id="dawn"><stop stop-color="#ff9274"/><stop offset=".46" stop-color="#75d3e7"/><stop offset="1" stop-color="#123f5a"/></linearGradient><clipPath id="globe"><circle cx="520" cy="430" r="275"/></clipPath></defs>
+      <g fill="#a7c7d9"><circle cx="140" cy="145" r="2"/><circle cx="880" cy="230" r="2"/><circle cx="780" cy="740" r="2"/><circle cx="190" cy="660" r="1.5"/></g>
+      <circle cx="520" cy="430" r="285" fill="none" stroke="#21485c"/>
+      <circle cx="520" cy="430" r="275" fill="url(#sea)" stroke="url(#dawn)" stroke-width="4"/>
+      <g clip-path="url(#globe)" fill="#4e9aa4" opacity=".8"><path d="M290 250l95-52 104 20 13 52-43 28-14 56-47 3-16 39-70-9-24-63-49-24zm130 158 62 8 47 65-15 81-36 78-28-3-8-96-39-55zm226-211 148 44 34 87-42 60-76-9-36 28-11 106-65 91-39-39-20-99 29-74-44-47 27-62 70 4zm61 388 78-34 57 53-26 48-78-7z"/></g>
+      <g clip-path="url(#globe)" fill="none" stroke="#a4d9e5" stroke-width="1" opacity=".15"><ellipse cx="520" cy="430" rx="115" ry="275"/><ellipse cx="520" cy="430" rx="225" ry="275"/><ellipse cx="520" cy="430" rx="275" ry="90"/><ellipse cx="520" cy="430" rx="275" ry="195"/></g>
+      <g class="opening-orbit" fill="none" stroke="#ff9274"><ellipse cx="520" cy="430" rx="390" ry="112" transform="rotate(-28 520 430)" opacity=".65"/><circle cx="850" cy="250" r="6" fill="#ff9274"/></g>
+      <path d="M746 650h82l40 40" fill="none" stroke="#75d3e7"/><text x="700" y="730" fill="#a7c7d9" font-family="Segoe UI,sans-serif" font-size="13" letter-spacing="3">EARTH / YOUR STARTING POINT</text>
+    </svg>
+    <div class="loader-card">
+      <p class="opening-kicker">An evening in the Solar System</p>
+      <h1 class="loader-title">Vesper</h1>
+      <p class="opening-line">Start above Earth.<br>Go somewhere that moves you.</p>
+      <p id="opening-status" class="opening-kicker">Preparing your view</p>
+      <p class="loader-sub">Distances are true ratios; planets are enlarged so you can see them.</p>
+      <p class="loader-credit">Planet and sky textures: Solar System Scope (solarsystemscope.com/textures), CC BY 4.0, based on NASA data. three.js, copyright 2010-2023 Three.js Authors, MIT licence.</p>
+      <div class="loader-bar" aria-hidden="true"><span id="loader-bar-fill"></span></div>
+    </div>
+  </div>
+
+  <div id="canvas-wrap" aria-label="Interactive planetarium view"></div>
+
+  <div id="hud">
+    <div class="topbar">
+      <div class="brand">
+        <h1>Vesper</h1>
+        <p class="brand-hint desktop-only">FLOAT/PILOT flight · LEARN/LIVE product · WASD · drag look · Travel · Tour · soft-land · Help</p>
+      </div>
+      <div class="chip-row">
+        <div class="chip" id="look-chip">Deep space</div>
+        <div class="chip" id="product-chip" title="Same Sol · Float·Learn vs Pilot·Live">FLOAT·LEARN</div>
+        <div class="chip" id="speed-chip" title="Mode · gear · speed">FLOAT · 0</div>
+        <div class="chip chip-quiet mobile-hide" id="gear-chip" title="Gear">CRUISE</div>
+        <div class="chip chip-quiet mobile-hide" id="clock-chip" title="Clock">CRUISE</div>
+        <div class="chip chip-quiet mobile-hide" id="sim-clock-chip">Sim <span class="clock" id="sim-clock">00:00</span></div>
+        <div class="chip" id="river-chip" hidden title="River">River</div>
+      </div>
+    </div>
+
+    <div class="bottombar">
+      <div class="panel compact">
+        <div class="controls">
+          <div class="row mode-row product-row" role="group" aria-label="Product mode — same Sol">
+            <button type="button" class="btn product active" id="btn-product-learn" data-product="learn" title="Float·Learn — planetarium · tours · science · relax (same Sol as Pilot·Live)">Float·Learn</button>
+            <button type="button" class="btn product" id="btn-product-live" data-product="live" title="Pilot·Live — soft-land · docks · crew RPG · quests (same Sol as Float·Learn)">Live (beta)</button>
+          </div>
+          <div class="row mode-row primary-row" role="group" aria-label="Mode — one Sol">
+            <button type="button" class="btn" id="btn-more" aria-expanded="false" title="Flight feel, gears, clock">More</button>
+            <button type="button" class="btn" id="btn-hide-hud" title="Hide menus (U). Stick stays." aria-pressed="false">Hide</button>
+            <button type="button" class="btn" id="btn-cinema-hud" title="Cinema — hide movement and the HUD">Cinema</button>
+          </div>
+          <div class="hud-secondary" id="hud-secondary" hidden>
+            <div class="row mode-row" role="group" aria-label="Flight feel override">
+              <button type="button" class="btn mode active" id="btn-float" data-mode="float" title="Override: FLOAT feel without leaving Learn/Live">FLOAT feel</button>
+              <button type="button" class="btn mode" id="btn-pilot" data-mode="pilot" title="Override: PILOT feel without leaving Learn/Live">PILOT feel</button>
+            </div>
+            <div class="row mode-row gear-row" role="group" aria-label="Cruise gear">
+              <button type="button" class="btn gear-btn" data-gear="dock" title="DOCK">DOCK</button>
+              <button type="button" class="btn gear-btn active" data-gear="cruise" title="CRUISE">CRUISE</button>
+              <button type="button" class="btn gear-btn" data-gear="burn" title="BURN">BURN</button>
+              <button type="button" class="btn gear-btn" data-gear="transit" title="TRANSIT">TRANSIT</button>
+            </div>
+            <div class="row mode-row clock-row" role="group" aria-label="Celestial clock">
+              <button type="button" class="btn clock-btn" data-clock="paused" title="Orbits frozen">⏸</button>
+              <button type="button" class="btn clock-btn" data-clock="realtime" title="Real crawl">REAL</button>
+              <button type="button" class="btn clock-btn active" data-clock="cruise" title="Cruise clock">CRUISE</button>
+              <button type="button" class="btn clock-btn" data-clock="fast" title="Fast">FAST</button>
+              <button type="button" class="btn clock-btn" data-clock="cinematic" title="Cine">CINE</button>
+            </div>
+            <div class="row wind-row mobile-hide">
+              <label for="wind-down">Mood</label>
+              <input id="wind-down" type="range" min="0" max="100" value="45" />
+            </div>
+            <div class="row mode-row" role="group" aria-label="Quality">
+              <button type="button" class="btn" data-quality="auto" title="Auto quality">Auto</button>
+              <button type="button" class="btn" data-quality="high" title="High">High</button>
+              <button type="button" class="btn" data-quality="ultra" title="Ultra desktop">Ultra</button>
+            </div>
+            <div class="row actions secondary-actions">
+              <button type="button" class="btn" id="btn-pause" title="Pause ship + orbits">Pause</button>
+              <button type="button" class="btn" id="btn-straight" title="Sol honesty (Y) — hide Hyp fiction; radii boosted; distant dots may use compressed display distances" aria-pressed="false">Sol</button>
+              <button type="button" class="btn" id="btn-build" title="Build (B)">Build</button>
+              <button type="button" class="btn" id="btn-help" title="Help (H)">Help</button>
+              <button type="button" class="btn primary" id="btn-reset" title="Home (R)">Home</button>
+            </div>
+          </div>
+          <div class="row go-row" role="group" aria-label="Travel and tour">
+            <select id="travel-select" class="travel-select" aria-label="Travel">
+              <option value="">Go...</option>
+              <option value="Home">Home</option>
+            </select>
+            <select id="tour-select" class="travel-select tour-select" aria-label="FLOAT tour section">
+              <option value="inner">Tour · Inner</option>
+              <option value="belt" selected>Tour · Belt</option>
+              <option value="giants">Tour · Giants</option>
+              <option value="ice">Tour · Ice</option>
+              <option value="dwarfs">Tour · Dwarfs</option>
+              <option value="hypothetics">Tour · Hyp</option>
+              <option value="craft">Tour · Craft</option>
+            </select>
+            <button type="button" class="btn" id="btn-tour-go" title="Start tour">▶</button>
+            <button type="button" class="btn" id="btn-tour-stop" title="Stop tour">■</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="touch-flight" aria-hidden="true">
+    <div id="stick-base" class="stick-base no-select">
+      <div id="stick-knob" class="stick-knob"></div>
+    </div>
+    <div class="vert-thrust" aria-label="Vertical thrust">
+      <button type="button" id="btn-thrust-up" class="vert-btn no-select" aria-label="Thrust up" tabindex="-1">
+        <svg class="vert-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 5l8 12H4z"/></svg>
+      </button>
+      <button type="button" id="btn-thrust-down" class="vert-btn no-select" aria-label="Thrust down" tabindex="-1">
+        <svg class="vert-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 19L4 7h16z"/></svg>
+      </button>
+    </div>
+    <button type="button" id="btn-boost" class="boost-btn no-select" tabindex="-1" aria-label="Boost">⚡</button>
+    <button type="button" id="btn-soft-land" class="land-btn no-select" tabindex="-1" aria-label="Soft land" hidden>LAND</button>
+  </div>
+
+  <div id="help-panel" class="help-panel" role="dialog" aria-label="Controls" aria-hidden="true">
+    <div class="help-card">
+      <div class="help-head">
+        <strong>Controls · 6DOF</strong>
+        <button type="button" id="help-close" class="btn">Close</button>
+      </div>
+      <p class="help-lead"><b>Float·Learn</b> = planetarium · tours · science. <b>Pilot·Live</b> = land · docks · crew. Same Sol. Stick or keys · click sky to fly · controls below.</p>
+      <div id="key-bindings" class="key-bindings" aria-label="Keyboard bindings"></div>
+      <p id="binding-status" role="status">Click an action to change its keys. Ctrl, Alt and Meta belong to the browser.</p>
+      <button type="button" class="btn" id="keys-reset">Reset keys and mouse</button>
+      <label>Mouse sensitivity <input id="look-sensitivity" type="range" min="0.1" max="4" step="0.1" value="1"></label>
+      <label><input id="look-invert" type="checkbox"> Invert Y</label>
+      <p>Click the sky to fly; Esc returns the cursor. Drag still looks. Scroll thrusts; pinch zooms.
+      A standard pad moves with its left stick and looks with its right. Triggers lift, bumpers roll,
+      A lands or talks, B closes, X boosts, Y changes camera, D-pad changes gear or Travel, Start opens Help.</p>
+      <p class="help-lead selectable-text" id="help-science">First principles: <b>planet orbits keep real AU ratios</b>. Some far TNOs and probes sit closer than their almanac a — the look chip says display and a. <b>Radii are display-boosted</b> (not true angular size) so skim works on a phone. Hyp bodies stay labeled fiction. Sol button hides Hyp. README · SCIENCE.md.</p>
+      <h3>About</h3>
+      <p>Vesper <span id="about-version"></span></p>
+      <p class="help-lead">Planet and sky textures: Solar System Scope (solarsystemscope.com/textures), CC BY 4.0, based on NASA data. three.js, copyright 2010-2023 Three.js Authors, MIT licence.</p>
+      <p class="help-lead">No tracking; Live AI is opt-in and sends only to the address you enter; keys stay in this browser.</p>
+      <p class="help-lead" id="help-privacy">Call companion is offline-first; API keys (Advanced) stay on this device — see PRIVACY.md.</p>
+      <p class="help-lead" id="help-radio">Observation Station (belt habitat): soft-land · walk in · <b>E / tap</b> the Skytape to equip. Radio HUD unlocks after. Instrumental Web Audio only.</p>
+    </div>
+  </div>
+
+  <button type="button" id="hud-restore" class="hud-restore" aria-label="Show controls" title="Show controls" hidden>Controls</button>
+
+  <div id="build-tray" class="build-tray" hidden aria-label="Build materials">
+    <span class="build-tray-label">Craft</span>
+    <button type="button" class="mat-btn" data-mat="erase" title="Erase — tap a block to remove it">Erase</button>
+    <button type="button" class="mat-btn active" data-mat="metal" title="Metal plating">Metal</button>
+    <button type="button" class="mat-btn" data-mat="ice" title="Ice">Ice</button>
+    <button type="button" class="mat-btn" data-mat="rock" title="Rock">Rock</button>
+    <button type="button" class="mat-btn" data-mat="glass" title="Glass / viewport">Glass</button>
+    <button type="button" class="mat-btn" data-mat="antenna" title="Antenna / spar">Antenna</button>
+    <button type="button" class="mat-btn" data-mat="habitat" title="Habitat panel">Habitat</button>
+    <button type="button" class="mat-btn" data-mat="solar" title="Solar array">Solar</button>
+    <button type="button" class="mat-btn" data-mat="beacon" title="Hope beacon">Beacon</button>
+  </div>
+
+  <div id="guide-toast" aria-live="polite"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="module" src="js/boot.mjs"></script>
+  <script>
+    document.getElementById("about-version").textContent = window.VesperVersion;
+    if (globalThis.VesperOfflineCache !== false && "serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js").then(function (reg) {
+          if (!reg) return;
+          var poke = function () {
+            if (reg.waiting) reg.waiting.postMessage({ type: "vesper-skip-wait" });
+          };
+          poke();
+          var arm = function (w) {
+            if (!w) return;
+            w.addEventListener("statechange", poke);
+          };
+          // updatefound often fires before this listener exists.
+          arm(reg.installing);
+          reg.addEventListener("updatefound", function () { arm(reg.installing); });
+        }).catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

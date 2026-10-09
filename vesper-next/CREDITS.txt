@@ -1,0 +1,4 @@
+Planet and sky textures: Solar System Scope (solarsystemscope.com/textures), CC BY 4.0, based on NASA data. three.js, copyright 2010-2023 Three.js Authors, MIT licence.
+https://www.solarsystemscope.com/textures/
+https://creativecommons.org/licenses/by/4.0/
+Do not imply NASA endorsement.

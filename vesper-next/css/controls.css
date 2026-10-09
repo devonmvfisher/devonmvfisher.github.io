@@ -1,0 +1,11 @@
+#control-hint { position:fixed; z-index:150; top:80px; right:24px; max-width:min(330px,calc(100vw - 40px)); padding:12px 16px; background:#103149; color:#e8f5fc; border-left:2px solid #ff9274; font:14px/1.5 'Segoe UI',sans-serif; pointer-events:none; opacity:1; transition:opacity .5s ease,transform .5s ease; }
+#control-hint.used { opacity:0; transform:translateY(-4px); }
+#control-hint[hidden] { display:none; }
+#flight-hints { position:fixed; z-index:14; bottom:22px; left:50%; transform:translateX(-50%); display:flex; gap:18px; color:#b9d6e4; font:13px/1.5 'Segoe UI',sans-serif; pointer-events:none; }
+#flight-hints span { transition:opacity .7s ease; }
+#flight-hints .used { opacity:0; }
+button:focus-visible,select:focus-visible,input:focus-visible { outline:3px solid #75d3e7!important; outline-offset:3px; }
+.primary-row #btn-help { color:#f1f8fc; border-color:#75d3e7; }
+#hud button.btn,#hud select { min-height:44px!important; }
+@media(max-width:640px){#flight-hints{bottom:170px;left:16px;right:16px;transform:none;flex-direction:column;gap:3px;font-size:12px}#control-hint{top:auto;bottom:220px;right:16px}.btn{min-height:44px}.primary-row{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){#flight-hints span,#control-hint{transition:none}}
