@@ -2,7 +2,7 @@
 
 Copyright (c) 2026 Devon Fisher.
 
-This file says what the MIT licence in `LICENSE` covers in this repository, what it does not cover, and where the parts that came from other people come from.
+This file says what the MIT licence in `LICENSE` covers in this repository, what it does not cover, and where the parts that came from other people come from. The folder `vesper-next/` holds a separate app, Vesper Next. It has its own section at the end of this file. The sections before that one are about the room pages.
 
 ## What the MIT licence covers
 
@@ -105,3 +105,13 @@ LIKELY, from the Hearth page:
 
 NOT FOUND:
 - `favicon.svg` (site root): a small four-tile blue icon that matches nothing else on the site. No page links it. The source search found no record of how it was made.
+
+## The `vesper-next/` folder
+
+`vesper-next/` holds Vesper Next, a browser planetarium. It is a separate app from the room pages.
+
+- Code: the MIT licence covers the code of Vesper Next: `vesper-next/index.html`, `vesper-next/sw.js`, `vesper-next/manifest.webmanifest`, and the files in `vesper-next/css/` and `vesper-next/js/`. It also covers the short interface text inside that code: button labels, menu words and short status lines.
+- Written text: the written paragraphs in `vesper-next/index.html` and the story, lore and companion lines inside the files in `vesper-next/js/` are not under the MIT licence. Devon Fisher keeps them. The MIT licence covers the code around those words, not the words.
+- three.js r160 (ESTABLISHED by the file header and the release number inside the file), MIT, Copyright 2010-2023 Three.js Authors. File: `vesper-next/vendor/three.module.mjs`, repackaged as an ES module with the library code unchanged, as its header says. Its licence text is in `vesper-next/vendor/three.LICENSE.txt`.
+- Planet and sky textures (ESTABLISHED by the two credit files in the folder): the 13 image files in `vesper-next/assets/textures/`, from Solar System Scope, https://www.solarsystemscope.com/textures/ , under CC BY 4.0, https://creativecommons.org/licenses/by/4.0/ , based on NASA data. They are not under the MIT licence. The credit is kept in `vesper-next/assets/textures/ATTRIBUTION.txt` and `vesper-next/CREDITS.txt`. This does not imply NASA endorsement.
+- App icons: `vesper-next/assets/icon-192.png`, `vesper-next/assets/icon-512.png` and `vesper-next/assets/apple-touch-icon.png` are not covered by the MIT licence. Where these three pictures came from is not yet confirmed.
