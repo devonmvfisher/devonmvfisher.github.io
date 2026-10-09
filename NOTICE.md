@@ -6,7 +6,7 @@ This file says what the MIT licence in `LICENSE` covers in this repository, what
 
 ## What the MIT licence covers
 
-The MIT licence covers the code written for these pages: the page markup, and the JavaScript and CSS in `_next/static/` and `legacy/`, apart from the third-party libraries listed below. This is compiled output. The source files are not in this repository.
+The MIT licence covers the code written for these pages: the page markup, with the scripts and styles inside the pages, and the JavaScript and CSS in `_next/static/` and `legacy/`, apart from the third-party libraries listed below. This is compiled output. The source files are not in this repository.
 
 It also covers the short interface text inside that code: button labels, menu words and short status lines.
 
@@ -54,12 +54,13 @@ The sky and the ground entries rest on the room project's own records. Poly Have
 The bundler removed most licence headers from the compiled files. The libraries below are identified by the names and version strings inside the compiled files. The full licence texts are in `THIRD-PARTY-LICENSES.txt`.
 
 - Tailwind CSS v4.2.1 (ESTABLISHED), MIT. Its notice is kept at the top of two CSS files: `_next/static/css/index.1NtnbC9W.css` and `legacy/hearth/_next/static/css/index.3rRAxT49.css`.
-- React and React DOM 19.2.6 (ESTABLISHED by the version string), MIT, Copyright (c) Meta Platforms, Inc. and affiliates. File: `framework-D_rUT4EX.js` (two copies, in `_next/static/chunks/` and `legacy/hearth/_next/static/chunks/`).
+- React and React DOM 19.2.6 (ESTABLISHED by the version string), MIT, Copyright (c) Meta Platforms, Inc. and affiliates. File: `framework-D_rUT4EX.js` (two copies, in `_next/static/chunks/` and `legacy/hearth/_next/static/chunks/`). The React server-components client (the react-server-dom-webpack package, same licence text) is inside `index-*.js`, in both `_next/` and `legacy/hearth/_next/`. Its exact version is not yet confirmed.
 - three.js r180 and its example modules (GLTFLoader, GLTFExporter, RoundedBoxGeometry, Sky, Reflector and others) (ESTABLISHED by the exporter string "THREE.GLTFExporter r180"), MIT, Copyright (c) three.js authors. Files: `RoundedBoxGeometry-BKm3lc1j.js`, `GLTFExporter-Dr_KpxZZ.js`, `Sky--XMlP2yy.js`, `retreat-smxMBszs.js` (HDR loader), `cottage-Cn5v0_Zu.js` (orbit controls), `engine-CYy8SyOp.js` (the Reflector example module) and `legacy/hearth/_next/static/chunks/room-BC1m_o2K.js`.
 - Rapier physics (WebAssembly) (ESTABLISHED by the name `rapier_wasm3d_bg.wasm` inside the file), embedded in `_next/static/chunks/Sky--XMlP2yy.js`. Rapier's licence is not yet confirmed: Rapier's own licence file, with its copyright line and any NOTICE file, was not available. `THIRD-PARTY-LICENSES.txt` carries the standard Apache License 2.0 text as a stand-in until it is replaced.
 - Base UI (ESTABLISHED by its name and its error page address `https://base-ui.com/production-error`, both inside the files), MIT, Copyright (c) 2019 Material-UI SAS. Files: `_next/static/chunks/sheet-yA2WYJKH.js` and `legacy/hearth/_next/static/chunks/page-rukks7Wi.js`. The exact version inside the compiled files is not yet confirmed; the licence text in `THIRD-PARTY-LICENSES.txt` is from @base-ui/react 1.5.0.
-- Lucide icons (ESTABLISHED by the name inside the files), ISC, Copyright (c) Lucide Icons and Contributors. Some Lucide icons come from Feather, MIT, Copyright (c) Cole Bemis. Files: `Icon-*.js`, `sheet-*.js`, `download-*.js`, `lightbulb-*.js`, `moon-*.js` and `legacy/hearth/_next/static/chunks/page-*.js`. The exact version inside the compiled files is not yet confirmed.
+- Lucide icons (ESTABLISHED by the name inside `Icon-*.js`, `sheet-*.js` and `legacy/hearth/_next/static/chunks/page-*.js`), ISC, Copyright (c) Lucide Icons and Contributors. Some Lucide icons come from Feather, MIT, Copyright (c) Cole Bemis. Files: `Icon-*.js`, `sheet-*.js`, `download-*.js`, `lightbulb-*.js`, `moon-*.js` and `legacy/hearth/_next/static/chunks/page-*.js`. The three small icon files do not hold the name. They hold icon shapes built with the icon code in `sheet-*.js`. The exact version inside the compiled files is not yet confirmed.
 - vinext (ESTABLISHED by the name inside the files), MIT, Copyright (c) Cloudflare, Inc. Page runtime in `index-*.js`, `app-route-prefetch-policy-*.js` and `streamed-icons-*.js`, in both `_next/` and `legacy/hearth/_next/`. The exact version inside the compiled files is not yet confirmed.
+- rolldown (LIKELY, by the file name `rolldown-runtime-C60lm6uB.js`; the file holds no library name inside), MIT, Copyright (c) 2024-present VoidZero Inc. & Contributors. This is the bundler's helper code. File: `rolldown-runtime-C60lm6uB.js` (two copies, in `_next/static/chunks/` and `legacy/hearth/_next/static/chunks/`). The exact version that built these pages is not yet confirmed; the licence text in `THIRD-PARTY-LICENSES.txt` is from rolldown 1.0.1.
 
 Three more pieces sit in the same two files as Base UI (`_next/static/chunks/sheet-yA2WYJKH.js` and `legacy/hearth/_next/static/chunks/page-rukks7Wi.js`). None has a licence text here, because none is confirmed:
 - tailwind-merge: the two files hold a class-merging table that works like the tailwind-merge library, but the library's name is not inside the files, so the match and its licence are not yet confirmed.
@@ -100,7 +101,7 @@ Not traced:
 - The other data files in `alder/`: the collider `.bin` files (`alder/landscape/terrain-compact-collider.bin` and `alder/landscape/terrain-hero-collider.bin`), `alder/library/library-character-ramps.json`, `alder/library-book/runtime-contract.json` and `alder/reading-bench-v3/reading-bench-v3-compact-contract.json`. They sit beside files from the same builds.
 
 LIKELY, from the Hearth page:
-- `legacy/hearth/favicon.svg`: a small house outline in the Hearth page's main colour. The source search found no record of how it was made.
+- `legacy/hearth/favicon.svg`: a small cream house outline on a green square; the green is the Hearth page's main colour. The source search found no record of how it was made.
 
 NOT FOUND:
 - `favicon.svg` (site root): a small four-tile blue icon that matches nothing else on the site. No page links it. The source search found no record of how it was made.

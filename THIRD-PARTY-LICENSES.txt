@@ -1,24 +1,25 @@
 THIRD-PARTY LICENSES
 
-This file carries the full licence text of the code libraries that are bundled, in compiled form, in these pages. The bundler removed their licence headers from the compiled files, so the texts are kept here. NOTICE.md lists each library with the files that carry it.
+This file carries the full licence text of the code libraries that are bundled, in compiled form, in these pages. The bundler removed most of their licence headers from the compiled files, so the texts are kept here. NOTICE.md lists each library with the files that carry it.
 
-How the texts were made: each text between a BEGIN COPY line and an END COPY line was copied from the licence file that ships in a package of that library. The package and version are named above each text. Each copy is identical, byte for byte, to the file it names.
+How the texts were made: each text between a BEGIN COPY line and an END COPY line was copied from the licence file named in the line above it. For most sections that is the licence file in a package of the library, and the package and version are named. Section 2 uses the licence file kept beside a three.js r180 build. Section 4 uses the standard Apache text from another package, as a stand-in. Each copy is identical, byte for byte, to the file it names.
 
-Not yet confirmed: the exact Base UI, Lucide and vinext versions inside the compiled files. The texts below come from @base-ui/react 1.5.0, lucide 1.8.0, lucide-react 0.525.0 and vinext 0.0.50.
+Not yet confirmed: the exact Base UI, Lucide and vinext versions inside the compiled files, and the exact version of rolldown that built them. The texts below come from @base-ui/react 1.5.0, lucide 1.8.0, lucide-react 0.525.0, vinext 0.0.50 and rolldown 1.0.1.
 
 Not yet confirmed: Rapier's own licence file. See section 4.
 
-Not yet confirmed: the licence texts for tailwind-merge, class-variance-authority and the small interface parts marked data-slot. See section 8.
+Not yet confirmed: the licence texts for tailwind-merge, class-variance-authority and the small interface parts marked data-slot. See section 9.
 
 Contents
   1. React and React DOM (MIT)
   2. three.js (MIT)
   3. Tailwind CSS (MIT)
-  4. Rapier (Apache License 2.0, stand-in text)
+  4. Rapier (licence not yet confirmed; standard Apache License 2.0 text as a stand-in)
   5. Lucide (ISC) and Feather (MIT)
   6. vinext (MIT)
   7. Base UI (MIT)
-  8. Libraries whose licence text is not yet confirmed
+  8. rolldown (MIT)
+  9. Libraries whose licence text is not yet confirmed
 
 
 ==========================================================================
@@ -115,9 +116,9 @@ SOFTWARE.
 
 
 ==========================================================================
-4. Rapier physics (Apache License 2.0, stand-in text)
+4. Rapier physics (licence not yet confirmed; standard Apache License 2.0 text as a stand-in)
 ==========================================================================
-Rapier (Dimforge) is compiled into _next/static/chunks/Sky--XMlP2yy.js as WebAssembly.
+Rapier is compiled into _next/static/chunks/Sky--XMlP2yy.js as WebAssembly.
 
 Not yet confirmed: Rapier's own licence file, its copyright line and any NOTICE file that Rapier ships.
 
@@ -466,7 +467,43 @@ SOFTWARE.
 
 
 ==========================================================================
-8. Libraries whose licence text is not yet confirmed
+8. rolldown (MIT)
+==========================================================================
+Bundler helper code, compiled into rolldown-runtime-C60lm6uB.js (two copies, in _next/static/chunks/ and legacy/hearth/_next/static/chunks/). The name rolldown is in the file name.
+Not yet confirmed: the exact rolldown version that built these pages. The text below is from rolldown 1.0.1.
+Copied from: the LICENSE file in the rolldown 1.0.1 package.
+
+----- BEGIN COPY: rolldown 1.0.1 LICENSE -----
+MIT License
+
+Copyright (c) 2024-present VoidZero Inc. & Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+end of terms and conditions
+
+The licenses of externally maintained libraries from which parts of the Software is derived are listed [here](https://github.com/rolldown/rolldown/blob/main/THIRD-PARTY-LICENSE).
+----- END COPY: rolldown 1.0.1 LICENSE -----
+
+
+==========================================================================
+9. Libraries whose licence text is not yet confirmed
 ==========================================================================
 These three items sit in the same two files as Base UI (_next/static/chunks/sheet-yA2WYJKH.js and legacy/hearth/_next/static/chunks/page-rukks7Wi.js). No licence text is given for them because none is confirmed.
 
